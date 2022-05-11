@@ -16,7 +16,7 @@ export const HabitSchema = new Schema ({
     toJSON: { virtuals: true }
   }
 );
-HabitSchema.virtual('creator', {
+HabitSchema.virtual('account', {
   localField: 'accountId',
   foreignField: '_id',
   ref: 'Account',
