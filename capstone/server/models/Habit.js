@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 export const HabitSchema = new Schema ({
     title: {type: String, required: true},
-    inspo: {type: String, default: false},
+    inspo: {type: String, default: ''},
     accountId: {type: Schema.Types.ObjectId, required: true, ref: 'Account'},
     streak: {type: Number, default: 0},
     lastTracked: {type: Array},
