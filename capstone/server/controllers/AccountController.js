@@ -37,9 +37,7 @@ export class AccountController extends BaseController {
     } catch (error) {
       next(error)
     }
-
   }
-
   async getUserAccount(req, res, next) {
     try {
       const account = await accountService.getAccount(req.userInfo)
