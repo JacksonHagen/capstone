@@ -20,6 +20,8 @@ class HabitsService {
         original.streak = update.streak || original.streak
         original.maxStreak = update.maxStreak || original.maxStreak
         original.interval = update.interval || original.interval
+        await original.save()
+        return original
     }
     async deleteHabit(habitId, userId) {
         const habit = await this.getHabitById(habitId)
