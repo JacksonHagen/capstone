@@ -8,11 +8,11 @@ export class BadgesController extends BaseController {
         this.router
             .use(Auth0Provider.getAuthorizedUserInfo)
             .get('', this.getBadgeByQuery)
-            .post('', this.createBadge)
+        // .post('', this.createBadge)
     }
     async createBadge(req, res, next) {
         try {
-            req.body.creatorId = req.userInfo.id
+            req.body.accountId = req.userInfo.id
             const badge = await badgesService.createBadge(req.body)
             res.send(badge)
         } catch (error) {
