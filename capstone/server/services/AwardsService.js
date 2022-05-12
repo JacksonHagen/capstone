@@ -14,6 +14,7 @@ class AwardsService {
       badgeId: badge.id,
       habit.accountId,
       habit.id
+      // 
     }
     const award = await dbContext.Awards.create(body)
     await award.populate('badge habit account')
