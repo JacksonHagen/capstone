@@ -6,7 +6,7 @@ export const HabitSchema = new Schema({
   inspo: { type: String, },
   accountId: { type: Schema.Types.ObjectId, required: true, ref: 'Account' },
   streak: { type: Number, default: 0 },
-  maxStreak: { type: Number, default: 0 },
+  maxStreak: { type: Number },
   trackHistory: { type: Array },
   isActive: { type: Boolean, default: true },
   color: { type: String },
