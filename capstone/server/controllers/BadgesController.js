@@ -12,7 +12,7 @@ export class BadgesController extends BaseController {
     }
     async createBadge(req, res, next) {
         try {
-            req.body.creatorId = req.userInfo.id
+            req.body.accountId = req.userInfo.id
             const badge = await badgesService.createBadge(req.body)
             res.send(badge)
         } catch (error) {
