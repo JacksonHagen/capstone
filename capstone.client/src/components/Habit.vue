@@ -17,7 +17,11 @@
       @click="toggle"
     >
       Quit Smoking
-      <input type="checkbox" @click="completeHabit" />
+      <!-- TODO v-if for check unchecked -->
+      <div class="div">
+        <i class="mdi mdi-checkbox-blank-outline" @click="completeHabit"></i>
+        <i class="mdi mdi-checkbox-marked" @click="completeHabit"></i>
+      </div>
     </div>
     <!-- TODO add the habit id to the id -->
     <div
@@ -37,8 +41,8 @@
               <p>Your streak is now 4 days.</p>
             </div>
           </div>
-          <div class="col-6">
-            <div class="bg-primary rounded">
+          <div class="col-6 mb-4 align-items-center">
+            <div class="bg-primary h-100 rounded">
               <h3 class="p-2 m-2">My badges for this habit</h3>
               <div id="badges" class="d-flex m-3">
                 <!-- Draw badges here -->
@@ -60,6 +64,10 @@ import { Collapse } from "bootstrap"
 export default {
   setup() {
     return {
+      props: {
+        habit: Object,
+        required: true
+      },
       toggle() {
         Collapse.getOrCreateInstance(document.getElementById('collapse')).toggle()
       }
@@ -81,5 +89,8 @@ export default {
   padding: 1em;
   border-bottom-right-radius: 0.5em;
   border-bottom-left-radius: 0.5em;
+}
+input [type="checkbox"] {
+  border-radius: 0.5em;
 }
 </style>
