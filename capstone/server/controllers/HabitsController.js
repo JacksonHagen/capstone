@@ -12,6 +12,8 @@ export class HabitsController extends BaseController {
             .get('', this.getHabitsByQuery)
             .get('/:id', this.getHabitById)
             .post('', this.createHabit)
+
+            // .use(checkRole)
             .put('/:id', this.editHabit)
             .delete('/:id', this.deleteHabit)
 

@@ -16,10 +16,13 @@ class HabitsService {
         }
         original.name = update.name || original.name
         original.inspo = update.inspo || original.inspo
-        original.lastTracked = update.lastTracked || original.lastTracked
-        original.streak = update.streak || original.streak
-        original.maxStreak = update.maxStreak || original.maxStreak
-        original.interval = update.interval || original.interval
+
+        // NOTE not in the put request, will be handled by NodeCron
+
+        // original.lastTracked = update.lastTracked || original.lastTracked
+        // original.streak = update.streak || original.streak
+        // original.maxStreak = update.maxStreak || original.maxStreak
+        // original.interval = update.interval || original.interval
         await original.save()
         return original
     }
