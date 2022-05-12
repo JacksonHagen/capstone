@@ -38,6 +38,26 @@
     },
     "cSpell.words": [
       "inspo"
-    ]
+    ],
+    "workbench.colorCustomizations": {
+      "activityBar.activeBackground": "#fcae9f",
+      "activityBar.activeBorder": "#059b1d",
+      "activityBar.background": "#fcae9f",
+      "activityBar.foreground": "#15202b",
+      "activityBar.inactiveForeground": "#15202b99",
+      "activityBarBadge.background": "#059b1d",
+      "activityBarBadge.foreground": "#e7e7e7",
+      "sash.hoverBorder": "#fcae9f",
+      "statusBar.background": "#fa856e",
+      "statusBar.foreground": "#15202b",
+      "statusBarItem.hoverBackground": "#f85b3d",
+      "statusBarItem.remoteBackground": "#fa856e",
+      "statusBarItem.remoteForeground": "#15202b",
+      "titleBar.activeBackground": "#fa856e",
+      "titleBar.activeForeground": "#15202b",
+      "titleBar.inactiveBackground": "#fa856e99",
+      "titleBar.inactiveForeground": "#15202b99"
+    },
+    "peacock.color": "#fa856e"
   }
 }
