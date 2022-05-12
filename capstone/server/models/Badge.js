@@ -1,12 +1,14 @@
+
 import mongoose from "mongoose";
 const Schema = mongoose.Schema;
 
-export const BadgeSchema = new Schema ({
-    name: {type: String, required: true},
-    img: {type: String, required: true},
-    type: {type: String, enum: ['streak', 'complete'], required: true},
-    value: {type: Number, required: true}
-  },
+// REVIEW add type 'tag'? use to get a badge template by a handle; ex: '7DS' for '7 day streak'
+export const BadgeSchema = new Schema({
+  name: { type: String, required: true },
+  img: { type: String, required: true },
+  type: { type: String, enum: ['streak', 'complete'], required: true },
+  value: { type: Number, required: true }
+},
   {
     timestamps: true,
     toJSON: { virtuals: true }

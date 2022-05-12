@@ -13,6 +13,7 @@ export const AwardSchema = new Schema ({
     toJSON: { virtuals: true }
   }
 );
+// NOTE do we populate badge to access its properties? if so, no need for img on AwardSchema
 AwardSchema.virtual('badge', {
   localField: 'badgeId',
   foreignField: '_id',
