@@ -53,7 +53,7 @@ export class HabitsController extends BaseController {
     }
     async getHabitsByQuery(req, res, next) {
         try {
-            const habits = await habitsService.getAll(req.params.query)
+            const habits = await habitsService.getAll(req.query)
             res.send(habits)
         } catch (error) {
             next(error)
