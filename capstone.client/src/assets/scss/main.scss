@@ -15,6 +15,41 @@ main {
   flex-grow: 1;
 }
 
+h1 {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 900;
+}
+
+h2 {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 500;
+}
+
+h3 {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 500;
+}
+
+h4 {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 500;
+}
+
+h5 {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 500;
+}
+
+p {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 300;
+}
+
+span {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 300;
+}
+
 a {
   text-decoration: none;
 }
@@ -26,6 +61,7 @@ select {
     &:valid {
       border: 1px solid $success;
     }
+
     &:invalid {
       border: 1px solid $danger;
     }
