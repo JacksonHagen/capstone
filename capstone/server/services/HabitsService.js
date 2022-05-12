@@ -41,7 +41,7 @@ class HabitsService {
         }
         return habit
     }
-    async getAll(query) {
+    async getAll(query = {}) {
         const habits = await dbContext.Habits.find(query).populate('account', 'name picture')
         return habits
     }
