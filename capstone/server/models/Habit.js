@@ -10,12 +10,9 @@ export const HabitSchema = new Schema ({
     isActive: {type: Boolean, default: true},
     interval: {type: String, enum: ['day', 'week', 'month']},
     maxStreak: {type: Number, default: 0},
-
   },
-,
-,
-    toJSON: { virtuals: true }
-  }
+
+{ timestamps: true, toJSON: { virtuals: true } }
 );
 HabitSchema.virtual('account', {
   localField: 'accountId',
