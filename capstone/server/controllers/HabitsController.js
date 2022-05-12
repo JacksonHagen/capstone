@@ -19,7 +19,7 @@ export class HabitsController extends BaseController {
     async editHabit(req, res, next) {
         try {
             req.body.id = req.params.id
-            req.body.creatorId = req.userInfo.id
+            req.body.accountId = req.userInfo.id
             const habit = await habitsService.editHabit(req.body)
             res.send(habit)
         } catch (error) {
@@ -36,8 +36,7 @@ export class HabitsController extends BaseController {
     }
     async createHabit(req, res, next) {
         try {
-            req.body.id = req.params.id
-            req.body.creatorId = req.userInfo.id
+            req.body.accountId = req.userInfo.id
             const habit = await habitsService.createHabit(req.body)
             res.send(habit)
         } catch (error) {
