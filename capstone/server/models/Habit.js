@@ -9,6 +9,7 @@ export const HabitSchema = new Schema({
   maxStreak: { type: Number, default: 0 },
   lastTracked: { type: Array },
   isActive: { type: Boolean, default: true },
+  color: { type: String },
   interval: { type: String, enum: ['day', 'week', 'month'] }
 },
   {
