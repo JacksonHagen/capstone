@@ -2,6 +2,10 @@ import { dbContext } from '../db/DbContext'
 import { BadRequest, Forbidden } from '../utils/Errors'
 
 class HabitsService {
+    async getHabitsByAccount(accountId) {
+        const habits = await dbContext.Habits.find({ accountId: accountId })
+        return habits
+    }
     async editHabit(update) {
         const original = await this.getHabitById(update.id)
         if (original.creatorId.toString() !== update.creatorId) {
