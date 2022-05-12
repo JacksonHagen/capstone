@@ -7,7 +7,7 @@ export const HabitSchema = new Schema({
   accountId: { type: Schema.Types.ObjectId, required: true, ref: 'Account' },
   streak: { type: Number, default: 0 },
   maxStreak: { type: Number, default: 0 },
-  lastTracked: { type: Array },
+  trackHistory: { type: Array },
   isActive: { type: Boolean, default: true },
   color: { type: String },
   interval: { type: String, enum: ['day', 'week', 'month'] }
