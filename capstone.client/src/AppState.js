@@ -8,5 +8,5 @@ export const AppState = reactive({
   activeHabit: {},
   myAwards: [],
   myHabits: [],
-  
+  day: 0,
 })
