@@ -10,7 +10,7 @@ export const HabitSchema = new Schema({
   trackHistory: { type: Array },
   isActive: { type: Boolean, default: true },
   color: { type: String },
-  interval: { type: String, enum: ['day', 'week', 'month'] }
+  interval: { type: Number, min: 1 }
 },
   {
     timestamps: true,

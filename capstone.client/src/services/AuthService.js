@@ -29,7 +29,8 @@ AuthService.on(AuthService.AUTH_EVENTS.AUTHENTICATED, async function () {
   socketService.authenticate(AuthService.bearer)
   // await habitsService.getHabitsByQuery()
   // NOTE if there is something you want to do once the user is authenticated, place that here
-  await habitsService.getMyHabits(AppState.user.id)
+  // await habitsService.getMyHabits(AppState.user.id)
+  await habitsService.getHabitsByQuery()
 
 })
 
