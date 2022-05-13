@@ -11,7 +11,7 @@ class HabitsService {
     AppState.habits = res.data
   }
   // this gets a single habit
-  async getHabitsbyId(habitId) {
+  async getHabitbyId(habitId) {
     const res = await api.get('api/habits/' + habitId)
     logger.log(res.data, "res of get habit by ID")
     AppState.activeHabit.unshift(res.data)
@@ -37,11 +37,11 @@ class HabitsService {
   }
   async archiveHabit(habitId) {
     const res = await api.delete('api/habits/' + habitId)
-    logger.log(res.data, "res of archieving a habit")
+    logger.log(res.data, "res of archiving a habit")
     AppState.activeHabit.isActive = false
   }
 
-  //this get exclusively active users Habits
+  //this get exclusively active user's Habits
   async getMyHabits(userId) {
     const res = await api.get('api/habits?accountId=' + userId)
     logger.log(res.data, "res of get my habits")

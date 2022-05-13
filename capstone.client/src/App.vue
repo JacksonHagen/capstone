@@ -9,15 +9,22 @@
 </template>
 
 <script>
-import { computed } from 'vue'
+import { computed, onMounted } from 'vue'
 import { AppState } from './AppState'
+import { habitsService } from './services/HabitsService.js'
 export default {
   name: 'App',
   setup() {
-    return {
-      appState: computed(() => AppState)
-    }
+    onMounted(async () => {
+      const today = new Date().now()
+      AppState.day = today
+
+    })
+  
+  return {
+    appState: computed(() => AppState)
   }
+}
 }
 </script>
 <style lang="scss">
