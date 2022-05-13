@@ -13,7 +13,7 @@ export class AwardsController extends BaseController {
     }
     async getAwardsByQuery(req, res, next) {
         try {
-            const awards = awardsService.getAwardsByQuery(req.params.query)
+            const awards = await awardsService.getAwardsByQuery(req.params.query)
             res.send(awards)
         }
         catch (error) {
