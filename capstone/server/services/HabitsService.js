@@ -23,13 +23,13 @@ class HabitsService {
         original.interval = update.interval || original.interval
         // NOTE award logic
         if (original.streak === 7) {
-            awardsService.createAward('sa07', original)
+            awardsService.createHabitAward('sa07', original)
         }
         else if (original.streak === 30) {
-            awardsService.createAward('sa30', original)
+            awardsService.createHabitAward('sa30', original)
         }
         else if (original.streak === 100) {
-            awardsService.createAward('sa99', original)
+            awardsService.createHabitAward('sa99', original)
         }
         await original.save()
 
