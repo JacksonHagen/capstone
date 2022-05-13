@@ -37,7 +37,7 @@ class HabitsService {
   }
   async archiveHabit(habitId) {
     const res = await api.delete('api/habits/' + habitId)
-    logger.log(res.data, "res of archieving a habit")
+    logger.log(res.data, "res of archiving a habit")
     AppState.activeHabit.isActive = false
   }
 
