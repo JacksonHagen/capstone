@@ -5,7 +5,7 @@ class AwardsService {
     const awards = await dbContext.Awards.find(query).populate('account')
     return awards
   }
-  async createHabitAward(badgeTag, habit) {
+  async createAward(badgeTag, habit) {
     const badge = await dbContext.Badges.findOne({ badgeTag })
     const body = {
       dateAwarded: new Date(),
