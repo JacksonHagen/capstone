@@ -26,6 +26,7 @@ class HabitsService {
 
         return original
     }
+
     // NOTE streak award logic
     async checkStreakAward(habit) {
     if (habit.streak === 7 && habit.maxStreak <= 7) {
@@ -45,7 +46,16 @@ class HabitsService {
         }
         habit.isActive = false
         await habit.save()
+        await this.checkCompletedAward(userId)
         return habit
+    }
+    async checkCompletedAward(accountId) {
+        const habits = await dbContext.Habits.find({accountId, isActive: false})
+        if(habits.length === 1) {
+            await awardsService.createAward('CH01', accountId)
+        } else if(habits.length === 5) {
+            await awardsService.createAward('CH05', accountId)
+        }
     }
     async createHabit(body) {
         await this.checkIfFirstHabit(body.accountId)
