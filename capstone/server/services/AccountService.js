@@ -1,4 +1,5 @@
 import { dbContext } from '../db/DbContext'
+import { awardsService } from './AwardsService.js'
 
 // Private Methods
 
@@ -14,6 +15,7 @@ async function createAccountIfNeeded(account, user) {
       ...user,
       subs: [user.sub]
     })
+    awardsService.createAward('li01', user.id)
   }
   return account
 }
