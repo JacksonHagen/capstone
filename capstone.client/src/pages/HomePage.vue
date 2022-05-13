@@ -1,11 +1,13 @@
 <template>
   <div class="container-fluid">
-    <div class="row">
-      <div class="col-12 justify-content-center d-flex">
-        <Habit />
-        <!-- Insert Habits here -->
-      </div>
-    </div>
+    <!-- <div class="row-fluid"> -->
+    <!-- <div class="col-12 justify-content-center d-flex"> -->
+    <Habit />
+    <Habit />
+    <Habit />
+    <!-- Insert Habits here -->
+    <!-- </div> -->
+    <!-- </div> -->
   </div>
 </template>
 

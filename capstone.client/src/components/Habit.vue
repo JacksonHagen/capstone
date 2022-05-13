@@ -1,6 +1,7 @@
 <template>
   <!-- TODO ternary to change habit color -->
-  <div id="habit" class="mt-4">
+  <!-- <div class="col-12"> -->
+  <div id="habit" class="mt-4 position-absolute">
     <div
       class="
         habit-bar
@@ -56,6 +57,7 @@
       </div>
     </div>
   </div>
+  <!-- </div> -->
 </template>
 
 
