@@ -15,6 +15,7 @@
   "dependencies": {
     "@bcwdev/auth0provider": "^1.0.12",
     "cors": "2.8.5",
+    "cron": "^2.0.0",
     "dotenv": "16.0.0",
     "esm": "3.2.25",
     "express": "4.17.3",

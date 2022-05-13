@@ -3,6 +3,19 @@ import { Auth0Provider } from '@bcwdev/auth0provider'
 import { habitsService } from '../services/HabitsService.js'
 
 
+
+function cronTest() {
+    const CronJob = require('cron').CronJob;
+    const job = new CronJob(
+        '* * * * * *',
+        function () {
+            return console.log('Hello')
+        }
+
+    )
+    job.start()
+}
+
 export class HabitsController extends BaseController {
     constructor() {
         super('api/habits')
@@ -39,6 +52,7 @@ export class HabitsController extends BaseController {
     }
     async createHabit(req, res, next) {
         try {
+
             req.body.accountId = req.userInfo.id
             const habit = await habitsService.createHabit(req.body)
             res.send(habit)
@@ -56,6 +70,7 @@ export class HabitsController extends BaseController {
     }
     async getHabitsByQuery(req, res, next) {
         try {
+            cronTest()
             const habits = await habitsService.getAll(req.query)
             res.send(habits)
         } catch (error) {
