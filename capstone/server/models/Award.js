@@ -6,7 +6,7 @@ export const AwardSchema = new Schema({
   badgeTag: { type: String, required: true },
   img: { type: String, required: true },
   badgeId: { type: Schema.Types.ObjectId, required: true, ref: 'Badge' },
-  habitId: { type: Schema.Types.ObjectId, required: true, ref: 'Habit' },
+  habitId: { type: Schema.Types.ObjectId, ref: 'Habit' },
   accountId: { type: Schema.Types.ObjectId, required: true, ref: 'Account' }
 },
   {
