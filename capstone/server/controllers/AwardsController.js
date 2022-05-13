@@ -7,7 +7,7 @@ export class AwardsController extends BaseController {
         super('api/awards')
         this.router
             .use(Auth0Provider.getAuthorizedUserInfo)
-            .post('', this.createAward)
+            .post('', this.createHabitAward)
             .get('', this.getAwardsByQuery)
 
     }
@@ -20,10 +20,10 @@ export class AwardsController extends BaseController {
             next(error)
         }
     }
-    async createAward(req, res, next) {
+    async createHabitAward(req, res, next) {
         try {
             req.body.accountId = req.userInfo.id
-            const award = await awardsService.createAward(req.body)
+            const award = await awardsService.createHabitAward(req.body)
             res.send(award)
         }
         catch (error) {
