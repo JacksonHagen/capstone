@@ -23,7 +23,7 @@ export class AwardsController extends BaseController {
     async createAward(req, res, next) {
         try {
             req.body.accountId = req.userInfo.id
-            const award = await awardsService.createAward(req.body)
+            const award = await awardsService.createAward(req.body, req.userInfo.id)
             res.send(award)
         }
         catch (error) {
