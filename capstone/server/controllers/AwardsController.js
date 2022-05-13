@@ -7,7 +7,8 @@ export class AwardsController extends BaseController {
         super('api/awards')
         this.router
             .use(Auth0Provider.getAuthorizedUserInfo)
-            .post('', this.createAward)
+            // NOTE the route is never being called
+            // .post('', this.createAward)
             .get('', this.getAwardsByQuery)
 
     }
