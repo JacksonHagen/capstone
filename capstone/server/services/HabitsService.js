@@ -1,5 +1,6 @@
 import { dbContext } from '../db/DbContext'
 import { BadRequest, Forbidden } from '../utils/Errors'
+import { awardsService } from './AwardsService.js'
 
 class HabitsService {
     async getHabitsByAccount(accountId) {
@@ -16,14 +17,22 @@ class HabitsService {
         }
         original.name = update.name || original.name
         original.inspo = update.inspo || original.inspo
-
-        // NOTE not in the put request, will be handled by NodeCron
-
-        // original.lastTracked = update.lastTracked || original.lastTracked
-        // original.streak = update.streak || original.streak
-        // original.maxStreak = update.maxStreak || original.maxStreak
-        // original.interval = update.interval || original.interval
+        original.lastTracked = update.lastTracked || original.lastTracked
+        original.streak = update.streak || original.streak
+        original.maxStreak = update.maxStreak || original.maxStreak
+        original.interval = update.interval || original.interval
+        // NOTE award logic
+        if (original.streak === 7) {
+            awardsService.createAward('sa07', original)
+        }
+        else if (original.streak === 30) {
+            awardsService.createAward('sa30', original)
+        }
+        else if (original.streak === 100) {
+            awardsService.createAward('sa99', original)
+        }
         await original.save()
+
         return original
     }
     async deleteHabit(habitId, userId) {
@@ -50,10 +59,5 @@ class HabitsService {
         const habits = await dbContext.Habits.find(query).populate('account', 'name picture')
         return habits
     }
-
-
-
-
 }
-
 export const habitsService = new HabitsService()
