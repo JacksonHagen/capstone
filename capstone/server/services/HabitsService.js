@@ -1,5 +1,6 @@
 import { dbContext } from '../db/DbContext'
 import { BadRequest, Forbidden } from '../utils/Errors'
+import { awardsService } from './AwardsService.js'
 
 class HabitsService {
     async getHabitsByAccount(accountId) {
@@ -20,8 +21,22 @@ class HabitsService {
         original.streak = update.streak || original.streak
         original.maxStreak = update.maxStreak || original.maxStreak
         original.interval = update.interval || original.interval
+        await this.checkStreakAward(original)
         await original.save()
+
         return original
+    }
+    // NOTE streak award logic
+    async checkStreakAward(habit) {
+    if (habit.streak === 7 && habit.maxStreak <= 7) {
+            await awardsService.createAward('sa07', habit.accountId, habit)
+        }
+        else if (habit.streak === 30 && habit.maxStreak <= 30) {
+            await awardsService.createAward('sa30', habit.accountId, habit)
+        }
+        else if (habit.streak === 100 && habit.maxStreak <= 100) {
+            await awardsService.createAward('sa99', habit.accountId, habit)
+        }
     }
     async deleteHabit(habitId, userId) {
         const habit = await this.getHabitById(habitId)
@@ -33,8 +48,16 @@ class HabitsService {
         return habit
     }
     async createHabit(body) {
+        await this.checkIfFirstHabit(body.accountId)
         const habit = await dbContext.Habits.create(body)
+        habit.populate('account')
         return habit
+    }
+    async checkIfFirstHabit(accountId) {
+        const habits = await dbContext.Habits.find({accountId})
+        if(!habits) {
+            await awardsService.createAward('MH01', accountId)
+        }
     }
     async getHabitById(habitId) {
         const habit = await dbContext.Habits.findById(habitId).populate('account', 'name picture')
@@ -47,10 +70,5 @@ class HabitsService {
         const habits = await dbContext.Habits.find(query).populate('account', 'name picture')
         return habits
     }
-
-
-
-
 }
-
 export const habitsService = new HabitsService()

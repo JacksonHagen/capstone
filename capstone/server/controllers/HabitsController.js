@@ -2,6 +2,7 @@ import BaseController from '../utils/BaseController'
 import { Auth0Provider } from '@bcwdev/auth0provider'
 import { habitsService } from '../services/HabitsService.js'
 
+
 export class HabitsController extends BaseController {
     constructor() {
         super('api/habits')
@@ -11,7 +12,9 @@ export class HabitsController extends BaseController {
             .use(Auth0Provider.getAuthorizedUserInfo)
             .get('', this.getHabitsByQuery)
             .get('/:id', this.getHabitById)
-            .post('', this.createHabit)
+            // .post('', this.createHabit)
+
+            // .use(checkRole)
             .put('/:id', this.editHabit)
             .delete('/:id', this.deleteHabit)
 
