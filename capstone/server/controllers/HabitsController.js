@@ -1,7 +1,10 @@
 import BaseController from '../utils/BaseController'
 import { Auth0Provider } from '@bcwdev/auth0provider'
 import { habitsService } from '../services/HabitsService.js'
-import { logger } from "../utils/Logger";
+
+
+
+
 
 export class HabitsController extends BaseController {
     constructor() {

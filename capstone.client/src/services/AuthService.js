@@ -27,8 +27,11 @@ AuthService.on(AuthService.AUTH_EVENTS.AUTHENTICATED, async function () {
   AppState.user = AuthService.user
   await accountService.getAccount()
   socketService.authenticate(AuthService.bearer)
-  await habitsService.getHabitsByQuery()
+  // await habitsService.getHabitsByQuery()
   // NOTE if there is something you want to do once the user is authenticated, place that here
+  // await habitsService.getMyHabits(AppState.user.id)
+  await habitsService.getHabitsByQuery()
+
 })
 
 async function refreshAuthToken(config) {
