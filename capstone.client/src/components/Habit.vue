@@ -19,7 +19,7 @@
       >
         <h3 @click="goToHabitsDetailPage()">{{ habit.title }}</h3>
         <!-- TODO v-if for check unchecked -->
-        <div class="div">
+        <div v-if="lastTracked.date != today.getDate()">
           <div class="form-check">
             <input
               type="checkbox"
@@ -79,7 +79,9 @@ import { computed, ref } from "@vue/reactivity"
 import { AppState } from "../AppState"
 import { useRouter } from 'vue-router'
 import { watchEffect } from "@vue/runtime-core"
-import { useRouter } from 'vue-router'
+import Pop from "../utils/Pop"
+import { logger } from "../utils/Logger"
+import { habitsService } from "../services/HabitsService"
 
 export default {
   props: {
@@ -99,15 +101,24 @@ export default {
       lastTracked,
       today: computed(() => AppState.day),
       habits: computed(() => AppState.myHabits),
+      // REVIEW
+      account: computed(() => AppState.account),
       goToHabitsDetailPage() {
         router.replace({ name: 'HabitsDetailPage', replace: true })
       },
       toggle() {
         Collapse.getOrCreateInstance(document.getElementById('collapse')).toggle()
       },
-      // REVIEW
-      habits: computed(() => AppState.habits),
-      account: computed(() => AppState.account)
+      async checkIn() {
+        try {
+          console.log(props.habit.trackHistory)
+          props.habit.trackHistory.unshift(new Date())
+          await habitsService.editHabit(props.habit)
+        } catch (error) {
+          logger.error(error)
+          Pop.toast(error.message, 'error')
+        }
+      }
     }
   }
 }
