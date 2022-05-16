@@ -25,6 +25,7 @@ class HabitsService {
   async editHabit(habitUpdate) {
     const res = await api.put('api/habits/' + habitUpdate.id, habitUpdate)
     logger.log(res.data, "res of edit habit")
+
     let index = AppState.habits.findIndex(h => h.id === res.data.id)
     if (index != -1) {
       AppState.habits.splice(index, 1, res.data)

@@ -9,9 +9,9 @@ class HabitsService {
     }
     async editHabit(update) {
         const original = await this.getHabitById(update.id)
-        if (original.accountId.toString() !== update.accountId) {
-            throw new Forbidden("You are not allowed to delete things that are property of 27Ducks inc.")
-        }
+        // if (original.accountId.toString() !== update.accountId) {
+        //     throw new Forbidden("You are not allowed to delete things that are property of 27Ducks inc.")
+        // }
         if (original.isActive == false) {
             throw new BadRequest("This has been archived")
         }
