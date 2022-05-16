@@ -13,7 +13,7 @@
         type="button"
         data-toggle="collapse"
         data-target="#collapseOne"
-        aria-expanded="true"
+        aria-expanded="false"
         aria-controls="collapseOne"
         @click.stop="toggle"
       >
@@ -39,7 +39,7 @@
       <!-- TODO add the habit id to the id -->
       <div
         :id="habit.id"
-        class="collapse show"
+        class="collapse hide"
         aria-labelledby="headingOne"
         data-parent="#accordionExample"
       >
@@ -78,7 +78,7 @@ import { Collapse } from "bootstrap"
 import { computed, ref } from "@vue/reactivity"
 import { AppState } from "../AppState"
 import { useRouter } from 'vue-router'
-import { watchEffect } from "@vue/runtime-core"
+import { onMounted, watchEffect } from "@vue/runtime-core"
 import Pop from "../utils/Pop"
 import { logger } from "../utils/Logger"
 import { habitsService } from "../services/HabitsService"
@@ -96,6 +96,7 @@ export default {
     watchEffect(() => {
       let date = new Date(props.habit.trackHistory[0]).getDate()
       lastTracked.value.date = date
+
     })
     return {
       lastTracked,

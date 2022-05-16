@@ -15,10 +15,11 @@
         <BarChart
           v-if="loaded"
           :chartData="{
-            labels: ['Shmee', 'Shmoo', 'Shmah'],
+            labels: titles,
             datasets: [
               {
-                data: topThreeStreaks,
+                label: '',
+                data: streaks,
                 backgroundColor: [
                   'rgba(255, 99, 132)',
                   'rgba(54, 162, 235)',
@@ -48,7 +49,7 @@
 
 
 <script>
-import { onMounted, ref, watchEffect } from '@vue/runtime-core'
+import { computed, onMounted, ref, watchEffect } from '@vue/runtime-core'
 import { AppState } from '../AppState.js'
 import { habitsService } from '../services/HabitsService.js'
 import Pop from '../utils/Pop.js'
@@ -61,19 +62,21 @@ export default {
     watchEffect(async () => {
       try {
         await habitsService.getHabitsByQuery()
-        AppState.habits.forEach(h => streaks.push(h.streak))
-        streaks.sort((a, b) => { return a - b }).reverse()
-        topThreeStreaks.value = [streaks[0], streaks[1], streaks[2]]
+        AppState.habits.forEach(h => streaks.push({ streak: h.streak, title: h.title }))
+        streaks.sort((a, b) => { return a.streak - b.streak }).reverse()
+        topThreeStreaks.streaks = [streaks[0].streak, streaks[1].streak, streaks[2].streak]
+        topThreeStreaks.titles = [streaks[0].title, streaks[1].title, streaks[2].title]
         loaded.value = true
       }
       catch (error) {
         console.error("[Could not load]", error.message);
         Pop.toast(error.message, "error");
       }
-      logger.log('streakers', topThreeStreaks)
+      logger.log('streakers', topThreeStreaks.titles + ':' + topThreeStreaks.streaks,)
     })
     return {
-      topThreeStreaks,
+      streaks: computed(() => topThreeStreaks.streaks),
+      titles: computed(() => topThreeStreaks.titles),
       loaded
     }
   }
