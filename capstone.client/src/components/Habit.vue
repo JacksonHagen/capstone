@@ -15,7 +15,7 @@
         data-target="#collapseOne"
         aria-expanded="true"
         aria-controls="collapseOne"
-        @click="toggle"
+        @click.stop="toggle"
       >
         <h3 @click="goToHabitsDetailPage()">{{ habit.title }}</h3>
         <!-- TODO v-if for check unchecked -->
@@ -32,8 +32,8 @@
             />
             <label class="form-check-label" for=""> Display value </label>
           </div>
-          <i class="mdi mdi-checkbox-blank-outline" @click="completeHabit"></i>
-          <i class="mdi mdi-checkbox-marked" @click="completeHabit"></i>
+          <!-- <i class="mdi mdi-checkbox-blank-outline" @click="completeHabit"></i>
+          <i class="mdi mdi-checkbox-marked" @click="completeHabit"></i> -->
         </div>
       </div>
       <!-- TODO add the habit id to the id -->
@@ -48,8 +48,8 @@
             <div class="col-md-6">
               <!-- TODO v-if you've compleeted this habit today -->
               <div class="p-2 m-2">
-                <h3>My streak:</h3>
-                OR
+                <h3>{{ habit.streak }}</h3>
+                <!-- TODO OR v-if  -->
                 <h4>You've completed this habit today!</h4>
                 <p>Your streak is now 4 days.</p>
               </div>
