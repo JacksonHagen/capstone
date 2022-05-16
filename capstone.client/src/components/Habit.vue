@@ -79,7 +79,6 @@ import { computed, ref } from "@vue/reactivity"
 import { AppState } from "../AppState"
 import { useRouter } from 'vue-router'
 import { watchEffect } from "@vue/runtime-core"
-import { useRouter } from 'vue-router'
 
 export default {
   props: {
