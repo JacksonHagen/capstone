@@ -63,6 +63,8 @@
 
 <script>
 import { Collapse } from "bootstrap"
+import { computed } from "@vue/reactivity"
+import { AppState } from "../AppState"
 import { useRouter } from 'vue-router'
 import { router } from '../router.js'
 import { computed } from '@vue/reactivity'
@@ -82,7 +84,10 @@ export default {
       },
       toggle() {
         Collapse.getOrCreateInstance(document.getElementById('collapse')).toggle()
-      }
+      },
+      // REVIEW
+      habits: computed(() => AppState.habits),
+      account: computed(() => AppState.account)
     }
   }
 }

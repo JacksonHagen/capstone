@@ -19,6 +19,7 @@ export default {
     onMounted(async () => {
       AppState.day = new Date()
       logger.log(AppState.day, "today")
+
       // REVIEW v-logic for habit components
       // habit.trackHistory.push(new Date)
       // AppState.displayHabits = AppState.myHabits.filter(h => h.isActive && ((h.interval) <= (today.getDate() - h.lastTracked[0].getDate())))
