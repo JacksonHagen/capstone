@@ -62,7 +62,6 @@ export default {
     watchEffect(async () => {
       try {
         await habitsService.getHabitsByQuery()
-        debugger
         AppState.habits.forEach(h => streaks.push({ streak: h.streak, title: h.title }))
         streaks.sort((a, b) => { return a.streak - b.streak }).reverse()
         topThreeStreaks.streaks = [streaks[0].streak, streaks[1].streak, streaks[2].streak]

@@ -40,7 +40,7 @@ export default {
       required: true
     }
   },
-  setup() {
+  setup(props) {
     return {
       awards: computed(() => AppState.myAwards.filter(a => a.habitId == props.habit.id))
     }

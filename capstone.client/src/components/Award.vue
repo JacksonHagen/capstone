@@ -1,5 +1,7 @@
 <template>
-  <div class="component">AWARDS ARE SHINY</div>
+  <div class="component">
+    <img :src="award.img" height="270" alt="" />
+  </div>
 </template>
 
 
@@ -11,8 +13,10 @@ export default {
       required: true
     }
   },
-  setup() {
-    return {}
+  setup(props) {
+    return {
+
+    }
   }
 }
 </script>
