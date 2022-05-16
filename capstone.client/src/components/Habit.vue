@@ -65,10 +65,13 @@
 import { Collapse } from "bootstrap"
 import { useRouter } from 'vue-router'
 import { router } from '../router.js'
+import { computed } from '@vue/reactivity'
 export default {
   props: {
-    habit: Object,
-    required: true
+    habit: {
+      type: Object,
+      required: true
+    }
   },
   setup() {
     const router = useRouter()

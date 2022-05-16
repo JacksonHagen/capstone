@@ -21,7 +21,7 @@
 <script>
 export default {
   props: {
-    habits: {
+    habit: {
       type: Object,
       required: true
     }
