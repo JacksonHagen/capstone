@@ -17,9 +17,21 @@
         aria-controls="collapseOne"
         @click="toggle"
       >
-        Quit Smoking
+        <h3 @click="goToHabitsDetailPage()">{{ habit.title }}</h3>
         <!-- TODO v-if for check unchecked -->
-        <div class="div">
+        <div v-if="lastTracked.date != today.getDate()">
+          <div class="form-check">
+            <input
+              type="checkbox"
+              class="form-check-input"
+              name=""
+              id=""
+              value="checkedValue"
+              @click="checkIn"
+              v-bind="lastTracked == today.getDate() ? checked : ''"
+            />
+            <label class="form-check-label" for=""> Display value </label>
+          </div>
           <i class="mdi mdi-checkbox-blank-outline" @click="completeHabit"></i>
           <i class="mdi mdi-checkbox-marked" @click="completeHabit"></i>
         </div>
@@ -63,15 +75,49 @@
 
 <script>
 import { Collapse } from "bootstrap"
+import { computed, ref } from "@vue/reactivity"
+import { AppState } from "../AppState"
+import { useRouter } from 'vue-router'
+import { watchEffect } from "@vue/runtime-core"
+import Pop from "../utils/Pop"
+import { logger } from "../utils/Logger"
+import { habitsService } from "../services/HabitsService"
+
 export default {
-  setup() {
+  props: {
+    habit: {
+      type: Object,
+      required: true
+    }
+  },
+  setup(props) {
+    const router = useRouter()
+    const lastTracked = ref({})
+    watchEffect(() => {
+      let date = new Date(props.habit.trackHistory[0]).getDate()
+      lastTracked.value.date = date
+    })
     return {
-      props: {
-        habit: Object,
-        required: true
+      lastTracked,
+      today: computed(() => AppState.day),
+      habits: computed(() => AppState.myHabits),
+      // REVIEW
+      account: computed(() => AppState.account),
+      goToHabitsDetailPage() {
+        router.replace({ name: 'HabitsDetailPage', replace: true })
       },
       toggle() {
         Collapse.getOrCreateInstance(document.getElementById('collapse')).toggle()
+      },
+      async checkIn() {
+        try {
+          console.log(props.habit.trackHistory)
+          props.habit.trackHistory.unshift(new Date())
+          await habitsService.editHabit(props.habit)
+        } catch (error) {
+          logger.error(error)
+          Pop.toast(error.message, 'error')
+        }
       }
     }
   }

@@ -10,15 +10,15 @@ export class BadgesController extends BaseController {
             .get('', this.getBadgeByQuery)
         // .post('', this.createBadge)
     }
-    async createBadge(req, res, next) {
-        try {
-            req.body.accountId = req.userInfo.id
-            const badge = await badgesService.createBadge(req.body)
-            res.send(badge)
-        } catch (error) {
-            next(error)
-        }
-    }
+    // async createBadge(req, res, next) {
+    //     try {
+    //         req.body.accountId = req.userInfo.id
+    //         const badge = await badgesService.createBadge(req.body)
+    //         res.send(badge)
+    //     } catch (error) {
+    //         next(error)
+    //     }
+    // }
     async getBadgeByQuery(req, res, next) {
         try {
             const badge = await badgesService.getBadgesByQuery(req.params.query)

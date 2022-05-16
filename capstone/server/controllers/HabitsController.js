@@ -4,30 +4,17 @@ import { habitsService } from '../services/HabitsService.js'
 
 
 
-function cronTest() {
-    const CronJob = require('cron').CronJob;
-    const job = new CronJob(
-        '* * * * * *',
-        function () {
-            return console.log('Hello')
-        }
 
-    )
-    job.start()
-}
 
 export class HabitsController extends BaseController {
     constructor() {
         super('api/habits')
         this.router
-
             // NOTE: Beyond this point all routes require Authorization tokens (the user must be logged in)
             .use(Auth0Provider.getAuthorizedUserInfo)
             .get('', this.getHabitsByQuery)
             .get('/:id', this.getHabitById)
             .post('', this.createHabit)
-
-            // .use(checkRole)
             .put('/:id', this.editHabit)
             .delete('/:id', this.deleteHabit)
 
@@ -70,7 +57,6 @@ export class HabitsController extends BaseController {
     }
     async getHabitsByQuery(req, res, next) {
         try {
-            cronTest()
             const habits = await habitsService.getAll(req.query)
             res.send(habits)
         } catch (error) {

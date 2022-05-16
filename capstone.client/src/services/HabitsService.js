@@ -5,8 +5,8 @@ import { api } from "./AxiosService";
 class HabitsService {
 
   // get habits by query is our get ALL across all users habits
-  async getHabitsByQuery(params = {}) {
-    const res = await api.get('api/habits/' + params)
+  async getHabitsByQuery(params) {
+    const res = await api.get('api/habits', params)
     logger.log(res.data, "get habits by query res")
     AppState.habits = res.data
   }
@@ -25,6 +25,7 @@ class HabitsService {
   async editHabit(habitUpdate) {
     const res = await api.put('api/habits/' + habitUpdate.id, habitUpdate)
     logger.log(res.data, "res of edit habit")
+
     let index = AppState.habits.findIndex(h => h.id === res.data.id)
     if (index != -1) {
       AppState.habits.splice(index, 1, res.data)
@@ -42,8 +43,8 @@ class HabitsService {
   }
 
   //this get exclusively active user's Habits
-  async getMyHabits(userId) {
-    const res = await api.get('api/habits?accountId=' + userId)
+  async getMyHabits() {
+    const res = await api.get('account/habits')
     logger.log(res.data, "res of get my habits")
     AppState.myHabits = res.data
   }

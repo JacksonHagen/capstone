@@ -9,15 +9,16 @@ class HabitsService {
     }
     async editHabit(update) {
         const original = await this.getHabitById(update.id)
-        if (original.accountId.toString() !== update.accountId) {
-            throw new Forbidden("You are not allowed to delete things that are property of 27Ducks inc.")
-        }
+        // if (original.accountId.toString() !== update.accountId) {
+        //     throw new Forbidden("You are not allowed to delete things that are property of 27Ducks inc.")
+        // }
         if (original.isActive == false) {
-            throw new BadRequest("this has been archived")
+            throw new BadRequest("This has been archived")
         }
         original.name = update.name || original.name
         original.inspo = update.inspo || original.inspo
-        original.lastTracked = update.lastTracked || original.lastTracked
+        original.trackHistory = update.trackHistory || original.trackHistory
+        // original.trackHistory.push(update.updatedAt)
         original.streak = update.streak || original.streak
         original.maxStreak = update.maxStreak || original.maxStreak
         original.interval = update.interval || original.interval
@@ -29,7 +30,7 @@ class HabitsService {
 
     // NOTE streak award logic
     async checkStreakAward(habit) {
-    if (habit.streak === 7 && habit.maxStreak <= 7) {
+        if (habit.streak === 7 && habit.maxStreak <= 7) {
             await awardsService.createAward('sa07', habit.accountId, habit)
         }
         else if (habit.streak === 30 && habit.maxStreak <= 30) {
@@ -50,10 +51,10 @@ class HabitsService {
         return habit
     }
     async checkCompletedAward(accountId) {
-        const habits = await dbContext.Habits.find({accountId, isActive: false})
-        if(habits.length === 1) {
+        const habits = await dbContext.Habits.find({ accountId, isActive: false })
+        if (habits.length === 1) {
             await awardsService.createAward('CH01', accountId)
-        } else if(habits.length === 5) {
+        } else if (habits.length === 5) {
             await awardsService.createAward('CH05', accountId)
         }
     }
@@ -64,8 +65,8 @@ class HabitsService {
         return habit
     }
     async checkIfFirstHabit(accountId) {
-        const habits = await dbContext.Habits.find({accountId})
-        if(!habits) {
+        const habits = await dbContext.Habits.find({ accountId })
+        if (!habits) {
             await awardsService.createAward('MH01', accountId)
         }
     }
