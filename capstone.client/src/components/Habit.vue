@@ -39,7 +39,7 @@
       <!-- TODO add the habit id to the id -->
       <div
         :id="habit.id"
-        class="collapse show"
+        class="collapse hide"
         aria-labelledby="headingOne"
         data-parent="#accordionExample"
       >
@@ -93,10 +93,6 @@ export default {
   setup(props) {
     const router = useRouter()
     const lastTracked = ref({})
-    onMounted(() => {
-      // Closes collapasable on page load. Is there a better way?
-      Collapse.getOrCreateInstance(document.getElementById(props.habit.id)).toggle('hide')
-    })
     watchEffect(() => {
       let date = new Date(props.habit.trackHistory[0]).getDate()
       lastTracked.value.date = date
