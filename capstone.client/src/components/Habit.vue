@@ -17,7 +17,7 @@
         aria-controls="collapseOne"
         @click="toggle"
       >
-        Quit Smoking
+        <h3 @click="goToHabitsDetailPage()">Habit name</h3>
         <!-- TODO v-if for check unchecked -->
         <div class="div">
           <i class="mdi mdi-checkbox-blank-outline" @click="completeHabit"></i>
@@ -63,16 +63,31 @@
 
 <script>
 import { Collapse } from "bootstrap"
+import { computed } from "@vue/reactivity"
+import { AppState } from "../AppState"
+import { useRouter } from 'vue-router'
+import { router } from '../router.js'
+import { computed } from '@vue/reactivity'
 export default {
+  props: {
+    habit: {
+      type: Object,
+      required: true
+    }
+  },
   setup() {
+    const router = useRouter()
     return {
-      props: {
-        habit: Object,
-        required: true
+      habits: computed(() => AppState.myHabits),
+      goToHabitsDetailPage() {
+        router.replace({ name: 'HabitsDetailPage', replace: true })
       },
       toggle() {
         Collapse.getOrCreateInstance(document.getElementById('collapse')).toggle()
-      }
+      },
+      // REVIEW
+      habits: computed(() => AppState.habits),
+      account: computed(() => AppState.account)
     }
   }
 }
