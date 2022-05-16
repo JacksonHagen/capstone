@@ -2,21 +2,18 @@
   <div class="container-fluid">
     <div id="scrollable" class="row w-100 d-flex justify-content-center">
       <!-- This will be a differently formatted habit componennt -->
-      <HabitDetails v-for="h in habits" :key="h.id" :habit="h" />
+      <HabitDetails v-for="h in habits" :key="h.id" :habit="h"  />
     </div>
   </div>
 </template>
 
 
 <script>
-import { computed } from "@vue/reactivity"
-import { AppState } from "../AppState"
+import { computed } from '@vue/reactivity'
+import { AppState } from '../AppState.js'
 export default {
   setup() {
-
     return {
-      habits: computed(() => AppState.myHabits),
-      account: computed(() => AppState.account)
     }
   }
 }
