@@ -3,6 +3,7 @@ import { AppState } from '../AppState'
 import { audience, clientId, domain } from '../env'
 import { router } from '../router'
 import { accountService } from './AccountService'
+import { awardsService } from './AwardsService.js'
 import { api } from './AxiosService'
 import { habitsService } from "./HabitsService"
 import { socketService } from './SocketService'
@@ -31,6 +32,7 @@ AuthService.on(AuthService.AUTH_EVENTS.AUTHENTICATED, async function () {
   // NOTE if there is something you want to do once the user is authenticated, place that here
   await habitsService.getMyHabits(AppState.user.id)
   await habitsService.getHabitsByQuery()
+  await awardsService.getMyAwards()
 
 })
 
