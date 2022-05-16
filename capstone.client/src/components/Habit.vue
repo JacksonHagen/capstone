@@ -63,7 +63,6 @@
 
 <script>
 import { Collapse } from "bootstrap"
-import { computed } from "@vue/reactivity"
 import { AppState } from "../AppState"
 import { useRouter } from 'vue-router'
 import { router } from '../router.js'
