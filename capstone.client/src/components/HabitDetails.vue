@@ -1,19 +1,24 @@
 <template>
   <div class="col-12 d-flex justify-content-center w-100 align-items-center">
-    <div id="habit" class="mt-3 justify-content-center">
-      <h3 class="">{{ habit.title }}</h3>
-      <div class="row">
-        <div class="col-12 bg-light">
-          <h6>{{ habit.inspo }} </h6>
-        </div>
-        <div class="col-12 bg-light">
-          <h6>
-            Current Streak: {{ habit.streak }} Max Streak:
-            {{ habit.maxStreak }}
-          </h6>
-        </div>
-        <div class="col-12 bg-light">
-          <Award v-for="a in awards" :key="a.id" :award="a" />
+    <div class="darken-30 p-3 mt-3 w-100">
+      <div id="habit" class="mt-3 justify-content-center">
+        <h3 class="bg-success darken-30 w-100 p-3 m-0 rounded-top">
+          {{ habit.title }}
+        </h3>
+        <div class="bg-success rounded-bottom p-3">
+          <div class="col-12 p-3 bg-light">
+            <h6>{{ habit.inspo }}</h6>
+          </div>
+          <div class="col-12 p-3 my-2 bg-light">
+            <h6>
+              Current Streak: {{ habit.streak }} Max Streak:
+              {{ habit.maxStreak }}
+            </h6>
+          </div>
+          <div class="col-12 bg-light">
+            <Award v-for="a in awards" :key="a.id" :award="a" />
+          </div>
+          <div class="div">A chart would look fire here</div>
         </div>
       </div>
     </div>

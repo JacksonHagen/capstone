@@ -23,7 +23,7 @@
         </li>
         <li>
           <router-link
-            :to="{ name: 'About' }"
+            :to="{ name: 'Account' }"
             class="btn text-success lighten-30 selectable text-uppercase"
           >
             Stats
