@@ -16,7 +16,7 @@ export default {
   name: 'Home',
   setup() {
     return {
-      habits: computed(() => AppState.habits)
+      habits: computed(() => AppState.myHabits)
 
     }
   }
