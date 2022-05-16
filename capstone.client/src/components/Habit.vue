@@ -78,8 +78,9 @@ import { Collapse } from "bootstrap"
 import { computed, ref } from "@vue/reactivity"
 import { AppState } from "../AppState"
 import { useRouter } from 'vue-router'
-import { router } from '../router.js'
 import { watchEffect } from "@vue/runtime-core"
+import { useRouter } from 'vue-router'
+
 export default {
   props: {
     habit: {

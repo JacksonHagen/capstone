@@ -11,12 +11,10 @@
 
 <script>
 import { computed } from '@vue/reactivity'
-import { useRouter } from 'vue-router'
 import { AppState } from '../AppState.js'
 export default {
   name: 'Home',
   setup() {
-    const router = useRouter
     return {
       habits: computed(() => AppState.habits)
 
