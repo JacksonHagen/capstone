@@ -1,5 +1,5 @@
 <template>
-  <Bar :chart-data="chartData" :chart-options="chartOptions" />
+  <Bar :chart-data="chartData" :chart-options="chartOptions" :height="height" />
 </template>
 
 
@@ -25,7 +25,9 @@ export default {
     },
   },
   setup() {
-    return {}
+    return {
+      height: 100
+    }
   }
 }
 </script>

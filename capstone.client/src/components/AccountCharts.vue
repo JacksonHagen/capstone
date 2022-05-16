@@ -11,11 +11,24 @@
     <div class="row mb-4">
       <div class="col-12 bg-light rounded p-3">
         <p class="text-dark">My Top Streaks</p>
+
         <BarChart
           v-if="loaded"
           :chartData="{
             labels: ['Shmee', 'Shmoo', 'Shmah'],
-            datasets: [{ data: topThreeStreaks }],
+            datasets: [
+              {
+                data: topThreeStreaks,
+                backgroundColor: [
+                  'rgba(255, 99, 132)',
+                  'rgba(54, 162, 235)',
+                  'rgba(255, 206, 86)',
+                ],
+              },
+            ],
+          }"
+          :chartOptions="{
+            indexAxis: 'y',
           }"
         />
       </div>
