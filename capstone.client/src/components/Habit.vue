@@ -17,9 +17,21 @@
         aria-controls="collapseOne"
         @click="toggle"
       >
-        <h3 @click="goToHabitsDetailPage()">Habit name</h3>
+        <h3 @click="goToHabitsDetailPage()">{{ habit.title }}</h3>
         <!-- TODO v-if for check unchecked -->
         <div class="div">
+          <div class="form-check">
+            <input
+              type="checkbox"
+              class="form-check-input"
+              name=""
+              id=""
+              value="checkedValue"
+              @click="checkIn"
+              v-bind="lastTracked == today.getDate() ? checked : ''"
+            />
+            <label class="form-check-label" for=""> Display value </label>
+          </div>
           <i class="mdi mdi-checkbox-blank-outline" @click="completeHabit"></i>
           <i class="mdi mdi-checkbox-marked" @click="completeHabit"></i>
         </div>
@@ -63,18 +75,28 @@
 
 <script>
 import { Collapse } from "bootstrap"
-import { computed } from "@vue/reactivity"
+import { computed, ref } from "@vue/reactivity"
 import { AppState } from "../AppState"
 import { useRouter } from 'vue-router'
 import { router } from '../router.js'
+import { watchEffect } from "@vue/runtime-core"
 export default {
   props: {
-    habit: Object,
-    required: true
+    habit: {
+      type: Object,
+      required: true
+    }
   },
-  setup() {
+  setup(props) {
     const router = useRouter()
+    const lastTracked = ref({})
+    watchEffect(() => {
+      let date = new Date(props.habit.trackHistory[0]).getDate()
+      lastTracked.value.date = date
+    })
     return {
+      lastTracked,
+      today: computed(() => AppState.day),
       habits: computed(() => AppState.myHabits),
       goToHabitsDetailPage() {
         router.replace({ name: 'HabitsDetailPage', replace: true })
