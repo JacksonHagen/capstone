@@ -13,7 +13,7 @@
         type="button"
         data-toggle="collapse"
         data-target="#collapseOne"
-        aria-expanded="true"
+        aria-expanded="false"
         aria-controls="collapseOne"
         @click.stop="toggle"
       >
@@ -78,7 +78,7 @@ import { Collapse } from "bootstrap"
 import { computed, ref } from "@vue/reactivity"
 import { AppState } from "../AppState"
 import { useRouter } from 'vue-router'
-import { watchEffect } from "@vue/runtime-core"
+import { onMounted, watchEffect } from "@vue/runtime-core"
 import Pop from "../utils/Pop"
 import { logger } from "../utils/Logger"
 import { habitsService } from "../services/HabitsService"
@@ -93,6 +93,10 @@ export default {
   setup(props) {
     const router = useRouter()
     const lastTracked = ref({})
+    onMounted(() => {
+      // Closes collapasable on page load. Is there a better way?
+      Collapse.getOrCreateInstance(document.getElementById(props.habit.id)).toggle('hide')
+    })
     watchEffect(() => {
       let date = new Date(props.habit.trackHistory[0]).getDate()
       lastTracked.value.date = date
