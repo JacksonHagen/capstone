@@ -1,16 +1,19 @@
 <template>
   <div class="col-12 d-flex justify-content-center w-100 align-items-center">
     <div id="habit" class="mt-3 justify-content-center">
-      <h3 class="">{{ habit.name }} name</h3>
+      <h3 class="">{{ habit.title }}</h3>
       <div class="row">
         <div class="col-12 bg-light">
-          <h6>{{ habit.inspiration }} inspiration</h6>
+          <h6>{{ habit.inspo }} </h6>
         </div>
         <div class="col-12 bg-light">
-          <h6>{{ habit.streak }}streak & max streak {{ habit.maxStreak }}</h6>
+          <h6>
+            Current Streak: {{ habit.streak }} Max Streak:
+            {{ habit.maxStreak }}
+          </h6>
         </div>
         <div class="col-12 bg-light">
-          <h6>badges here</h6>
+          <Award v-for="a in awards" :key="a.id" :award="a" />
         </div>
       </div>
     </div>
@@ -19,6 +22,8 @@
 
 
 <script>
+import { computed } from '@vue/reactivity'
+import { AppState } from '../AppState.js'
 export default {
   props: {
     habit: {
@@ -27,7 +32,9 @@ export default {
     }
   },
   setup() {
-    return {}
+    return {
+      awards: computed(() => AppState.myAwards.filter(a => a.habitId == props.habit.id))
+    }
   }
 }
 </script>

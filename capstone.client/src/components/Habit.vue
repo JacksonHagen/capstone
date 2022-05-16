@@ -38,7 +38,7 @@
       </div>
       <!-- TODO add the habit id to the id -->
       <div
-        id="collapse"
+        :id="habit.id"
         class="collapse show"
         aria-labelledby="headingOne"
         data-parent="#accordionExample"
@@ -107,7 +107,7 @@ export default {
         router.replace({ name: 'HabitsDetailPage', replace: true })
       },
       toggle() {
-        Collapse.getOrCreateInstance(document.getElementById('collapse')).toggle()
+        Collapse.getOrCreateInstance(document.getElementById(props.habit.id)).toggle()
       },
       async checkIn() {
         try {
