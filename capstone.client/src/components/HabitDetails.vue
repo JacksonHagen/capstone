@@ -15,10 +15,14 @@
               {{ habit.maxStreak }}
             </h6>
           </div>
+          <div class="py-3">A chart would look fire here</div>
           <div class="col-12 bg-light">
+            <img
+              src="../assets/img/Badges/CapstoneBadges1st-Login.png"
+              height="400"
+            />
             <Award v-for="a in awards" :key="a.id" :award="a" />
           </div>
-          <div class="div">A chart would look fire here</div>
         </div>
       </div>
     </div>
