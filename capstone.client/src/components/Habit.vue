@@ -96,6 +96,7 @@ export default {
     watchEffect(() => {
       let date = new Date(props.habit.trackHistory[0]).getDate()
       lastTracked.value.date = date
+
     })
     return {
       lastTracked,
