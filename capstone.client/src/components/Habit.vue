@@ -63,16 +63,21 @@
 
 <script>
 import { Collapse } from "bootstrap"
+import { computed } from "@vue/reactivity"
+import { AppState } from "../AppState"
 export default {
+  props: {
+    habit: Object,
+    required: true
+  },
   setup() {
     return {
-      props: {
-        habit: Object,
-        required: true
-      },
       toggle() {
         Collapse.getOrCreateInstance(document.getElementById('collapse')).toggle()
-      }
+      },
+      // REVIEW
+      habits: computed(() => AppState.habits),
+      account: computed(() => AppState.account)
     }
   }
 }
