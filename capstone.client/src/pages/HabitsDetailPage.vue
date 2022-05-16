@@ -14,7 +14,7 @@ import { AppState } from '../AppState.js'
 export default {
   setup() {
     return {
-      habits: computed(() => AppState.habits)
+      habits: computed(() => AppState.myHabits)
     }
   }
 }
