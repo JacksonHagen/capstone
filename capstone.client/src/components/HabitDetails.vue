@@ -4,7 +4,7 @@
       <h3 class="">{{ habit.title }}</h3>
       <div class="row">
         <div class="col-12 bg-light">
-          <h6>{{ habit.inspo }} inspiration</h6>
+          <h6>{{ habit.inspo }} </h6>
         </div>
         <div class="col-12 bg-light">
           <h6>
