@@ -13,7 +13,7 @@ class HabitsService {
             throw new Forbidden("You are not allowed to delete things that are property of 27Ducks inc.")
         }
         if (original.isActive == false) {
-            throw new BadRequest("this has been archived")
+            throw new BadRequest("This has been archived")
         }
         original.name = update.name || original.name
         original.inspo = update.inspo || original.inspo

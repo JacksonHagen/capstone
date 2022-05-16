@@ -5,6 +5,7 @@ class AwardsService {
     return await dbContext.Awards.find(query).populate('account')
   }
   async createAward(badgeTag, accountId, habit = {}) {
+    // NOTE no need for admins because our server host can forbid all requests that do no originate from the program.
     const badge = await dbContext.Badges.findOne({ badgeTag })
     const body = {
       dateAwarded: new Date(),
