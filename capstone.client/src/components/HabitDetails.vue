@@ -1,14 +1,6 @@
-<template class="">
+<template>
   <div
-    class="
-      col-12
-      d-flex
-      justify-content-center
-      fit-content(100vh)
-      container
-      align-items-center
-      scrollable
-    "
+    class="col-12 d-flex fit-content(100vh) container-scroll align-items-center"
     :id="'h-' + habit.id"
   >
     <div class="darken-30 p-3 mt-3 w-100">
@@ -53,12 +45,6 @@ export default {
     }
   },
   setup(props) {
-    // NOTE use for scroll to? or delete
-    // const router = useRouter({
-    //   return{
-    //     document.getElementById()
-    //   }
-    // })
     return {
       awards: computed(() => AppState.myAwards.filter(a => a.habitId == props.habit.id))
     }
@@ -68,13 +54,4 @@ export default {
 
 
 <style lang="scss" scoped>
-.scrollable {
-  overflow-x: scroll;
-  display: inline-block;
-  flex-direction: column;
-  min-width: 100vw;
-}
-.container {
-  height: 100vh;
-}
 </style>

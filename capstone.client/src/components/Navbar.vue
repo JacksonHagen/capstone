@@ -1,51 +1,27 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-primary bg-primary px-3">
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#navbarText"
-      aria-controls="navbarText"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
-      <span class="navbar-toggler-icon" />
-    </button>
-    <div class="collapse navbar-collapse" id="navbarText">
-      <ul class="navbar-nav me-auto">
-        <li>
-          <router-link
-            class="btn text-success lighten-30 selectable text-uppercase"
-            :to="{ name: 'Home' }"
-          >
-            Home
-          </router-link>
-        </li>
-        <li>
-          <router-link
-            :to="{ name: 'Account' }"
-            class="btn text-success lighten-30 selectable text-uppercase"
-          >
-            Stats
-          </router-link>
-        </li>
-        <li>
-          <button
-            class="ms-1 btn btn-info"
-            type="button"
-            data-bs-toggle="modal"
-            data-bs-target="#newHabitModal"
-          >
-            <i class="mdi mdi-plus"></i>
-          </button>
-        </li>
-      </ul>
+  <nav class="bg-primary w-100 d-flex active pt-2">
+    <div class="d-flex justify-content-between col-6">
+      <div class="d-flex">
+        <router-link
+          class="btn text-success lighten-30 selectable text-uppercase"
+          :to="{ name: 'Home' }"
+        >
+          Home
+        </router-link>
+        <router-link
+          :to="{ name: 'Account' }"
+          class="btn text-success lighten-30 selectable text-uppercase"
+        >
+          Stats
+        </router-link>
+      </div>
+    </div>
+
+    <div class="col-6 text-end">
       <!-- LOGIN COMPONENT HERE -->
       <Login />
     </div>
   </nav>
-
-  <!-- Button trigger modal -->
 
   <!-- Modal -->
   <div
@@ -73,6 +49,15 @@
       </div>
     </div>
   </div>
+  <!-- floating button -->
+  <button
+    class="m-2 btn btn-info float"
+    type="button"
+    data-bs-toggle="modal"
+    data-bs-target="#newHabitModal"
+  >
+    <i class="mdi mdi-plus"></i>
+  </button>
 </template>
 
 <script>
@@ -90,9 +75,14 @@ a:hover {
 .nav-link {
   text-transform: uppercase;
 }
-.navbar-nav .router-link-exact-active {
+.active .router-link-exact-active {
   border-bottom: 2px solid var(--bs-success);
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
+}
+.float {
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
 }
 </style>

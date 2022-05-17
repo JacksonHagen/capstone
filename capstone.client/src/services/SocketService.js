@@ -1,3 +1,4 @@
+import { Modal } from 'bootstrap'
 import { AppState } from '../AppState'
 import Pop from '../utils/Pop'
 import { SocketHandler } from '../utils/SocketHandler'
@@ -12,8 +13,9 @@ class SocketService extends SocketHandler {
 
   earnedBadge(payload) {
     AppState.myAwards.push(payload)
-    AppState.
-      console.log('earned badge', payload)
+    AppState.newAward = payload
+    // Modal.getOrCreateInstance(document.getElementById('display-award')).toggle()
+    console.log('earned badge', payload)
     // NOTE socket working - just need to handle this payload data
   }
 
