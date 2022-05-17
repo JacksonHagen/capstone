@@ -73,7 +73,7 @@ class HabitsService {
     }
     async checkIfFirstHabit(accountId) {
         const habits = await dbContext.Habits.find({ accountId: accountId })
-        if (!habits) {
+        if (habits.length == 0) {
             await awardsService.createAward('MH01', accountId)
         }
     }
