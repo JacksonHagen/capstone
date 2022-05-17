@@ -1,4 +1,4 @@
-<template class="">
+<template>
   <div
     class="
       col-12
@@ -67,7 +67,4 @@ export default {
 
 
 <style lang="scss" scoped>
-.container {
-  height: 100vh;
-}
 </style>
