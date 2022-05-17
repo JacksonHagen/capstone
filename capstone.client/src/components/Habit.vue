@@ -1,11 +1,7 @@
 <template>
   <!-- TODO ternary to change habit color -->
   <div class="col-12 d-flex justify-content-center w-100 align-items-center">
-    <div
-      v-if="habit.isActive && withinInterval"
-      id="habit"
-      class="mt-3 justify-content-center"
-    >
+    <div v-if="habit.isActive" id="habit" class="mt-3 justify-content-center">
       <!-- <div class="checked-overlay"></div> -->
       <div
         class="habit-bar d-flex justify-content-between align-items-center"
@@ -107,7 +103,7 @@ export default {
       if ((lastTracked.toDateString() == AppState.day.toDateString()) && (props.habit.interval <= (AppState.day.getDate() - lastTracked.getDate()))) {
         isTracked.value = true
       }
-      if ((today.getDate() - lastTracked.getDate()) > props.habit.interval) {
+      if ((AppState.day.getDate() - lastTracked.getDate()) > props.habit.interval) {
         missed.value = true
         props.habit.streak = 0
         habitsService.editHabit(props.habit)
@@ -115,7 +111,6 @@ export default {
     })
     return {
       isTracked,
-      withinInterval,
       account: computed(() => AppState.account),
       goToHabitsDetailPage() {
         router.push({ name: 'HabitsDetailPage', params: { id: 'h-' + props.habit.id } })
