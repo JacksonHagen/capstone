@@ -14,14 +14,6 @@
         >
           Stats
         </router-link>
-        <button
-          class="m-2 btn btn-info"
-          type="button"
-          data-bs-toggle="modal"
-          data-bs-target="#newHabitModal"
-        >
-          <i class="mdi mdi-plus"></i>
-        </button>
       </div>
     </div>
 
@@ -57,6 +49,15 @@
       </div>
     </div>
   </div>
+  <!-- floating button -->
+  <button
+    class="m-2 btn btn-info float"
+    type="button"
+    data-bs-toggle="modal"
+    data-bs-target="#newHabitModal"
+  >
+    <i class="mdi mdi-plus"></i>
+  </button>
 </template>
 
 <script>
@@ -78,5 +79,10 @@ a:hover {
   border-bottom: 2px solid var(--bs-success);
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
+}
+.float {
+  position: absolute;
+  left: 1em;
+  bottom: 1em;
 }
 </style>
