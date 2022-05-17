@@ -41,7 +41,6 @@
           <h5>Well Done!</h5>
         </div>
       </div>
-      <!-- TODO add the habit id to the id -->
       <div
         :id="habit.id"
         class="collapse hide"
