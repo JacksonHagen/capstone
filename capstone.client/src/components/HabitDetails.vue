@@ -1,13 +1,6 @@
 <template>
   <div
-    class="
-      col-12
-      d-flex
-      justify-content-center
-      fit-content(100vh)
-      container
-      align-items-center
-    "
+    class="col-12 d-flex fit-content(100vh) container align-items-center"
     :id="'h-' + habit.id"
   >
     <div class="darken-30 p-3 mt-3 w-100">
