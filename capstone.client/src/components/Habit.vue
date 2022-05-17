@@ -27,12 +27,17 @@
               value="checkedValue"
               @click.stop="checkIn"
             />
-            <label class="form-check-label" for="">
+            <label class="form-check-label visually-hidden" for="">
               Check if Habit Completed:
             </label>
+            <h5>Check if Habit Completed</h5>
           </div>
+
           <!-- <i class="mdi mdi-checkbox-blank-outline" @click="completeHabit"></i>
           <i class="mdi mdi-checkbox-marked" @click="completeHabit"></i> -->
+        </div>
+        <div v-if="isTracked">
+          <h5>Well Done!</h5>
         </div>
       </div>
       <!-- TODO add the habit id to the id -->
