@@ -25,8 +25,8 @@ export default {
       setInterval(checkDatetime, 60000)
       // REVIEW v-logic for habit components
       // habit.trackHistory.push(new Date)
-      // AppState.displayHabits = AppState.myHabits.filter(h => h.isActive && ((h.interval) <= (today.getDate() - h.lastTracked[0].getDate())))
-      // AppState.displayHabits.filter(h => (today.getDate() - h.lastTracked[0].getDate()) > h.interval)
+      // AppState.myHabits = AppState.myHabits.filter(h => h.isActive && ((h.interval) <= (today.getDate() - h.lastTracked[0].getDate())))
+      // AppState.myHabits.filter(h => (today.getDate() - h.lastTracked[0].getDate()) > h.interval)
       // you done fucked up render missed component version
 
       // NOTE STRETCH AppState.day interval to refresh the program.

@@ -7,14 +7,13 @@
       fit-content(100vh)
       container
       align-items-center
+      scrollable
     "
+    :id="'h-' + habit.id"
   >
     <div class="darken-30 p-3 mt-3 w-100">
-      <div id="habit" class="mt-3 justify-content-center">
-        <h3
-          class="bg-success darken-30 w-100 p-3 m-0 rounded-top"
-          :id="habit.id"
-        >
+      <div class="mt-3 justify-content-center">
+        <h3 class="bg-success darken-30 w-100 p-3 m-0 rounded-top">
           {{ habit.title }}
         </h3>
         <div class="bg-success rounded-bottom p-3">
@@ -28,7 +27,7 @@
             </h6>
           </div>
           <div class="py-3">A chart would look fire here</div>
-          <div class="col-12 bg-light">
+          <div class="col-12 bg-light d-flex">
             <!-- <img
               src="../assets/img/Badges/CapstoneBadges1st-Login.png"
               height="400"

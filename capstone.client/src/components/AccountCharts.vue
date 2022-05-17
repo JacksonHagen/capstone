@@ -5,17 +5,28 @@
         <p class="text-dark">Cumulative Streak Score Overtime</p>
       </div>
       <div class="col-md-3 offset-1 bg-light rounded p-3 text-center">
-        <p class="text-dark">Completed / Total</p>
+        <p class="text-dark">Active / Archived</p>
+        <PieChart
+          :chartData="{
+            labels: ['Active', 'Archived'],
+            datasets: [
+              {
+                data: activeHabitsData,
+                backgroundColor: ['#DE9A15', '#D1F3EC'],
+              },
+            ],
+          }"
+        />
       </div>
     </div>
     <div class="row mb-4">
       <div class="col-12 bg-light rounded p-3">
         <p class="text-dark">My Top Streaks</p>
-
         <BarChart
           v-if="loaded"
           :chartData="{
             labels: topStreaks.map((s) => s.title),
+
             datasets: [
               {
                 label: '',
@@ -26,6 +37,11 @@
           }"
           :chartOptions="{
             indexAxis: 'y',
+            plugins: {
+              legend: {
+                display: false,
+              },
+            },
           }"
         />
       </div>
@@ -61,7 +77,13 @@ export default {
     })
     return {
       topStreaks: computed(() => streaks2.value.slice(0, 3)),
-      loaded: computed(() => AppState.habits.length)
+      loaded: computed(() => AppState.habits.length),
+      activeHabitsData: computed(() => {
+        let h = []
+        h[0] = AppState.myHabits.filter(mh => mh.isActive).length
+        h[1] = AppState.myHabits.filter(mh => !mh.isActive).length
+        return h
+      })
     }
   }
 }

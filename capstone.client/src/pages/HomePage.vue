@@ -5,7 +5,10 @@
         <div class="d-flex justify-content-end">
           <button @click="filter == isActive">Active</button>
           <button @click="filter == !isActive">Archived</button>
-          <button v-if="filter">All</button>
+          <button @click="filter == ''">All</button>
+          <!-- Today -->
+          <!-- All Active -->
+          <!-- All Time -->
         </div>
       </div>
     </div>
@@ -20,7 +23,11 @@
   </div>
 </template>
 
+
 <script>
+// currently, we filter habits by their track date.
+// but we also need habits to present a different appearance if their trackdate is passed.
+// additionally, we need to only show habits on the day that their interval requires.
 import { computed, ref } from '@vue/reactivity'
 import { AppState } from '../AppState.js'
 import { watchEffect } from "@vue/runtime-core"
@@ -29,39 +36,29 @@ export default {
   setup() {
     let filter = ref()
     let filteredHabits = ref([])
-
-    // NOTE it's a lot of ugly stuff but I'm working with checking on the trackHistory for each habit - Dylan
-    // let trackedHabits = ref([])
-    // let untrackedHabits = ref([])
-    // watchEffect(() => {
-    //   AppState.myHabits.forEach(h => {
-    //     let trackedHabitArray = []
-    //     let untrackedHabitArray = []
-    //     const today = new Date(h.trackHistory[0])
-    //     if (today.getDate() == AppState.day.getDate()) {
-    //       trackedHabitArray.push(h)
-    //     } else {
-    //       untrackedHabitArray.push(h)
-    //     }
-    //     trackedHabits.value = trackedHabitArray
-    //     untrackedHabits.value = untrackedHabitArray
-    //   })
-    //   console.log(trackedHabits.value)
-    //   console.log(untrackedHabits.value)
-    // })
-    //if we want to display active, archived, and both, then the active would be first, followed by the tracked, and ended with the archived.
+    console.log(AppState.myHabits.forEach(h => h.isActive && ((h.interval) <= (AppState.day.getDate() - new Date(h.trackHistory[0]).getDate()))))
     watchEffect(() => {
+      let today = AppState.day
       let habits = AppState.myHabits
+      // let date = new Date(habits[0].trackHistory[0])
+      // console.log(today.getDate() - date.getDate())
+      // let trackedDate = new Date(h.lastTracked[0])
+      // if ( - trackedDate.getDate()){}
+      // h.isActive && ((h.interval) <= (today.getDate() - h.lastTracked[0].getDate()))
+
       if (filter.value) {
         habits = habits.filter(h => h.isActive == filter)
       }
-      filteredHabits.value = habits
+      // NOTE sorted filter
+      // REVIEW as of now, new habits will be at the bottom of the list because they do not have a trackHistory[0]
+      filteredHabits.value = habits.sort((a, b) => new Date(new Date(a.trackHistory[0]) - b.trackHistory[0]))
     })
     return {
       filter,
       filteredHabits,
-      // trackedHabits,
-      // untrackedHabits
+      // testHabits: computed(() => {
+      //   AppState.myHabits.filter(h => h.isActive && ((h.interval) <= (AppState.day.getDate() - new Date(h.trackHistory[0]).getDate())))
+      // })
     }
   }
 }
