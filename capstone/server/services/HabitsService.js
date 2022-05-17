@@ -65,14 +65,15 @@ class HabitsService {
         }
     }
     async createHabit(body) {
+
         await this.checkIfFirstHabit(body.accountId)
         const habit = await dbContext.Habits.create(body)
         habit.populate('account')
         return habit
     }
     async checkIfFirstHabit(accountId) {
-        const habits = await dbContext.Habits.find({ accountId })
-        if (!habits) {
+        const habits = await dbContext.Habits.find({ accountId: accountId })
+        if (habits.length == 0) {
             await awardsService.createAward('MH01', accountId)
         }
     }
