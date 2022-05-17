@@ -7,6 +7,7 @@
       fit-content(100vh)
       container
       align-items-center
+      scrollable
     "
     :id="'h-' + habit.id"
   >
