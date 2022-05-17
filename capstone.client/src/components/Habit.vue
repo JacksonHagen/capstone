@@ -15,6 +15,7 @@
       >
         <h3>
           {{ habit.title }}
+          <span class="mdi mdi-menu-down"></span>
         </h3>
         <!-- TODO v-if for check unchecked -->
         <div v-if="!isTracked">

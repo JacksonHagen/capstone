@@ -52,12 +52,6 @@ export default {
     }
   },
   setup(props) {
-    // NOTE use for scroll to? or delete
-    // const router = useRouter({
-    //   return{
-    //     document.getElementById()
-    //   }
-    // })
     return {
       awards: computed(() => AppState.myAwards.filter(a => a.habitId == props.habit.id))
     }
