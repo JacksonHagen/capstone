@@ -17,7 +17,9 @@
         aria-controls="collapseOne"
         @click.stop="toggle"
       >
-        <h3 @click="goToHabitsDetailPage()">{{ habit.title }}</h3>
+        <h3 @click="goToHabitsDetailPage()">
+          {{ habit.title }}
+        </h3>
         <!-- TODO v-if for check unchecked -->
         <div v-if="!isTracked">
           <div class="form-check">
@@ -111,7 +113,7 @@ export default {
       withinInterval,
       account: computed(() => AppState.account),
       goToHabitsDetailPage() {
-        router.replace({ name: 'HabitsDetailPage', replace: true })
+        router.push({ name: 'HabitsDetailPage', params: { id: 'h-' + props.habit.id } })
       },
       toggle() {
         Collapse.getOrCreateInstance(document.getElementById(props.habit.id)).toggle()

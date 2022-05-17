@@ -1,7 +1,17 @@
-<template>
-  <div class="col-12 d-flex justify-content-center w-100 align-items-center">
+<template class="">
+  <div
+    class="
+      col-12
+      d-flex
+      justify-content-center
+      fit-content(100vh)
+      container
+      align-items-center
+    "
+    :id="'h-' + habit.id"
+  >
     <div class="darken-30 p-3 mt-3 w-100">
-      <div id="habit" class="mt-3 justify-content-center">
+      <div class="mt-3 justify-content-center">
         <h3 class="bg-success darken-30 w-100 p-3 m-0 rounded-top">
           {{ habit.title }}
         </h3>
@@ -17,10 +27,10 @@
           </div>
           <div class="py-3">A chart would look fire here</div>
           <div class="col-12 bg-light">
-            <img
+            <!-- <img
               src="../assets/img/Badges/CapstoneBadges1st-Login.png"
               height="400"
-            />
+            /> -->
             <Award v-for="a in awards" :key="a.id" :award="a" />
           </div>
         </div>
@@ -33,6 +43,7 @@
 <script>
 import { computed } from '@vue/reactivity'
 import { AppState } from '../AppState.js'
+import { useRouter } from "vue-router"
 export default {
   props: {
     habit: {
@@ -41,6 +52,12 @@ export default {
     }
   },
   setup(props) {
+    // NOTE use for scroll to? or delete
+    // const router = useRouter({
+    //   return{
+    //     document.getElementById()
+    //   }
+    // })
     return {
       awards: computed(() => AppState.myAwards.filter(a => a.habitId == props.habit.id))
     }
@@ -55,5 +72,8 @@ export default {
   display: inline-block;
   flex-direction: column;
   min-width: 100vw;
+}
+.container {
+  height: 100vh;
 }
 </style>

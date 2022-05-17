@@ -1,8 +1,8 @@
 <template>
-  <div class="container-fluid">
-    <div id="scrollable" class="row w-100 d-flex justify-content-center">
+  <div class="container-fluid fill">
+    <div id="scrollable" class="row d-flex justify-content-center fill">
       <!-- This will be a differently formatted habit componennt -->
-      <HabitDetails v-for="h in habits" :key="h.id" :habit="h" />
+      <HabitDetails v-for="h in habits" :key="h.id" :habit="h" class="fill" />
     </div>
   </div>
 </template>
@@ -11,10 +11,19 @@
 <script>
 import { computed } from '@vue/reactivity'
 import { AppState } from '../AppState.js'
+import { useRoute } from 'vue-router'
+import { onMounted } from '@vue/runtime-core'
+import { habitsService } from '../services/HabitsService.js'
 export default {
   setup() {
+    const route = useRoute()
+    onMounted(async () => {
+      await habitsService.getMyHabits()
+      document.getElementById(route.params.id).scrollIntoView()
+    })
     return {
-      habits: computed(() => AppState.myHabits)
+      habits: computed(() => AppState.myHabits),
+
     }
   }
 }
@@ -22,13 +31,4 @@ export default {
 
 
 <style lang="scss" scoped>
-@media only screen and (max-width: 768px) {
-  .scrollable {
-    flex-wrap: nowrap;
-    overflow: auto;
-    height: 100vh;
-    width: 100vw;
-    flex-direction: row;
-  }
-}
 </style>
