@@ -1,11 +1,7 @@
 <template>
   <!-- TODO ternary to change habit color -->
   <div class="col-12 d-flex justify-content-center w-100 align-items-center">
-    <div
-      v-if="habit.isActive && withinInterval"
-      id="habit"
-      class="mt-3 justify-content-center"
-    >
+    <div v-if="habit.isActive" id="habit" class="mt-3 justify-content-center">
       <!-- <div class="checked-overlay"></div> -->
       <div
         class="habit-bar d-flex justify-content-between align-items-center"
@@ -23,15 +19,17 @@
         <!-- TODO v-if for check unchecked -->
         <div v-if="!isTracked">
           <div class="form-check">
+            <label class="form-check-label" for="">
+              Check if Habit Completed:
+            </label>
             <input
               type="checkbox"
               class="form-check-input"
               name=""
               id=""
               value="checkedValue"
-              @click="checkIn"
+              @click.stop="checkIn"
             />
-            <label class="form-check-label" for=""> Display value </label>
           </div>
           <!-- <i class="mdi mdi-checkbox-blank-outline" @click="completeHabit"></i>
           <i class="mdi mdi-checkbox-marked" @click="completeHabit"></i> -->
@@ -97,23 +95,22 @@ export default {
   setup(props) {
     const router = useRouter()
     const isTracked = ref(false)
-    const withinInterval = ref(true)
+    const missed = ref(false)
     watchEffect(() => {
       // NOTE matching full year instead of just date
       // REVIEW we'll need to make sure that we are accounting for interval here...?
       const lastTracked = new Date(props.habit.trackHistory[0])
-      console.log(props.habit.interval, AppState.day.getDate() - lastTracked.getDate())
-      console.log(props.habit.interval <= (AppState.day.getDate() - lastTracked.getDate()))
-      // if (props.habit.interval <= (AppState.day.getDate() - lastTracked.getDate())) {
-      //   withinInterval.value = true
-      // }
-      if (lastTracked.toDateString() == AppState.day.toDateString()) {
+      if ((lastTracked.toDateString() == AppState.day.toDateString()) && (props.habit.interval >= (AppState.day.getDate() - lastTracked.getDate()))) {
         isTracked.value = true
+      }
+      if ((AppState.day.getDate() - lastTracked.getDate()) > props.habit.interval) {
+        missed.value = true
+        props.habit.streak = 0
+        habitsService.editHabit(props.habit)
       }
     })
     return {
       isTracked,
-      withinInterval,
       account: computed(() => AppState.account),
       goToHabitsDetailPage() {
         router.push({ name: 'HabitsDetailPage', params: { id: 'h-' + props.habit.id } })
@@ -124,6 +121,7 @@ export default {
       async checkIn() {
         try {
           props.habit.trackHistory.unshift(new Date())
+          props.habit.streak++
           await habitsService.editHabit(props.habit)
         } catch (error) {
           logger.error(error)

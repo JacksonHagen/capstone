@@ -1,3 +1,4 @@
+import { AppState } from '../AppState'
 import Pop from '../utils/Pop'
 import { SocketHandler } from '../utils/SocketHandler'
 
@@ -6,6 +7,14 @@ class SocketService extends SocketHandler {
     super()
     this
       .on('error', this.onError)
+      .on('EARNED_BADGE', this.earnedBadge)
+  }
+
+  earnedBadge(payload) {
+    AppState.myAwards.push(payload)
+    AppState.
+      console.log('earned badge', payload)
+    // NOTE socket working - just need to handle this payload data
   }
 
   onError(e) {

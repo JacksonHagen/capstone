@@ -36,6 +36,7 @@ export default {
   setup() {
     let filter = ref()
     let filteredHabits = ref([])
+    console.log(AppState.myHabits.forEach(h => h.isActive && ((h.interval) <= (AppState.day.getDate() - new Date(h.trackHistory[0]).getDate()))))
     watchEffect(() => {
       let today = AppState.day
       let habits = AppState.myHabits
@@ -54,7 +55,10 @@ export default {
     })
     return {
       filter,
-      filteredHabits
+      filteredHabits,
+      // testHabits: computed(() => {
+      //   AppState.myHabits.filter(h => h.isActive && ((h.interval) <= (AppState.day.getDate() - new Date(h.trackHistory[0]).getDate())))
+      // })
     }
   }
 }
