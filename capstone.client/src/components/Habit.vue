@@ -94,18 +94,18 @@ export default {
   setup(props) {
     const router = useRouter()
     const isTracked = ref(false)
-    const withinInterval = ref(true)
+    const missed = ref(false)
     watchEffect(() => {
       // NOTE matching full year instead of just date
       // REVIEW we'll need to make sure that we are accounting for interval here...?
       const lastTracked = new Date(props.habit.trackHistory[0])
-      console.log(props.habit.interval, AppState.day.getDate() - lastTracked.getDate())
-      console.log(props.habit.interval <= (AppState.day.getDate() - lastTracked.getDate()))
-      // if (props.habit.interval <= (AppState.day.getDate() - lastTracked.getDate())) {
-      //   withinInterval.value = true
-      // }
-      if (lastTracked.toDateString() == AppState.day.toDateString()) {
+      if ((lastTracked.toDateString() == AppState.day.toDateString()) && (props.habit.interval <= (AppState.day.getDate() - lastTracked.getDate()))) {
         isTracked.value = true
+      }
+      if ((today.getDate() - lastTracked.getDate()) > props.habit.interval) {
+        missed.value = true
+        props.habit.streak = 0
+        habitsService.editHabit(props.habit)
       }
     })
     return {
@@ -121,6 +121,7 @@ export default {
       async checkIn() {
         try {
           props.habit.trackHistory.unshift(new Date())
+          props.habit.streak++
           await habitsService.editHabit(props.habit)
         } catch (error) {
           logger.error(error)
