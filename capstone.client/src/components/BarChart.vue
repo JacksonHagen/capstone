@@ -10,7 +10,7 @@ import { computed, onMounted } from '@vue/runtime-core';
 import { AppState } from '../AppState.js';
 import { habitsService } from '../services/HabitsService.js';
 
-ChartJS.register(Title, Tooltip, BarElement, CategoryScale, LinearScale)
+ChartJS.register(Tooltip, BarElement, CategoryScale, LinearScale)
 
 export default {
   components: { Bar },
