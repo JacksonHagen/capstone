@@ -32,19 +32,43 @@
         >This is optional, but we might show it to you later.</small
       >
     </div>
-    <div class="mb-3">
-      <label for="habit-color" class="form-label"
-        >Give it a recognizable color</label
+    <div class="input-group mb-3">
+      <label
+        class="form-check-label visually-hidden"
+        id="color-label"
+        name="color"
+        for="color"
+        >Choose Color</label
       >
-      <input
-        type="color"
-        class="form-control"
-        id="habit-color"
+      <select
+        class="form-select rounded" v
+        name="color"
+        id="color"
+        aria-label="Default select example"
+        placeholder="Choose A Color"
         v-model="formData.color"
-      />
-      <small id="helpId" class="form-text text-muted"
-        >If you want, leave it blank and we'll pick it.</small
       >
+        <option class="border-top border-dark bg-danger" value="#ea0606">
+          red
+        </option>
+        <option
+          class="border-top border-dark bg-warning"
+          selected
+          value="warning"
+        ></option>
+        <option
+          class="border-top border-dark bg-success"
+          value="success"
+        ></option>
+        <option
+          class="border-top border-dark bg-primary"
+          value="primary"
+        ></option>
+        <option
+          class="border-top border-dark bg-secondary"
+          value="secondary"
+        ></option>
+      </select>
     </div>
     <div class="mb-3">
       <label for="habit-interval"

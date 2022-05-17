@@ -23,11 +23,17 @@ class HabitsService {
         original.maxStreak = update.maxStreak || original.maxStreak
         original.interval = update.interval || original.interval
         await this.checkStreakAward(original)
+        await this.maxStreak(original)
         await original.save()
 
         return original
     }
-
+    async maxStreak(original) {
+        if (original.streak >= original.maxStreak) {
+            original.maxStreak = original.streak
+            await original.save()
+        }
+    }
     // NOTE streak award logic
     async checkStreakAward(habit) {
         if (habit.streak === 7 && habit.maxStreak <= 7) {

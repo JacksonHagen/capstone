@@ -31,7 +31,7 @@ AuthService.on(AuthService.AUTH_EVENTS.AUTHENTICATED, async function () {
   // await habitsService.getHabitsByQuery()
   // NOTE if there is something you want to do once the user is authenticated, place that here
   await habitsService.getMyHabits(AppState.user.id)
-  // await habitsService.getHabitsByQuery()
+  await habitsService.getHabitsByQuery()
   await awardsService.getMyAwards()
 
 })

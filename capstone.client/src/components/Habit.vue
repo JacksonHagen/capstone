@@ -4,13 +4,8 @@
     <div id="habit" class="mt-3 justify-content-center">
       <!-- <div class="checked-overlay"></div> -->
       <div
-        class="
-          habit-bar
-          bg-secondary
-          d-flex
-          justify-content-between
-          align-items-center
-        "
+        class="habit-bar d-flex justify-content-between align-items-center"
+        :style="'background-color: ' + habit.color"
         type="button"
         data-toggle="collapse"
         data-target="#collapseOne"
