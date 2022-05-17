@@ -22,7 +22,7 @@
     <hr />
   </div>
 
-  <div class="modal" tabindex="-1" role="dialog" :id="award.id">
+  <!-- <div class="modal" tabindex="-1" role="dialog" id="display-award">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -47,7 +47,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 </template>
 
 

@@ -14,7 +14,7 @@ class SocketService extends SocketHandler {
   earnedBadge(payload) {
     AppState.myAwards.push(payload)
     AppState.newAward = payload
-    Modal.getOrCreateInstance(document.getElementById(payload.badge.id)).toggle()
+    // Modal.getOrCreateInstance(document.getElementById('display-award')).toggle()
     console.log('earned badge', payload)
     // NOTE socket working - just need to handle this payload data
   }
