@@ -4,7 +4,7 @@ import { awardsService } from './AwardsService.js'
 
 class HabitsService {
     async getHabitsByAccount(accountId) {
-        const habits = await dbContext.Habits.find({ accountId: accountId })
+        const habits = await dbContext.Habits.find({ accountId })
         return habits
     }
     async editHabit(update) {

@@ -11,10 +11,19 @@
 <script>
 import { computed } from '@vue/reactivity'
 import { AppState } from '../AppState.js'
+import { useRoute } from 'vue-router'
+import { onMounted } from '@vue/runtime-core'
+import { habitsService } from '../services/HabitsService.js'
 export default {
   setup() {
+    const route = useRoute()
+    onMounted(async () => {
+      await habitsService.getMyHabits()
+      document.getElementById(route.params.id).scrollIntoView()
+    })
     return {
-      habits: computed(() => AppState.myHabits)
+      habits: computed(() => AppState.myHabits),
+
     }
   }
 }
