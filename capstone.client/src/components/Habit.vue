@@ -55,7 +55,7 @@
                 <!-- TODO OR v-if  -->
                 <h4>You've completed this habit today!</h4>
                 <p>Your streak is {{ habit.streak }} days.</p>
-                <span class="m-0" @click="goToHabitsDetailPage()"
+                <span class="m-0 selectable" @click="goToHabitsDetailPage()"
                   >See More...</span
                 >
               </div>
