@@ -100,7 +100,7 @@ export default {
       // NOTE matching full year instead of just date
       // REVIEW we'll need to make sure that we are accounting for interval here...?
       const lastTracked = new Date(props.habit.trackHistory[0])
-      if ((lastTracked.toDateString() == AppState.day.toDateString()) && (props.habit.interval <= (AppState.day.getDate() - lastTracked.getDate()))) {
+      if ((lastTracked.toDateString() == AppState.day.toDateString()) && (props.habit.interval >= (AppState.day.getDate() - lastTracked.getDate()))) {
         isTracked.value = true
       }
       if ((AppState.day.getDate() - lastTracked.getDate()) > props.habit.interval) {
