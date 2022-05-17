@@ -132,4 +132,7 @@ export default {
 .form-select {
   background-color: v-bind(formColor) !important;
 }
+.form-control option:hover {
+  background: rgba(255, 192, 203, 0);
+}
 </style>
