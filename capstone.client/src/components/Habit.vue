@@ -2,14 +2,10 @@
   <!-- TODO ternary to change habit color -->
   <div class="col-12 d-flex justify-content-center w-100 align-items-center">
     <div id="habit" class="mt-3 justify-content-center">
+      <!-- <div class="checked-overlay"></div> -->
       <div
-        class="
-          habit-bar
-          bg-secondary
-          d-flex
-          justify-content-between
-          align-items-center
-        "
+        class="habit-bar d-flex justify-content-between align-items-center"
+        :style="'background-color: ' + habit.color"
         type="button"
         data-toggle="collapse"
         data-target="#collapseOne"
@@ -19,7 +15,7 @@
       >
         <h3 @click="goToHabitsDetailPage()">{{ habit.title }}</h3>
         <!-- TODO v-if for check unchecked -->
-        <div v-if="lastTracked.date != today.getDate()">
+        <div v-if="!isTracked">
           <div class="form-check">
             <input
               type="checkbox"
@@ -28,7 +24,6 @@
               id=""
               value="checkedValue"
               @click="checkIn"
-              v-bind="lastTracked == today.getDate() ? checked : ''"
             />
             <label class="form-check-label" for=""> Display value </label>
           </div>
@@ -78,7 +73,7 @@ import { Collapse } from "bootstrap"
 import { computed, ref } from "@vue/reactivity"
 import { AppState } from "../AppState"
 import { useRouter } from 'vue-router'
-import { onMounted, watchEffect } from "@vue/runtime-core"
+import { onMounted, watch, watchEffect } from "@vue/runtime-core"
 import Pop from "../utils/Pop"
 import { logger } from "../utils/Logger"
 import { habitsService } from "../services/HabitsService"
@@ -92,17 +87,16 @@ export default {
   },
   setup(props) {
     const router = useRouter()
-    const lastTracked = ref({})
+    const isTracked = ref(false)
     watchEffect(() => {
-      let date = new Date(props.habit.trackHistory[0]).getDate()
-      lastTracked.value.date = date
-
+      const today = new Date(props.habit.trackHistory[0])
+      if (today.toDateString() == AppState.day.toDateString()) {
+        isTracked.value = true
+        AppState.trackedHabits.push(props.habit)
+      }
     })
     return {
-      lastTracked,
-      today: computed(() => AppState.day),
-      habits: computed(() => AppState.myHabits),
-      // REVIEW
+      isTracked,
       account: computed(() => AppState.account),
       goToHabitsDetailPage() {
         router.replace({ name: 'HabitsDetailPage', params: props.habit.id, replace: true })
@@ -112,9 +106,8 @@ export default {
       },
       async checkIn() {
         try {
-          console.log(props.habit.trackHistory)
           props.habit.trackHistory.unshift(new Date())
-          await habitsService.editHabit(props.habit)
+          // await habitsService.editHabit(props.habit)
         } catch (error) {
           logger.error(error)
           Pop.toast(error.message, 'error')
@@ -145,8 +138,16 @@ export default {
   flex-direction: column;
   min-width: 100vw;
 }
-.fill {
-  width: 100%;
-  height: 100%;
+.checked-overlay {
+  display: flex;
+  align-items: flex-end;
+  position: absolute;
+  z-index: 9;
+  left: 0px;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  background-color: rgba(199, 189, 189, 0.559);
+  pointer-events: none;
 }
 </style>

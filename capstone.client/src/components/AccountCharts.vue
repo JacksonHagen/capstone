@@ -20,11 +20,7 @@
               {
                 label: '',
                 data: topStreaks.map((s) => s.streak),
-                backgroundColor: [
-                  'rgba(255, 99, 132)',
-                  'rgba(54, 162, 235)',
-                  'rgba(255, 206, 86)',
-                ],
+                backgroundColor: topStreaks.map((s) => s.color),
               },
             ],
           }"
@@ -59,7 +55,7 @@ export default {
     let streaks = []
     const streaks2 = computed(() => {
       let s = []
-      AppState.habits.forEach(h => s.push({ streak: h.streak, title: h.title }))
+      AppState.habits.forEach(h => s.push({ streak: h.streak, title: h.title, color: h.color }))
       s.sort((a, b) => { return a.streak - b.streak }).reverse()
       return s
     })
