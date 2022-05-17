@@ -21,6 +21,33 @@
     </div> -->
     <hr />
   </div>
+
+  <div class="modal" tabindex="-1" role="dialog" :id="award.id">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Modal title</h5>
+          <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          {{ award.name }}
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary">Save changes</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 
@@ -56,6 +83,7 @@ export default {
     return {
       filter,
       filteredHabits,
+      award: computed(() => AppState.newAward.badge)
       // testHabits: computed(() => {
       //   AppState.myHabits.filter(h => h.isActive && ((h.interval) <= (AppState.day.getDate() - new Date(h.trackHistory[0]).getDate())))
       // })
