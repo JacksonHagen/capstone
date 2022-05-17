@@ -9,4 +9,5 @@ export const AppState = reactive({
   myAwards: [],
   myHabits: [],
   day: {},
+  currentAward: {}
 })

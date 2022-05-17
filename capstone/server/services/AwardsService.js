@@ -1,4 +1,5 @@
 import { dbContext } from "../db/DbContext.js";
+import { socketProvider } from "../SocketProvider.js";
 
 class AwardsService {
   async getAwardsByQuery(query = {}) {
@@ -17,6 +18,7 @@ class AwardsService {
     }
     const award = await dbContext.Awards.create(body)
     await award.populate('badge habit account')
+    socketProvider.message("EARNED_BADGE", award)
     return award
   }
   async getAwardsByAccount(accountId) {
