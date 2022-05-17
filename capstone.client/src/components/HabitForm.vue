@@ -51,24 +51,24 @@
       >
         <option
           class="border-top border-dark bg-danger"
-          value="ea0606"
+          value="#ea0606"
         ></option>
         <option
           class="border-top border-dark bg-warning"
           selected
-          value="FFECA8"
+          value="#FFECA8"
         ></option>
         <option
           class="border-top border-dark bg-success"
-          value="D1F3EC"
+          value="#D1F3EC"
         ></option>
         <option
           class="border-top border-dark bg-primary"
-          value="4F7269"
+          value="#4F7269"
         ></option>
         <option
           class="border-top border-dark bg-secondary"
-          value="DE9A15"
+          value="#DE9A15"
         ></option>
       </select>
     </div>
@@ -105,7 +105,7 @@ export default {
     const formData = ref({})
     return {
       formData,
-      formColor: computed(() => `#${formData.value.color}`),
+      formColor: computed(() => `${formData.value.color}`),
       account: computed(() => AppState.account),
       day: computed(() => AppState.day),
       async newHabit() {
