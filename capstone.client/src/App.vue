@@ -16,9 +16,13 @@ import { logger } from './utils/Logger.js'
 export default {
   name: 'App',
   setup() {
-    onMounted(async () => {
+    function checkDatetime() {
       AppState.day = new Date()
-      logger.log(AppState.day, "today")
+      console.log(AppState.day)
+    }
+    onMounted(async () => {
+      checkDatetime()
+      setInterval(checkDatetime, 60000)
       // REVIEW v-logic for habit components
       // habit.trackHistory.push(new Date)
       // AppState.displayHabits = AppState.myHabits.filter(h => h.isActive && ((h.interval) <= (today.getDate() - h.lastTracked[0].getDate())))

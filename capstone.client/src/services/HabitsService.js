@@ -48,6 +48,11 @@ class HabitsService {
     logger.log(res.data, "res of get my habits")
     AppState.myHabits = res.data
   }
+  checkLastTracking() {
+    // NOTE not finished, tired :(
+    const today = AppState.day.getDate()
+
+  }
 }
 
 export const habitsService = new HabitsService();
