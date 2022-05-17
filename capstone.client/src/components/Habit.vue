@@ -17,7 +17,7 @@
         aria-controls="collapseOne"
         @click.stop="toggle"
       >
-        <h3 @click="goToHabitsDetailPage()">
+        <h3>
           {{ habit.title }}
         </h3>
         <!-- TODO v-if for check unchecked -->
@@ -53,6 +53,9 @@
                 <!-- TODO OR v-if  -->
                 <h4>You've completed this habit today!</h4>
                 <p>Your streak is {{ habit.streak }} days.</p>
+                <span class="m-0" @click="goToHabitsDetailPage()"
+                  >See More...</span
+                >
               </div>
             </div>
             <div class="col-md-6 mb-4 align-items-center">
