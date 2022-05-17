@@ -1,7 +1,11 @@
 <template>
   <!-- TODO ternary to change habit color -->
   <div class="col-12 d-flex justify-content-center w-100 align-items-center">
-    <div id="habit" class="mt-3 justify-content-center">
+    <div
+      v-if="habit.isActive && withinInterval"
+      id="habit"
+      class="mt-3 justify-content-center"
+    >
       <!-- <div class="checked-overlay"></div> -->
       <div
         class="habit-bar d-flex justify-content-between align-items-center"
@@ -73,7 +77,7 @@ import { Collapse } from "bootstrap"
 import { computed, ref } from "@vue/reactivity"
 import { AppState } from "../AppState"
 import { useRouter } from 'vue-router'
-import { onMounted, watch, watchEffect } from "@vue/runtime-core"
+import { watchEffect } from "@vue/runtime-core"
 import Pop from "../utils/Pop"
 import { logger } from "../utils/Logger"
 import { habitsService } from "../services/HabitsService"
@@ -88,15 +92,23 @@ export default {
   setup(props) {
     const router = useRouter()
     const isTracked = ref(false)
+    const withinInterval = ref(true)
     watchEffect(() => {
-      const today = new Date(props.habit.trackHistory[0])
-      if (today.toDateString() == AppState.day.toDateString()) {
+      // NOTE matching full year instead of just date
+      // REVIEW we'll need to make sure that we are accounting for interval here...?
+      const lastTracked = new Date(props.habit.trackHistory[0])
+      console.log(props.habit.interval, AppState.day.getDate() - lastTracked.getDate())
+      console.log(props.habit.interval <= (AppState.day.getDate() - lastTracked.getDate()))
+      // if (props.habit.interval <= (AppState.day.getDate() - lastTracked.getDate())) {
+      //   withinInterval.value = true
+      // }
+      if (lastTracked.toDateString() == AppState.day.toDateString()) {
         isTracked.value = true
-        AppState.trackedHabits.push(props.habit)
       }
     })
     return {
       isTracked,
+      withinInterval,
       account: computed(() => AppState.account),
       goToHabitsDetailPage() {
         router.replace({ name: 'HabitsDetailPage', replace: true })
@@ -107,7 +119,7 @@ export default {
       async checkIn() {
         try {
           props.habit.trackHistory.unshift(new Date())
-          // await habitsService.editHabit(props.habit)
+          await habitsService.editHabit(props.habit)
         } catch (error) {
           logger.error(error)
           Pop.toast(error.message, 'error')
