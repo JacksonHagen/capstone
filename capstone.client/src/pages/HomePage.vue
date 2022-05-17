@@ -85,7 +85,11 @@ export default {
           return h.isActive && (h.interval <= (today.getDate() - date.getDate()))
         }
       })),
-      allActiveHabits: computed(() => AppState.myHabits.filter(h => h.isActive)),
+      allActiveHabits: computed(() => AppState.myHabits.filter(h => {
+        let date = new Date(h.trackHistory[0])
+        let today = AppState.day
+        return h.isActive && (today.toDateString() == date.toDateString())
+      }).reverse()),
       award: computed(() => AppState.newAward.badge)
     }
   }
