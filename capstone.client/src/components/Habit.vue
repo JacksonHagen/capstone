@@ -48,10 +48,9 @@
         aria-labelledby="headingOne"
         data-parent="#accordionExample"
       >
-        <div class="bg-secondary lighten-30 habit-body">
+        <div class="bg-light shadow rounded">
           <div class="row">
             <div class="col-md-6">
-              <!-- TODO v-if you've compleeted this habit today -->
               <div class="p-2 m-2">
                 <h3>{{ habit.streak }}</h3>
                 <!-- TODO OR v-if  -->
@@ -63,7 +62,7 @@
               </div>
             </div>
             <div class="col-md-6 mb-4 align-items-center">
-              <div class="bg-secondary h-100 rounded">
+              <div class="h-100 rounded">
                 <h3 class="p-2 m-2">My badges for this habit</h3>
                 <div id="badges" class="d-flex m-3">
                   <!-- Draw badges here -->
