@@ -1,8 +1,20 @@
-<template>
-  <div class="col-12 d-flex justify-content-center w-100 align-items-center">
+<template class="">
+  <div
+    class="
+      col-12
+      d-flex
+      justify-content-center
+      fit-content(100vh)
+      container
+      align-items-center
+    "
+  >
     <div class="darken-30 p-3 mt-3 w-100">
       <div id="habit" class="mt-3 justify-content-center">
-        <h3 class="bg-success darken-30 w-100 p-3 m-0 rounded-top">
+        <h3
+          class="bg-success darken-30 w-100 p-3 m-0 rounded-top"
+          :id="habit.id"
+        >
           {{ habit.title }}
         </h3>
         <div class="bg-success rounded-bottom p-3">
@@ -33,6 +45,7 @@
 <script>
 import { computed } from '@vue/reactivity'
 import { AppState } from '../AppState.js'
+import { useRouter } from "vue-router"
 export default {
   props: {
     habit: {
@@ -41,6 +54,12 @@ export default {
     }
   },
   setup(props) {
+    // NOTE use for scroll to? or delete
+    // const router = useRouter({
+    //   return{
+    //     document.getElementById()
+    //   }
+    // })
     return {
       awards: computed(() => AppState.myAwards.filter(a => a.habitId == props.habit.id))
     }
@@ -55,5 +74,8 @@ export default {
   display: inline-block;
   flex-direction: column;
   min-width: 100vw;
+}
+.container {
+  height: 100vh;
 }
 </style>

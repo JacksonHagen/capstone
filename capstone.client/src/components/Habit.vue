@@ -105,7 +105,7 @@ export default {
       // REVIEW
       account: computed(() => AppState.account),
       goToHabitsDetailPage() {
-        router.replace({ name: 'HabitsDetailPage', replace: true })
+        router.replace({ name: 'HabitsDetailPage', params: props.habit.id, replace: true })
       },
       toggle() {
         Collapse.getOrCreateInstance(document.getElementById(props.habit.id)).toggle()
@@ -144,5 +144,9 @@ export default {
   display: inline-block;
   flex-direction: column;
   min-width: 100vw;
+}
+.fill {
+  width: 100%;
+  height: 100%;
 }
 </style>
