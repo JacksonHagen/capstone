@@ -7,7 +7,6 @@
       fit-content(100vh)
       container
       align-items-center
-      scrollable
     "
     :id="'h-' + habit.id"
   >
@@ -68,12 +67,6 @@ export default {
 
 
 <style lang="scss" scoped>
-.scrollable {
-  overflow-x: scroll;
-  display: inline-block;
-  flex-direction: column;
-  min-width: 100vw;
-}
 .container {
   height: 100vh;
 }
