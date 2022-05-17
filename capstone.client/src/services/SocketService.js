@@ -12,8 +12,8 @@ class SocketService extends SocketHandler {
 
   earnedBadge(payload) {
     AppState.myAwards.push(payload)
-    AppState.
-      console.log('earned badge', payload)
+    // AppState.
+    console.log('earned badge', payload)
     // NOTE socket working - just need to handle this payload data
   }
 
