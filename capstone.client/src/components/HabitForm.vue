@@ -41,32 +41,34 @@
         >Choose Color</label
       >
       <select
-        class="form-select rounded" v
+        class="form-select rounded"
+        required
         name="color"
         id="color"
         aria-label="Default select example"
         placeholder="Choose A Color"
         v-model="formData.color"
       >
-        <option class="border-top border-dark bg-danger" value="#ea0606">
-          red
-        </option>
+        <option
+          class="border-top border-dark bg-danger"
+          value="ea0606"
+        ></option>
         <option
           class="border-top border-dark bg-warning"
           selected
-          value="warning"
+          value="FFECA8"
         ></option>
         <option
           class="border-top border-dark bg-success"
-          value="success"
+          value="D1F3EC"
         ></option>
         <option
           class="border-top border-dark bg-primary"
-          value="primary"
+          value="4F7269"
         ></option>
         <option
           class="border-top border-dark bg-secondary"
-          value="secondary"
+          value="DE9A15"
         ></option>
       </select>
     </div>
@@ -103,11 +105,12 @@ export default {
     const formData = ref({})
     return {
       formData,
+      formColor: computed(() => `#${formData.value.color}`),
       account: computed(() => AppState.account),
       day: computed(() => AppState.day),
       async newHabit() {
         try {
-          debugger
+
           formData.value.interval = document.getElementById('habit-interval').value
           formData.value.accountId = this.account.id
           // formData.value.trackHistory = [this.day]
@@ -126,4 +129,7 @@ export default {
 
 
 <style lang="scss" scoped>
+.form-select {
+  background-color: v-bind(formColor) !important;
+}
 </style>
