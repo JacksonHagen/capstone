@@ -23,15 +23,17 @@
         <!-- TODO v-if for check unchecked -->
         <div v-if="!isTracked">
           <div class="form-check">
+            <label class="form-check-label" for="">
+              Check if Habit Completed:
+            </label>
             <input
               type="checkbox"
               class="form-check-input"
               name=""
               id=""
               value="checkedValue"
-              @click="checkIn"
+              @click.stop="checkIn"
             />
-            <label class="form-check-label" for=""> Display value </label>
           </div>
           <!-- <i class="mdi mdi-checkbox-blank-outline" @click="completeHabit"></i>
           <i class="mdi mdi-checkbox-marked" @click="completeHabit"></i> -->
