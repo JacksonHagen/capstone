@@ -19,9 +19,6 @@
         <!-- TODO v-if for check unchecked -->
         <div v-if="!isTracked">
           <div class="form-check">
-            <label class="form-check-label" for="">
-              Check if Habit Completed:
-            </label>
             <input
               type="checkbox"
               class="form-check-input"
@@ -30,9 +27,17 @@
               value="checkedValue"
               @click.stop="checkIn"
             />
+            <label class="form-check-label visually-hidden" for="">
+              Check if Habit Completed:
+            </label>
+            <h5>Check if Habit Completed</h5>
           </div>
+
           <!-- <i class="mdi mdi-checkbox-blank-outline" @click="completeHabit"></i>
           <i class="mdi mdi-checkbox-marked" @click="completeHabit"></i> -->
+        </div>
+        <div v-if="isTracked">
+          <h5>Well Done!</h5>
         </div>
       </div>
       <!-- TODO add the habit id to the id -->
@@ -51,9 +56,9 @@
                 <!-- TODO OR v-if  -->
                 <h4>You've completed this habit today!</h4>
                 <p>Your streak is {{ habit.streak }} days.</p>
-                <span class="m-0 selectable" @click="goToHabitsDetailPage()"
-                  >See More...</span
-                >
+                <h4 class="m-0 selectable" @click="goToHabitsDetailPage()">
+                  See More...
+                </h4>
               </div>
             </div>
             <div class="col-md-6 mb-4 align-items-center">
