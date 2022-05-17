@@ -81,7 +81,7 @@ a:hover {
   border-bottom-right-radius: 0;
 }
 .float {
-  position: absolute;
+  position: fixed;
   left: 1em;
   bottom: 1em;
 }
