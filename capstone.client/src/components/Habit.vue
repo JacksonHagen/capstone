@@ -17,21 +17,23 @@
         aria-controls="collapseOne"
         @click.stop="toggle"
       >
-        <h3 @click="goToHabitsDetailPage()">
+        <h3>
           {{ habit.title }}
         </h3>
         <!-- TODO v-if for check unchecked -->
         <div v-if="!isTracked">
           <div class="form-check">
+            <label class="form-check-label" for="">
+              Check if Habit Completed:
+            </label>
             <input
               type="checkbox"
               class="form-check-input"
               name=""
               id=""
               value="checkedValue"
-              @click="checkIn"
+              @click.stop="checkIn"
             />
-            <label class="form-check-label" for=""> Display value </label>
           </div>
           <!-- <i class="mdi mdi-checkbox-blank-outline" @click="completeHabit"></i>
           <i class="mdi mdi-checkbox-marked" @click="completeHabit"></i> -->
@@ -53,6 +55,9 @@
                 <!-- TODO OR v-if  -->
                 <h4>You've completed this habit today!</h4>
                 <p>Your streak is {{ habit.streak }} days.</p>
+                <span class="m-0 selectable" @click="goToHabitsDetailPage()"
+                  >See More...</span
+                >
               </div>
             </div>
             <div class="col-md-6 mb-4 align-items-center">

@@ -7,6 +7,7 @@
       fit-content(100vh)
       container
       align-items-center
+      scrollable
     "
     :id="'h-' + habit.id"
   >
@@ -26,7 +27,7 @@
             </h6>
           </div>
           <div class="py-3">A chart would look fire here</div>
-          <div class="col-12 bg-light">
+          <div class="col-12 bg-light d-flex">
             <!-- <img
               src="../assets/img/Badges/CapstoneBadges1st-Login.png"
               height="400"

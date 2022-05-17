@@ -8,6 +8,7 @@
 
       <div class="col-9 bg-primary rounded offset-1 p-3">
         <p>
+          <!-- TODO carousel with inspos -->
           Inspo: Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sunt
           vitae aut harum esse dolorem amet? Soluta porro maxime nisi vitae
           exercitationem ut corporis nobis natus?
