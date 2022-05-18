@@ -3,23 +3,29 @@
     <div class="row">
       <div class="col-12">
         <div class="d-flex justify-content-end">
-          <button @click="filter == isActive">Active</button>
-          <button @click="filter == !isActive">Archived</button>
-          <button @click="filter == ''">All</button>
+          <button @click="filter == 'isActive'">Active</button>
+          <button @click="filter == '!isActive'">Archived</button>
           <!-- Today -->
           <!-- All Active -->
           <!-- All Time -->
         </div>
       </div>
     </div>
-    <div class="row w-100 d-flex justify-content-center">
-      <Habit v-for="h in activeUntrackedHabits" :key="h.id" :habit="h" />
+    <div class="container-fluid" v-if="filter == '!isActive'">
+      <div class="row w-100 d-flex justify-content-center">
+        <Habit v-for="h in archivedHabits" :key="h.id" :habit="h" />
+      </div>
     </div>
-    <hr />
-    <div class="row w-100 d-flex justify-content-center">
-      <Habit v-for="h in allActiveHabits" :key="h.id" :habit="h" />
+    <div class="container-fluid" v-else>
+      <div class="row w-100 d-flex justify-content-center">
+        <Habit v-for="h in activeUntrackedHabits" :key="h.id" :habit="h" />
+      </div>
+      // REVIEW needs fix
+      <hr v-if="!(activeUntrackedHabits = [])" />
+      <div class="row w-100 d-flex justify-content-center">
+        <Habit v-for="h in allActiveHabits" :key="h.id" :habit="h" />
+      </div>
     </div>
-    <hr />
   </div>
 
   <!-- <div class="modal" tabindex="-1" role="dialog" id="display-award">
@@ -57,25 +63,14 @@
 // additionally, we need to only show habits on the day that their interval requires.
 import { computed, ref } from '@vue/reactivity'
 import { AppState } from '../AppState.js'
-import { watchEffect } from "@vue/runtime-core"
 export default {
   name: 'Home',
   setup() {
-    let filter = ref()
-    let filteredHabits = ref([])
-    watchEffect(() => {
-      let habits = AppState.myHabits
-      if (filter.value) {
-        habits = habits.filter(h => h.isActive == filter)
-      }
+    let filter = ''
+    // let filteredHabits = ref([])
 
-      // NOTE sorted filter
-      // REVIEW as of now, new habits will be at the bottom of the list because they do not have a trackHistory[0]
-      filteredHabits.value = habits.sort((a, b) => new Date(new Date(a.trackHistory[0]) - b.trackHistory[0]))
-    })
     return {
       filter,
-      filteredHabits,
       activeUntrackedHabits: computed(() => AppState.myHabits.filter(h => {
         if (!h.trackHistory[0]) {
           return true
@@ -90,6 +85,7 @@ export default {
         let today = AppState.day
         return h.isActive && (today.toDateString() == date.toDateString())
       }).reverse()),
+      archivedHabits: computed(() => AppState.myHabits.filter(h => !h.isActive)),
       award: computed(() => AppState.newAward.badge)
     }
   }

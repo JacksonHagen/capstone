@@ -7,14 +7,14 @@ import { awardsService } from './AwardsService.js'
 class HabitsService {
     async getHabitsByAccount(accountId) {
         let habits = await dbContext.Habits.find({ accountId })
-        habits.forEach(h => {
-            let formatted = []
-            h.trackHistory.map(d => {
-                formatted.push(new Date(d))
-            })
-            h.trackHistory = formatted
-            logger.log(typeof (formatted[0]))
-        })
+        // habits.forEach(h => {
+        //     let formatted = []
+        //     h.trackHistory.map(d => {
+        //         formatted.push(new Date(d))
+        //     })
+        //     h.trackHistory = formatted
+        //     logger.log(typeof (formatted[0]))
+        // })
         return habits
     }
     async editHabit(update) {
