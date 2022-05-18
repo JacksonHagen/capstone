@@ -11,6 +11,7 @@
         data-target="#collapseOne"
         aria-expanded="false"
         aria-controls="collapseOne"
+        :id="'h-' + habit.id"
         @click.stop="toggle"
       >
         <h3>
@@ -117,6 +118,7 @@ export default {
     }
   },
   setup(props) {
+    const flip = ref(false)
     const router = useRouter()
     const isTracked = ref(false)
     const missed = ref(false)
@@ -137,12 +139,19 @@ export default {
       timeSinceLastTracked,
       isTracked,
       missed,
+      flip,
       account: computed(() => AppState.account),
       myHabitAwards: computed(() => AppState.myAwards.filter(a => a.habitId == props.habit.id)),
       goToHabitsDetailPage() {
         router.push({ name: 'HabitsDetailPage', params: { id: 'h-' + props.habit.id } })
       },
       toggle() {
+        flip.value = !flip.value
+        if (flip.value) {
+          document.getElementById('h-' + props.habit.id).classList.remove('round')
+        } else {
+          document.getElementById('h-' + props.habit.id).classList.add('round')
+        }
         Collapse.getOrCreateInstance(document.getElementById(props.habit.id)).toggle()
       },
       async checkIn() {
@@ -191,5 +200,8 @@ export default {
   bottom: 0px;
   background-color: rgba(199, 189, 189, 0.559);
   pointer-events: none;
+}
+.round {
+  border-radius: 0.5em !important;
 }
 </style>
