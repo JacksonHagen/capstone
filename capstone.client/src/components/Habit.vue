@@ -77,9 +77,13 @@
                 <h3 class="p-2 m-2">My badges for this habit</h3>
                 <div id="badges" class="d-flex m-3">
                   <!-- Draw badges here -->
-                  <i class="m-1 mdi mdi-rocket"></i>
-                  <i class="m-1 mdi mdi-dog"></i>
-                  <i class="m-1 mdi-carrot mdi"></i>
+                  <img
+                    v-for="a in myHabitAwards"
+                    :key="a.id"
+                    :src="a.img"
+                    alt=""
+                    height="100"
+                  />
                 </div>
               </div>
             </div>
@@ -130,6 +134,7 @@ export default {
       isTracked,
       missed,
       account: computed(() => AppState.account),
+      myHabitAwards: computed(() => AppState.myAwards.filter(a => a.habitId == props.habit.id)),
       goToHabitsDetailPage() {
         router.push({ name: 'HabitsDetailPage', params: { id: 'h-' + props.habit.id } })
       },

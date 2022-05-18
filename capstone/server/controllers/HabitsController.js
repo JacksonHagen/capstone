@@ -57,6 +57,7 @@ export class HabitsController extends BaseController {
     }
     async getHabitsByQuery(req, res, next) {
         try {
+            req.query.accountId = req.userInfo.id
             const habits = await habitsService.getAll(req.query)
             res.send(habits)
         } catch (error) {

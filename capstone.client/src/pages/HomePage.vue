@@ -15,12 +15,12 @@
       <div class="row w-100 d-flex justify-content-center">
         <Habit v-for="h in activeUntrackedHabits" :key="h.id" :habit="h" />
       </div>
-      <!-- REVIEW needs fix -->
       <hr v-if="activeUntrackedHabits.length" />
       <div class="row w-100 d-flex justify-content-center">
         <Habit v-for="h in allActiveHabits" :key="h.id" :habit="h" />
       </div>
     </div>
+    <hr v-if="archivedHabits.length" />
     <div class="container-fluid">
       <div class="row w-100 d-flex justify-content-center">
         <Habit v-for="h in archivedHabits" :key="h.id" :habit="h" />
