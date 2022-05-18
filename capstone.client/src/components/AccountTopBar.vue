@@ -26,8 +26,7 @@ import { AppState } from '../AppState'
 export default {
   setup() {
     return {
-      // TODO change back to myHabits
-      myHabits: computed(() => AppState.habits),
+      myHabits: computed(() => AppState.myHabits),
       awards: computed(() => AppState.myAwards),
     }
   }

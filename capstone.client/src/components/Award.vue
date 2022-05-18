@@ -1,6 +1,6 @@
 <template>
   <div class="component">
-    <img :src="award.img" height="270" alt="" />
+    <img :src="award.img" height="270" alt="" style="filter: brightness(70%)" />
   </div>
 </template>
 

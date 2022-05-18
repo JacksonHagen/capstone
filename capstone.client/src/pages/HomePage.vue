@@ -13,17 +13,28 @@
     </div>
     <div class="container-fluid">
       <div class="row w-100 d-flex justify-content-center">
-        <Habit v-for="h in archivedHabits" :key="h.id" :habit="h" />
-      </div>
-    </div>
-    <hr v-if="!(activeUntrackedHabits.value == [])" />
-    <div class="container-fluid">
-      <div class="row w-100 d-flex justify-content-center">
         <Habit v-for="h in activeUntrackedHabits" :key="h.id" :habit="h" />
       </div>
-      <!-- REVIEW needs fix -->
+      <hr v-if="activeUntrackedHabits.length" />
       <div class="row w-100 d-flex justify-content-center">
-        <Habit v-for="h in allActiveHabits" :key="h.id" :habit="h" />
+        <Habit
+          v-for="h in allActiveHabits"
+          :key="h.id"
+          :habit="h"
+          style="filter: saturate(80%)"
+        />
+      </div>
+    </div>
+    <div class="container-fluid" v-if="archivedHabits.length">
+      <hr />
+      <div class="row w-100 d-flex justify-content-center text-center">
+        <p>Archived Habits</p>
+        <Habit
+          v-for="h in archivedHabits"
+          :key="h.id"
+          :habit="h"
+          style="filter: saturate(50%)"
+        />
       </div>
     </div>
   </div>
@@ -53,7 +64,7 @@ export default {
     return {
       filter,
       activeUntrackedHabits: computed(() => AppState.myHabits.filter(h => {
-        if (!h.trackHistory[0]) {
+        if (h.isActive && !h.trackHistory[0]) {
           return true
         } else {
           let date = new Date(h.trackHistory[0])

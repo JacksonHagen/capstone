@@ -1,7 +1,7 @@
 <template>
   <!-- TODO ternary to change habit color -->
   <div class="col-12 d-flex justify-content-center w-100 align-items-center">
-    <div v-if="habit.isActive" id="habit" class="mt-3 justify-content-center">
+    <div id="habit" class="mt-3 justify-content-center">
       <!-- <div v-if="missed" class="checked-overlay"></div> -->
       <div
         class="habit-bar d-flex justify-content-between align-items-center"
@@ -18,7 +18,10 @@
           <span class="mdi mdi-menu-down"></span>
         </h3>
         <!-- TODO v-if for check unchecked -->
-        <div v-if="!isTracked">
+        <div class="" v-if="!habit.isActive">
+          <h5><i>Archived</i></h5>
+        </div>
+        <div v-else-if="!isTracked">
           <div class="form-check">
             <input
               type="checkbox"
@@ -37,7 +40,7 @@
           <!-- <i class="mdi mdi-checkbox-blank-outline" @click="completeHabit"></i>
           <i class="mdi mdi-checkbox-marked" @click="completeHabit"></i> -->
         </div>
-        <div v-if="isTracked">
+        <div v-else-if="isTracked">
           <h5>Well Done!</h5>
         </div>
       </div>
@@ -47,7 +50,13 @@
         aria-labelledby="headingOne"
         data-parent="#accordionExample"
       >
-        <div class="bg-light shadow rounded">
+        <div
+          class="shadow rounded"
+          :style="
+            'filter: hue-rotate(5deg) brightness(140%); background-color: ' +
+            habit.color
+          "
+        >
           <div class="row">
             <div class="col-md-6">
               <div class="p-2 m-2">
@@ -71,9 +80,14 @@
                 <h3 class="p-2 m-2">My badges for this habit</h3>
                 <div id="badges" class="d-flex m-3">
                   <!-- Draw badges here -->
-                  <i class="m-1 mdi mdi-rocket"></i>
-                  <i class="m-1 mdi mdi-dog"></i>
-                  <i class="m-1 mdi-carrot mdi"></i>
+                  <img
+                    v-for="a in myHabitAwards"
+                    :key="a.id"
+                    :src="a.img"
+                    alt=""
+                    height="100"
+                    style="filter: brightness(80%)"
+                  />
                 </div>
               </div>
             </div>
@@ -124,6 +138,7 @@ export default {
       isTracked,
       missed,
       account: computed(() => AppState.account),
+      myHabitAwards: computed(() => AppState.myAwards.filter(a => a.habitId == props.habit.id)),
       goToHabitsDetailPage() {
         router.push({ name: 'HabitsDetailPage', params: { id: 'h-' + props.habit.id } })
       },

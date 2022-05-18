@@ -3140,14 +3140,14 @@ input[type=button].btn-block {
   border: 0;
 }
 .dropdown-item:hover, .dropdown-item:focus {
-  color: #16181b;
+  color: transparent;
   text-decoration: none;
-  background-color: #e9ecef;
+  background-color: transparent;
 }
 .dropdown-item.active, .dropdown-item:active {
-  color: #fff;
+  color: transparent;
   text-decoration: none;
-  background-color: #3ba5dc;
+  background-color: transparent;
 }
 .dropdown-item.disabled, .dropdown-item:disabled {
   color: #adb5bd;

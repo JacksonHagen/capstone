@@ -15,6 +15,7 @@
         id="habit-title"
         placeholder=""
         v-model="formData.title"
+        required
       />
     </div>
     <div class="mb-3">
@@ -50,33 +51,48 @@
         v-model="formData.color"
       >
         <option
-          class="border-top border-dark bg-danger"
-          value="#ea0606"
-        ></option>
+          class="border-top border-dark bg-danger dropdown-item"
+          value="#EA9D55"
+        >
+          Orange
+        </option>
         <option
-          class="border-top border-dark bg-warning"
+          class="border-top border-dark bg-warning dropdown-item"
           selected
           value="#FFECA8"
-        ></option>
+        >
+          Yellow
+        </option>
         <option
-          class="border-top border-dark bg-success"
+          class="border-top border-dark bg-success dropdown-item"
           value="#D1F3EC"
-        ></option>
+        >
+          Aqua
+        </option>
         <option
-          class="border-top border-dark bg-primary"
-          value="#4F7269"
-        ></option>
+          class="border-top border-dark bg-primary dropdown-item text-light"
+          value="#74A59A"
+        >
+          Green
+        </option>
         <option
-          class="border-top border-dark bg-secondary"
-          value="#DE9A15"
-        ></option>
+          class="border-top border-dark bg-secondary dropdown-item"
+          value="#9BA5FF"
+        >
+          Purple
+        </option>
       </select>
     </div>
     <div class="mb-3">
       <label for="habit-interval"
         >How often do you want us to remind you?</label
       >
-      <select name="habit-interval" id="habit-interval">
+      <select
+        name="habit-interval"
+        id="habit-interval"
+        class="rounded p-1 ms-2"
+        required
+      >
         <option selected value="1">Daily</option>
         <option value="2">Every other day</option>
         <option value="7">Weekly</option>
@@ -84,7 +100,12 @@
       </select>
     </div>
     <div class="modal-footer">
-      <button type="close" class="btn btn-secondary" data-bs-dismiss="modal">
+      <button
+        type="button"
+        class="btn btn-secondary"
+        data-bs-target="newHabitModal"
+        data-bs-dismiss="modal"
+      >
         Close
       </button>
       <button type="submit" class="btn btn-primary">Submit</button>
@@ -130,9 +151,20 @@ export default {
 
 <style lang="scss" scoped>
 .form-select {
+  -webkit-appearance: none;
+  appearance: none;
   background-color: v-bind(formColor) !important;
 }
-.form-control option:hover {
-  background: rgba(255, 192, 203, 0);
+.dropdown-item:hover,
+.dropdown-item:focus {
+  color: transparent;
+  text-decoration: none;
+  background-color: transparent;
+}
+.dropdown-item.active,
+.dropdown-item:active {
+  color: transparent;
+  text-decoration: none;
+  background-color: transparent;
 }
 </style>
