@@ -17,14 +17,24 @@
       </div>
       <hr v-if="activeUntrackedHabits.length" />
       <div class="row w-100 d-flex justify-content-center">
-        <Habit v-for="h in allActiveHabits" :key="h.id" :habit="h" />
+        <Habit
+          v-for="h in allActiveHabits"
+          :key="h.id"
+          :habit="h"
+          style="filter: saturate(80%)"
+        />
       </div>
     </div>
     <div class="container-fluid" v-if="archivedHabits.length">
       <hr />
       <div class="row w-100 d-flex justify-content-center text-center">
         <p>Archived Habits</p>
-        <Habit v-for="h in archivedHabits" :key="h.id" :habit="h" />
+        <Habit
+          v-for="h in archivedHabits"
+          :key="h.id"
+          :habit="h"
+          style="filter: saturate(50%)"
+        />
       </div>
     </div>
   </div>
