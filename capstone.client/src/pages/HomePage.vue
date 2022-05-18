@@ -21,6 +21,7 @@
         <Habit v-for="h in allActiveHabits" :key="h.id" :habit="h" />
       </div>
     </div>
+    <hr v-if="archivedHabits.length" />
     <div class="container-fluid">
       <div class="row w-100 d-flex justify-content-center">
         <Habit v-for="h in archivedHabits" :key="h.id" :habit="h" />
