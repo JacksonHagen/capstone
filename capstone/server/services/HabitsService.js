@@ -71,7 +71,7 @@ class HabitsService {
         if (habits.length === 1) {
             await awardsService.createAward('CH01', accountId)
         } else if (habits.length === 5) {
-            await awardsService.createAward('CH05', accountId)
+            await awardsService.createAward('CH06', accountId)
         }
     }
     async createHabit(body) {

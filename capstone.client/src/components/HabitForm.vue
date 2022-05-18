@@ -77,9 +77,9 @@
         </option>
         <option
           class="border-top border-dark bg-secondary dropdown-item"
-          value="#ECBF66"
+          value="#8591FC"
         >
-          Yellow-Orange
+          Purple
         </option>
       </select>
     </div>
