@@ -14,7 +14,6 @@
       <div class="mt-3 justify-content-center">
         <div
           class="
-            bg-success
             darken-30
             w-100
             p-3
@@ -23,6 +22,7 @@
             justify-content-between
             rounded-top
           "
+          :style="'background-color: ' + habit.color"
         >
           <h3>
             {{ habit.title }}
@@ -31,7 +31,13 @@
             Archive Habit
           </button>
         </div>
-        <div class="bg-success rounded-bottom p-3">
+        <div
+          class="rounded-bottom p-3"
+          :style="
+            'filter: hue-rotate(5deg) brightness(140%) grayscale(50%); background-color: ' +
+            habit.color
+          "
+        >
           <div class="col-12 p-3 bg-light">
             <h6>{{ habit.inspo }}</h6>
           </div>

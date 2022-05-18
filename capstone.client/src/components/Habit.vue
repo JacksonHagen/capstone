@@ -47,7 +47,13 @@
         aria-labelledby="headingOne"
         data-parent="#accordionExample"
       >
-        <div class="bg-light shadow rounded">
+        <div
+          class="shadow rounded"
+          :style="
+            'filter: hue-rotate(5deg) brightness(140%) grayscale(50%); background-color: ' +
+            habit.color
+          "
+        >
           <div class="row">
             <div class="col-md-6">
               <div class="p-2 m-2">

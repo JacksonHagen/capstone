@@ -51,7 +51,7 @@
       >
         <option
           class="border-top border-dark bg-danger dropdown-item"
-          value="#ea0606"
+          value="#EA9D55"
         ></option>
         <option
           class="border-top border-dark bg-warning dropdown-item"
@@ -64,11 +64,11 @@
         ></option>
         <option
           class="border-top border-dark bg-primary dropdown-item"
-          value="#4F7269"
+          value="#618A81"
         ></option>
         <option
           class="border-top border-dark bg-secondary dropdown-item"
-          value="#DE9A15"
+          value="#ECBF66"
         ></option>
       </select>
     </div>
