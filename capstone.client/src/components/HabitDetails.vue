@@ -12,9 +12,25 @@
   >
     <div class="darken-30 p-3 mt-3 w-100">
       <div class="mt-3 justify-content-center">
-        <h3 class="bg-success darken-30 w-100 p-3 m-0 rounded-top">
-          {{ habit.title }}
-        </h3>
+        <div
+          class="
+            bg-success
+            darken-30
+            w-100
+            p-3
+            m-0
+            d-flex
+            justify-content-between
+            rounded-top
+          "
+        >
+          <h3>
+            {{ habit.title }}
+          </h3>
+          <button class="btn btn-warning" @click="archiveHabit()">
+            Archive Habit
+          </button>
+        </div>
         <div class="bg-success rounded-bottom p-3">
           <div class="col-12 p-3 bg-light">
             <h6>{{ habit.inspo }}</h6>
@@ -37,6 +53,14 @@
       </div>
     </div>
   </div>
+
+  <Modal id="display-award">
+    <template #body>
+      <div>
+        <img class="img-fluid" :src="award.img" alt="" />
+      </div>
+    </template>
+  </Modal>
 </template>
 
 
@@ -44,6 +68,9 @@
 import { computed } from '@vue/reactivity'
 import { AppState } from '../AppState.js'
 import { useRouter } from "vue-router"
+import { logger } from "../utils/Logger.js"
+import Pop from "../utils/Pop.js"
+import { habitsService } from "../services/HabitsService.js"
 export default {
   props: {
     habit: {
@@ -53,7 +80,18 @@ export default {
   },
   setup(props) {
     return {
-      awards: computed(() => AppState.myAwards.filter(a => a.habitId == props.habit.id))
+      award: computed(() => AppState.newAward),
+      awards: computed(() => AppState.myAwards.filter(a => a.habitId == props.habit.id)),
+      async archiveHabit() {
+        try {
+          if (await Pop.confirm()) {
+            await habitsService.archiveHabit(props.habit.id)
+          }
+        } catch (error) {
+          logger.error(error)
+          Pop.toast(error.message, 'error')
+        }
+      }
     }
   }
 }

@@ -40,6 +40,10 @@ class HabitsService {
     const res = await api.delete('api/habits/' + habitId)
     logger.log(res.data, "res of archiving a habit")
     AppState.activeHabit.isActive = false
+    let index = AppState.myHabits.findIndex(h => h.id === habitId)
+    if (index != -1) {
+      AppState.myHabits.splice(index, 1, res.data)
+    }
   }
 
   //this get exclusively active user's Habits
