@@ -64,7 +64,7 @@ export default {
     return {
       filter,
       activeUntrackedHabits: computed(() => AppState.myHabits.filter(h => {
-        if (!h.trackHistory[0]) {
+        if (h.isActive && !h.trackHistory[0]) {
           return true
         } else {
           let date = new Date(h.trackHistory[0])
