@@ -1,6 +1,5 @@
 <template>
   <AccountTopBar />
-  <AccountCharts />
   <div class="container bg-primary rounded mt-5 p-4">
     <AccountCharts />
     <AccountMyAwards />
