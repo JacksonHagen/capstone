@@ -67,17 +67,17 @@
           class="border-top border-dark bg-success dropdown-item"
           value="#D1F3EC"
         >
-          Blue
+          Aqua
         </option>
         <option
           class="border-top border-dark bg-primary dropdown-item text-light"
-          value="#618A81"
+          value="#74A59A"
         >
           Green
         </option>
         <option
           class="border-top border-dark bg-secondary dropdown-item"
-          value="#8591FC"
+          value="#9BA5FF"
         >
           Purple
         </option>

@@ -53,6 +53,7 @@
   <button
     class="m-2 btn btn-info float"
     type="button"
+    title="Create a new habit"
     data-bs-toggle="modal"
     data-bs-target="#newHabitModal"
   >
