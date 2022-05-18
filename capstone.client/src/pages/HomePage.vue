@@ -3,8 +3,8 @@
     <div class="row">
       <div class="col-12">
         <div class="d-flex justify-content-end">
-          <button @click="filter == 'isActive'">Active</button>
-          <button @click="filter == '!isActive'">Archived</button>
+          <!-- <button @click="filter == 'isActive'">Active</button>
+          <button @click="filter == '!isActive'">Archived</button> -->
           <!-- Today -->
           <!-- All Active -->
           <!-- All Time -->
@@ -20,7 +20,7 @@
       <div class="row w-100 d-flex justify-content-center">
         <Habit v-for="h in activeUntrackedHabits" :key="h.id" :habit="h" />
       </div>
-      // REVIEW needs fix
+      <!-- REVIEW needs fix -->
       <hr v-if="!(activeUntrackedHabits = [])" />
       <div class="row w-100 d-flex justify-content-center">
         <Habit v-for="h in allActiveHabits" :key="h.id" :habit="h" />

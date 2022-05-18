@@ -51,10 +51,16 @@
           <div class="row">
             <div class="col-md-6">
               <div class="p-2 m-2">
-                <h3>{{ habit.streak }}</h3>
+                <!-- <h3>Your streak:</h3> -->
                 <!-- TODO OR v-if  -->
                 <h4>You've completed this habit today!</h4>
                 <p>Your streak is {{ habit.streak }} days.</p>
+                <p>
+                  You'll be reminded of this habit again in
+                  {{ habit.interval - timeSinceLastTracked }} day{{
+                    habit.interval > 1 ? "s" : s
+                  }}
+                </p>
                 <h4 class="m-0 selectable" @click="goToHabitsDetailPage()">
                   See More...
                 </h4>
@@ -100,22 +106,23 @@ export default {
     const router = useRouter()
     const isTracked = ref(false)
     const missed = ref(false)
+    const lastTracked = new Date(props.habit.trackHistory[0])
+    const timeSinceLastTracked = (AppState.day.getDate() - lastTracked.getDate())
     watchEffect(async () => {
-      // NOTE matching full year instead of just date
-      // REVIEW we'll need to make sure that we are accounting for interval here...?
-      const lastTracked = new Date(props.habit.trackHistory[0])
-      if ((lastTracked.toDateString() == AppState.day.toDateString()) && (props.habit.interval > (AppState.day.getDate() - lastTracked.getDate()))) {
+      if ((lastTracked.toDateString() == AppState.day.toDateString()) && (props.habit.interval > timeSinceLastTracked)) {
         isTracked.value = true
       }
-      if ((AppState.day.getDate() - lastTracked.getDate()) > props.habit.interval) {
+      if (timeSinceLastTracked > props.habit.interval) {
         missed.value = true
         props.habit.streak = 0
         await habitsService.editHabit(props.habit)
       }
     })
     return {
-      missed,
+      lastTracked,
+      timeSinceLastTracked,
       isTracked,
+      missed,
       account: computed(() => AppState.account),
       goToHabitsDetailPage() {
         router.push({ name: 'HabitsDetailPage', params: { id: 'h-' + props.habit.id } })
