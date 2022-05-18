@@ -18,7 +18,10 @@
           <span class="mdi mdi-menu-down"></span>
         </h3>
         <!-- TODO v-if for check unchecked -->
-        <div v-if="!isTracked">
+        <div class="" v-if="!habit.isActive">
+          <h5><i>Archived</i></h5>
+        </div>
+        <div v-else-if="!isTracked">
           <div class="form-check">
             <input
               type="checkbox"
@@ -37,7 +40,7 @@
           <!-- <i class="mdi mdi-checkbox-blank-outline" @click="completeHabit"></i>
           <i class="mdi mdi-checkbox-marked" @click="completeHabit"></i> -->
         </div>
-        <div v-if="isTracked">
+        <div v-else-if="isTracked">
           <h5>Well Done!</h5>
         </div>
       </div>
@@ -48,8 +51,11 @@
         data-parent="#accordionExample"
       >
         <div
-          class="shadow rounded filter"
-          :style="'background-color: ' + habit.color"
+          class="shadow rounded"
+          :style="
+            'filter: hue-rotate(5deg) brightness(140%); background-color: ' +
+            habit.color
+          "
         >
           <div class="row">
             <div class="col-md-6">
@@ -185,8 +191,5 @@ export default {
   bottom: 0px;
   background-color: rgba(199, 189, 189, 0.559);
   pointer-events: none;
-}
-.filter {
-  filter: brightness(140%);
 }
 </style>
