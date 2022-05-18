@@ -1,6 +1,13 @@
 <template>
   <div
-    class="col-12 d-flex fit-content(100vh) container-scroll align-items-center"
+    class="
+      col-12
+      d-flex
+      fit-content(100vh)
+      container-scroll
+      align-items-center
+      scrollsnap
+    "
     :id="'h-' + habit.id"
   >
     <div class="darken-30 p-3 mt-3 w-100">
@@ -54,4 +61,7 @@ export default {
 
 
 <style lang="scss" scoped>
+.scrollsnap {
+  scroll-snap-align: start;
+}
 </style>

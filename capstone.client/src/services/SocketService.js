@@ -11,10 +11,13 @@ class SocketService extends SocketHandler {
       .on('EARNED_BADGE', this.earnedBadge)
   }
 
-  earnedBadge(payload) {
+  async earnedBadge(payload) {
     AppState.myAwards.push(payload)
-    AppState.newAward = payload
-    // Modal.getOrCreateInstance(document.getElementById('display-award')).toggle()
+    AppState.newAward = await payload.badge
+    Modal.getOrCreateInstance(document.getElementById('display-award')).show()
+    setTimeout(() => {
+      AppState.newAward = {}
+    }, 5000);
     console.log('earned badge', payload)
     // NOTE socket working - just need to handle this payload data
   }

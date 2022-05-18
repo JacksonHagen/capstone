@@ -1,6 +1,6 @@
 <template>
   <div class="container-fluid fill">
-    <div id="scrollable" class="row d-flex scrollable">
+    <div id="scrollable" class="row d-flex scrollable snap">
       <!-- This will be a differently formatted habit componennt -->
       <HabitDetails v-for="h in habits" :key="h.id" :habit="h" />
     </div>
