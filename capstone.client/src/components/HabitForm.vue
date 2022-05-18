@@ -15,6 +15,7 @@
         id="habit-title"
         placeholder=""
         v-model="formData.title"
+        required
       />
     </div>
     <div class="mb-3">
@@ -86,7 +87,12 @@
       <label for="habit-interval"
         >How often do you want us to remind you?</label
       >
-      <select name="habit-interval" id="habit-interval">
+      <select
+        name="habit-interval"
+        id="habit-interval"
+        class="rounded p-1 ms-2"
+        required
+      >
         <option selected value="1">Daily</option>
         <option value="2">Every other day</option>
         <option value="7">Weekly</option>
