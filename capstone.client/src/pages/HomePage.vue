@@ -2,6 +2,7 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-12">
+        <img src="../assets/img/Badges/CapstoneBadges-Completed5Habits.png" />
         <div class="d-flex justify-content-end">
           <!-- <button @click="filter == 'isActive'">Active</button>
           <button @click="filter == '!isActive'">Archived</button> -->
