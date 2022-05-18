@@ -52,24 +52,34 @@
         <option
           class="border-top border-dark bg-danger dropdown-item"
           value="#EA9D55"
-        ></option>
+        >
+          Orange
+        </option>
         <option
           class="border-top border-dark bg-warning dropdown-item"
           selected
           value="#FFECA8"
-        ></option>
+        >
+          Yellow
+        </option>
         <option
           class="border-top border-dark bg-success dropdown-item"
           value="#D1F3EC"
-        ></option>
+        >
+          Blue
+        </option>
         <option
-          class="border-top border-dark bg-primary dropdown-item"
+          class="border-top border-dark bg-primary dropdown-item text-light"
           value="#618A81"
-        ></option>
+        >
+          Green
+        </option>
         <option
           class="border-top border-dark bg-secondary dropdown-item"
           value="#ECBF66"
-        ></option>
+        >
+          Yellow-Orange
+        </option>
       </select>
     </div>
     <div class="mb-3">
@@ -84,7 +94,12 @@
       </select>
     </div>
     <div class="modal-footer">
-      <button type="close" class="btn btn-secondary" data-bs-dismiss="modal">
+      <button
+        type="button"
+        class="btn btn-secondary"
+        data-bs-target="newHabitModal"
+        data-bs-dismiss="modal"
+      >
         Close
       </button>
       <button type="submit" class="btn btn-primary">Submit</button>
@@ -130,6 +145,8 @@ export default {
 
 <style lang="scss" scoped>
 .form-select {
+  -webkit-appearance: none;
+  appearance: none;
   background-color: v-bind(formColor) !important;
 }
 .dropdown-item:hover,
