@@ -13,12 +13,12 @@
       </div>
     </div>
     <div class="row w-100 d-flex justify-content-center">
-      <Habit v-for="h in filteredHabits" :key="h.id" :habit="h" />
+      <Habit v-for="h in activeUntrackedHabits" :key="h.id" :habit="h" />
     </div>
     <hr />
-    <!-- <div class="row w-100 d-flex justify-content-center">
-      <Habit v-for="h in trackedHabits" :key="h.id" :habit="h" />
-    </div> -->
+    <div class="row w-100 d-flex justify-content-center">
+      <Habit v-for="h in allActiveHabits" :key="h.id" :habit="h" />
+    </div>
     <hr />
   </div>
 
@@ -44,19 +44,12 @@ export default {
   setup() {
     let filter = ref()
     let filteredHabits = ref([])
-    // console.log(AppState.myHabits.forEach(h => h.isActive && ((h.interval) <= (AppState.day.getDate() - new Date(h.trackHistory[0]).getDate()))))
     watchEffect(() => {
-      let today = AppState.day
       let habits = AppState.myHabits
-      // let date = new Date(habits[0].trackHistory[0])
-      // console.log(today.getDate() - date.getDate())
-      // let trackedDate = new Date(h.lastTracked[0])
-      // if ( - trackedDate.getDate()){}
-      // h.isActive && ((h.interval) <= (today.getDate() - h.lastTracked[0].getDate()))
-
       if (filter.value) {
         habits = habits.filter(h => h.isActive == filter)
       }
+
       // NOTE sorted filter
       // REVIEW as of now, new habits will be at the bottom of the list because they do not have a trackHistory[0]
       filteredHabits.value = habits.sort((a, b) => new Date(new Date(a.trackHistory[0]) - b.trackHistory[0]))
@@ -64,10 +57,24 @@ export default {
     return {
       filter,
       filteredHabits,
-      award: computed(() => AppState.newAward)
+      award: computed(() => AppState.newAward),
       // testHabits: computed(() => {
       //   AppState.myHabits.filter(h => h.isActive && ((h.interval) <= (AppState.day.getDate() - new Date(h.trackHistory[0]).getDate())))
       // })
+      activeUntrackedHabits: computed(() => AppState.myHabits.filter(h => {
+        if (!h.trackHistory[0]) {
+          return true
+        } else {
+          let date = new Date(h.trackHistory[0])
+          let today = AppState.day
+          return h.isActive && (h.interval <= (today.getDate() - date.getDate()))
+        }
+      })),
+      allActiveHabits: computed(() => AppState.myHabits.filter(h => {
+        let date = new Date(h.trackHistory[0])
+        let today = AppState.day
+        return h.isActive && (today.toDateString() == date.toDateString())
+      }).reverse())
     }
   }
 }

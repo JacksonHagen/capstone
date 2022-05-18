@@ -41,17 +41,15 @@
           <h5>Well Done!</h5>
         </div>
       </div>
-      <!-- TODO add the habit id to the id -->
       <div
         :id="habit.id"
         class="collapse hide"
         aria-labelledby="headingOne"
         data-parent="#accordionExample"
       >
-        <div class="bg-secondary lighten-30 habit-body">
+        <div class="bg-light shadow rounded">
           <div class="row">
             <div class="col-md-6">
-              <!-- TODO v-if you've compleeted this habit today -->
               <div class="p-2 m-2">
                 <h3>{{ habit.streak }}</h3>
                 <!-- TODO OR v-if  -->
@@ -63,7 +61,7 @@
               </div>
             </div>
             <div class="col-md-6 mb-4 align-items-center">
-              <div class="bg-secondary h-100 rounded">
+              <div class="h-100 rounded">
                 <h3 class="p-2 m-2">My badges for this habit</h3>
                 <div id="badges" class="d-flex m-3">
                   <!-- Draw badges here -->
@@ -102,7 +100,7 @@ export default {
     const router = useRouter()
     const isTracked = ref(false)
     const missed = ref(false)
-    watchEffect(() => {
+    watchEffect(async () => {
       // NOTE matching full year instead of just date
       // REVIEW we'll need to make sure that we are accounting for interval here...?
       const lastTracked = new Date(props.habit.trackHistory[0])
@@ -112,7 +110,7 @@ export default {
       if ((AppState.day.getDate() - lastTracked.getDate()) > props.habit.interval) {
         missed.value = true
         props.habit.streak = 0
-        habitsService.editHabit(props.habit)
+        await habitsService.editHabit(props.habit)
       }
     })
     return {
@@ -126,7 +124,9 @@ export default {
       },
       async checkIn() {
         try {
-          props.habit.trackHistory.unshift(new Date())
+          const date = new Date()
+          console.log(typeof (date))
+          props.habit.trackHistory.unshift(date)
           props.habit.streak++
           await habitsService.editHabit(props.habit)
         } catch (error) {

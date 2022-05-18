@@ -1,10 +1,20 @@
+import { time } from "cron"
 import { dbContext } from '../db/DbContext'
 import { BadRequest, Forbidden } from '../utils/Errors'
+import { logger } from "../utils/Logger"
 import { awardsService } from './AwardsService.js'
 
 class HabitsService {
     async getHabitsByAccount(accountId) {
-        const habits = await dbContext.Habits.find({ accountId })
+        let habits = await dbContext.Habits.find({ accountId })
+        habits.forEach(h => {
+            let formatted = []
+            h.trackHistory.map(d => {
+                formatted.push(new Date(d))
+            })
+            h.trackHistory = formatted
+            logger.log(typeof (formatted[0]))
+        })
         return habits
     }
     async editHabit(update) {

@@ -18,14 +18,10 @@ export default {
   setup() {
     function checkDatetime() {
       AppState.day = new Date()
-      console.log(AppState.day)
     }
     onMounted(async () => {
       checkDatetime()
       setInterval(checkDatetime, 60000)
-      // REVIEW v-logic for habit components
-      // habit.trackHistory.push(new Date)
-      // AppState.myHabits = AppState.myHabits.filter(h => h.isActive && ((h.interval) <= (today.getDate() - h.lastTracked[0].getDate())))
       // AppState.myHabits.filter(h => (today.getDate() - h.lastTracked[0].getDate()) > h.interval)
       // you done fucked up render missed component version
 

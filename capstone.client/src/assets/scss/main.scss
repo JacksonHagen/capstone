@@ -15,6 +15,10 @@ main {
   flex-grow: 1;
 }
 
+.snap {
+  scroll-snap-type: x mandatory;
+}
+
 @media only screen and (max-width: 768px) {
   .scrollable {
     flex-wrap: nowrap;
@@ -26,7 +30,7 @@ main {
 }
 
 @media only screen and (min-width: 768px) {
-  .container {
+  .container-scroll {
     height: 100vh;
   }
 }
