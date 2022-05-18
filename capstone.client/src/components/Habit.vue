@@ -50,7 +50,7 @@
         <div
           class="shadow rounded"
           :style="
-            'filter: hue-rotate(5deg) brightness(140%) grayscale(50%); background-color: ' +
+            'filter: hue-rotate(5deg) brightness(140%); background-color: ' +
             habit.color
           "
         >
@@ -83,6 +83,7 @@
                     :src="a.img"
                     alt=""
                     height="100"
+                    style="filter: brightness(80%)"
                   />
                 </div>
               </div>
