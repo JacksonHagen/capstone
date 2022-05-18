@@ -58,7 +58,7 @@
                 <p>
                   You'll be reminded of this habit again in
                   {{ habit.interval - timeSinceLastTracked }} day{{
-                    habit.interval > 1 ? "s" : s
+                    habit.interval - timeSinceLastTracked > 1 ? "s" : s
                   }}
                 </p>
                 <h4 class="m-0 selectable" @click="goToHabitsDetailPage()">
