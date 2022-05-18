@@ -1,7 +1,7 @@
 <template>
   <!-- TODO ternary to change habit color -->
   <div class="col-12 d-flex justify-content-center w-100 align-items-center">
-    <div v-if="habit.isActive" id="habit" class="mt-3 justify-content-center">
+    <div id="habit" class="mt-3 justify-content-center">
       <!-- <div v-if="missed" class="checked-overlay"></div> -->
       <div
         class="habit-bar d-flex justify-content-between align-items-center"

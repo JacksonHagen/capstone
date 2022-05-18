@@ -3,15 +3,19 @@
     <div class="col-12 bg-light rounded p-3">
       <p class="text-dark">My Awards</p>
       <div class="row text-center text-dark justify-content-around">
-        <p class="text-dark">Habit Awards</p>
-        <hr />
-        <div class="col-2" v-for="a in myHabitAwards" :key="a.id">
-          <img :src="a.img" class="awardImg" />
+        <p v-if="myHabitAwards.length"><u>Habit Awards</u></p>
+        <div class="col-3" v-for="a in myHabitAwards" :key="a.id">
+          <img
+            :src="a.img"
+            class="img-fluid"
+            :title="'Streak award for ' + a.habit.title"
+          />
         </div>
-        <hr />
-        <p>Account Awards</p>
-        <div class="col-2" v-for="a in myAccountAwards" :key="a.id">
-          <img :src="a.img" class="awardImg" />
+        <hr v-if="myAccountAwards.length && myHabitAwards.length" />
+        <p v-if="myAccountAwards.length"><u>Account Awards</u></p>
+
+        <div class="col-3" v-for="a in myAccountAwards" :key="a.id">
+          <img :src="a.img" class="img-fluid" />
         </div>
       </div>
     </div>
