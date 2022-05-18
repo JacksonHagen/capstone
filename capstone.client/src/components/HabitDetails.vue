@@ -34,7 +34,7 @@
         <div
           class="rounded-bottom p-3"
           :style="
-            'filter: hue-rotate(5deg) brightness(140%) grayscale(50%); background-color: ' +
+            'filter: hue-rotate(5deg) brightness(140%); background-color: ' +
             habit.color
           "
         >
