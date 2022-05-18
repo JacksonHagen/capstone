@@ -67,7 +67,7 @@ export default {
         return h.isActive && (today.toDateString() == date.toDateString())
       }).reverse()),
       archivedHabits: computed(() => AppState.myHabits.filter(h => !h.isActive)),
-      award: computed(() => AppState.newAward.badge)
+      award: computed(() => AppState.newAward)
     }
   }
 }
