@@ -27,9 +27,14 @@
           <h3>
             {{ habit.title }}
           </h3>
-          <button class="btn btn-warning" @click="archiveHabit()">
+          <button
+            v-if="habit.isActive"
+            class="btn btn-warning"
+            @click="archiveHabit()"
+          >
             Archive Habit
           </button>
+          <h5 v-else><i>Archived</i></h5>
         </div>
         <div
           class="rounded-bottom p-3"

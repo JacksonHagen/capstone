@@ -63,14 +63,16 @@
               <div class="p-2 m-2">
                 <!-- <h3>Your streak:</h3> -->
                 <!-- TODO OR v-if  -->
-                <h4>You've completed this habit today!</h4>
-                <p>Your streak is {{ habit.streak }} days.</p>
-                <p v-if="habit.interval - timeSinceLastTracked > 0">
-                  You'll be reminded of this habit again in
-                  {{ habit.interval - timeSinceLastTracked }} day{{
-                    habit.interval - timeSinceLastTracked > 1 ? "s" : ""
-                  }}
-                </p>
+                <span v-if="habit.isActive">
+                  <h4>You've completed this habit today!</h4>
+                  <p>Your streak is {{ habit.streak }} days.</p>
+                  <p v-if="habit.interval - timeSinceLastTracked > 0">
+                    You'll be reminded of this habit again in
+                    {{ habit.interval - timeSinceLastTracked }} day{{
+                      habit.interval - timeSinceLastTracked > 1 ? "s" : ""
+                    }}
+                  </p>
+                </span>
                 <h4 class="m-0 selectable" @click="goToHabitsDetailPage()">
                   See More...
                 </h4>

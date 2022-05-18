@@ -40,20 +40,6 @@
         />
       </div>
     </div>
-    <div class="col-md-3 offset-1 bg-light rounded p-3 text-center">
-      <p class="text-dark">Active / Archived</p>
-      <PieChart
-        :chartData="{
-          labels: ['Active', 'Archived'],
-          datasets: [
-            {
-              data: activeHabitsData,
-              backgroundColor: ['#DE9A15', '#D1F3EC'],
-            },
-          ],
-        }"
-      />
-    </div>
   </div>
   <div class="row mb-4">
     <div class="col-12 bg-light rounded p-3">
