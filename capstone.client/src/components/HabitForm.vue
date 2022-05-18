@@ -50,24 +50,24 @@
         v-model="formData.color"
       >
         <option
-          class="border-top border-dark bg-danger"
+          class="border-top border-dark bg-danger dropdown-item"
           value="#ea0606"
         ></option>
         <option
-          class="border-top border-dark bg-warning"
+          class="border-top border-dark bg-warning dropdown-item"
           selected
           value="#FFECA8"
         ></option>
         <option
-          class="border-top border-dark bg-success"
+          class="border-top border-dark bg-success dropdown-item"
           value="#D1F3EC"
         ></option>
         <option
-          class="border-top border-dark bg-primary"
+          class="border-top border-dark bg-primary dropdown-item"
           value="#4F7269"
         ></option>
         <option
-          class="border-top border-dark bg-secondary"
+          class="border-top border-dark bg-secondary dropdown-item"
           value="#DE9A15"
         ></option>
       </select>
@@ -132,7 +132,16 @@ export default {
 .form-select {
   background-color: v-bind(formColor) !important;
 }
-.form-control option:hover {
-  background: rgba(255, 192, 203, 0);
+.dropdown-item:hover,
+.dropdown-item:focus {
+  color: transparent;
+  text-decoration: none;
+  background-color: transparent;
+}
+.dropdown-item.active,
+.dropdown-item:active {
+  color: transparent;
+  text-decoration: none;
+  background-color: transparent;
 }
 </style>
