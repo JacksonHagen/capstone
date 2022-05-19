@@ -1,33 +1,23 @@
 <template>
   <div class="bg-primary rounded">
     <div class="row mb-4">
-      <div class="col-md-8 p-3 bg-light mt-4 rounded">
-        <p class="text-dark">Streak Score</p>
-        <LineChart
-          v-if="lineLoaded"
+      <div class="col-md-8 bg-light rounded p-3 pt-5">
+        <p class="text-dark text-center">My Top Streaks</p>
+        <BarChart
+          v-if="loaded"
           :chartData="{
-            labels: dayLabels,
+            labels: topStreaks.map((s) => s.title),
+
             datasets: [
               {
                 label: '',
-                data: dayData,
+                data: topStreaks.map((s) => s.streak),
+                backgroundColor: topStreaks.map((s) => s.color),
               },
             ],
           }"
           :chartOptions="{
-            scales: {
-              y: {
-                beginAtZero: true,
-              },
-              x: {
-                ticks: {
-                  padding: 1,
-                  autoSkip: false,
-                  maxRotation: 45,
-                  minRotation: 45,
-                },
-              },
-            },
+            indexAxis: 'y',
             plugins: {
               legend: {
                 display: false,
@@ -36,7 +26,7 @@
           }"
         />
       </div>
-      <div class="col-md-3 m-start bg-light mt-4 rounded text-center">
+      <div class="col-md-3 m-start bg-light p-2 rounded text-center">
         <p class="text-dark">Active / Archived</p>
         <PieChart
           :chartData="{
@@ -53,23 +43,33 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-12 bg-light rounded p-3 mb-4">
-      <p class="text-dark text-center">My Top Streaks</p>
-      <BarChart
-        v-if="loaded"
+    <div class="col-12 p-3 bg-light mt-4 rounded">
+      <p class="text-dark">Streak Score</p>
+      <LineChart
+        v-if="lineLoaded"
         :chartData="{
-          labels: topStreaks.map((s) => s.title),
-
+          labels: dayLabels,
           datasets: [
             {
               label: '',
-              data: topStreaks.map((s) => s.streak),
-              backgroundColor: topStreaks.map((s) => s.color),
+              data: dayData,
             },
           ],
         }"
         :chartOptions="{
-          indexAxis: 'y',
+          scales: {
+            y: {
+              beginAtZero: true,
+            },
+            x: {
+              ticks: {
+                padding: 1,
+                autoSkip: false,
+                maxRotation: 45,
+                minRotation: 45,
+              },
+            },
+          },
           plugins: {
             legend: {
               display: false,
