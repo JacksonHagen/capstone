@@ -107,7 +107,9 @@
                     style="filter: brightness(80%)"
                   />
                 </div>
-                <HabitWeeklySummary :habit="habit" />
+                <div class="row text-dark">
+                  <HabitWeeklySummary :habit="habit" />
+                </div>
               </div>
             </div>
           </div>
