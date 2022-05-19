@@ -1,7 +1,7 @@
 <template>
   <div class="row justify-content-end">
     <div
-      class="col-1 border box"
+      class="col-1 m-1 rounded border box"
       :style="
         'background-color: ' +
         (trackHistory.includes(week[0])
@@ -10,7 +10,7 @@
       "
     ></div>
     <div
-      class="col-1 border box"
+      class="col-1 m-1 rounded border box"
       :style="
         'background-color: ' +
         (trackHistory.includes(week[1])
@@ -19,7 +19,7 @@
       "
     ></div>
     <div
-      class="col-1 border box"
+      class="col-1 m-1 rounded border box"
       :style="
         'background-color: ' +
         (trackHistory.includes(week[2])
@@ -28,7 +28,7 @@
       "
     ></div>
     <div
-      class="col-1 border box"
+      class="col-1 m-1 rounded border box"
       :style="
         'background-color: ' +
         (trackHistory.includes(week[3])
@@ -37,7 +37,7 @@
       "
     ></div>
     <div
-      class="col-1 border box"
+      class="col-1 m-1 rounded border box"
       :style="
         'background-color: ' +
         (trackHistory.includes(week[4])
@@ -46,7 +46,7 @@
       "
     ></div>
     <div
-      class="col-1 border box"
+      class="col-1 m-1 rounded border box"
       :style="
         'background-color: ' +
         (trackHistory.includes(week[5])
@@ -55,7 +55,7 @@
       "
     ></div>
     <div
-      class="col-1 border box"
+      class="col-1 m-1 rounded border box"
       :style="
         'background-color: ' +
         (trackHistory.includes(week[6])
@@ -82,7 +82,6 @@ export default {
     endDate.setDate(endDate.getDate() + 1)
     let startDate = new Date()
     startDate.setDate(endDate.getDate() - 7)
-    console.log('stuffs', startDate, endDate)
     function getDatesInRange(start, end) {
       const date = new Date(start.getTime());
       const dates = [];
@@ -91,7 +90,6 @@ export default {
         dates.push(pusher.toISOString().split('T')[0]);
         date.setDate(date.getDate() + 1);
       }
-      console.log("dates", dates)
       return dates
     }
     return {
@@ -113,7 +111,7 @@ export default {
 
 <style lang="scss" scoped>
 .box {
-  height: 6em;
-  width: 6em;
+  height: 5em;
+  width: 5em;
 }
 </style>
