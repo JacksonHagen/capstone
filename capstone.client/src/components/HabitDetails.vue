@@ -4,6 +4,7 @@
       col-12
       d-flex
       fit-content(100vh)
+      containerScroll
       container-scroll
       align-items-center
       scrollsnap
@@ -116,5 +117,8 @@ export default {
 <style lang="scss" scoped>
 .scrollsnap {
   scroll-snap-align: start;
+}
+.containerScroll {
+  overflow: scroll;
 }
 </style>

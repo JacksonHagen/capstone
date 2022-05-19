@@ -94,8 +94,10 @@
               </div>
             </div>
             <div class="col-md-6 mb-4 align-items-center">
-              <div v-if="myHabitAwards[0]" class="h-100 rounded">
-                <h3 class="p-2 m-2">My badges for this habit</h3>
+              <div class="h-100 rounded">
+                <h3 v-if="myHabitAwards[0]" class="p-2 m-2">
+                  My badges for this habit
+                </h3>
                 <div id="badges" class="d-flex m-3">
                   <!-- Draw badges here -->
                   <img
