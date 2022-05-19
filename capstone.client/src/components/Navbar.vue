@@ -85,5 +85,6 @@ a:hover {
   position: fixed;
   left: 1em;
   bottom: 1em;
+  z-index: 1000;
 }
 </style>
