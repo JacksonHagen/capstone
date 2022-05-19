@@ -1,6 +1,12 @@
 <template>
   <div class="component">
-    <img :src="award.img" height="270" alt="" style="filter: brightness(70%)" />
+    <img
+      :src="award.img"
+      height="270"
+      alt=""
+      :title="award.title"
+      style="filter: brightness(70%)"
+    />
   </div>
 </template>
 
@@ -13,7 +19,7 @@ export default {
       required: true
     }
   },
-  setup(props) {
+  setup() {
     return {
 
     }
