@@ -98,6 +98,7 @@
                     style="filter: brightness(80%)"
                   />
                 </div>
+                <HabitWeeklySummary :habit="habit" />
               </div>
             </div>
           </div>
