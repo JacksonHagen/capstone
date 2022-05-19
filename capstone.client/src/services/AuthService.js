@@ -20,7 +20,6 @@ export const AuthService = initialize({
         : window.location.pathname
     )
   }
-  // hi
 })
 
 AuthService.on(AuthService.AUTH_EVENTS.AUTHENTICATED, async function () {
