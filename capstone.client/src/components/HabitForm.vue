@@ -76,7 +76,7 @@
           Green
         </option>
         <option
-          class="border-top border-dark bg-secondary dropdown-item"
+          class="border-top border-dark bg-purple dropdown-item"
           value="#9BA5FF"
         >
           Purple

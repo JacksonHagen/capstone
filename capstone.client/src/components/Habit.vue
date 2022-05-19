@@ -233,10 +233,10 @@ export default {
 .round {
   border-radius: 0.5em !important;
 }
-.text {
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: scroll;
-  display: inline-block;
-}
+// .text {
+//   text-overflow: ellipsis;
+//   white-space: nowrap;
+//   overflow: scroll;
+//   display: inline-block;
+// }
 </style>
