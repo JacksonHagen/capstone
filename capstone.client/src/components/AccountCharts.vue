@@ -1,5 +1,5 @@
 <template>
-  <div class="container bg-primary rounded mt-5 p-4">
+  <div class="bg-primary rounded">
     <div class="row mb-4">
       <div class="col-md-8 p-3 bg-light rounded">
         <p class="text-dark">Streak Score</p>
@@ -36,7 +36,7 @@
           }"
         />
       </div>
-      <div class="col-md-3 offset-1 bg-light rounded p-3 text-center">
+      <div class="col-md-3 m-start bg-light rounded text-center">
         <p class="text-dark">Active / Archived</p>
         <PieChart
           :chartData="{
@@ -52,9 +52,9 @@
       </div>
     </div>
   </div>
-  <div class="row mb-4">
-    <div class="col-12 bg-light rounded p-3">
-      <p class="text-dark">My Top Streaks</p>
+  <div class="row">
+    <div class="col-12 bg-light rounded p-3 mb-4">
+      <p class="text-dark text-center">My Top Streaks</p>
       <BarChart
         v-if="loaded"
         :chartData="{
@@ -179,4 +179,20 @@ export default {
 
 
 <style lang="scss" scoped>
+.m-start {
+  margin-left: 8.33333333%;
+}
+@media (max-width: 768px) {
+  .m-start {
+    margin-left: 0% !important;
+  }
+}
+.m-bot {
+  margin-bottom: 0rem !important;
+}
+@media (max-width: 768px) {
+  .m-bot {
+    margin-bottom: 1rem !important;
+  }
+}
 </style>

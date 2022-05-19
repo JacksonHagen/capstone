@@ -4,13 +4,20 @@
     <div id="habit" class="mt-3 justify-content-center">
       <!-- <div v-if="missed" class="checked-overlay"></div> -->
       <div
-        class="habit-bar d-flex justify-content-between align-items-center"
+        class="
+          habit-bar
+          d-flex
+          justify-content-between
+          align-items-center
+          round
+        "
         :style="'background-color: ' + habit.color"
         type="button"
         data-toggle="collapse"
         data-target="#collapseOne"
         aria-expanded="false"
         aria-controls="collapseOne"
+        :id="'h-' + habit.id"
         @click.stop="toggle"
       >
         <h3>
@@ -46,30 +53,32 @@
       </div>
       <div
         :id="habit.id"
-        class="collapse hide"
+        class="collapse hide habit-body"
         aria-labelledby="headingOne"
         data-parent="#accordionExample"
       >
         <div
-          class="shadow rounded"
+          class="shadow short-round"
           :style="
             'filter: hue-rotate(5deg) brightness(140%); background-color: ' +
             habit.color
           "
         >
-          <div class="row">
+          <div class="row w-100">
             <div class="col-md-6">
               <div class="p-2 m-2">
                 <!-- <h3>Your streak:</h3> -->
                 <!-- TODO OR v-if  -->
-                <h4>You've completed this habit today!</h4>
-                <p>Your streak is {{ habit.streak }} days.</p>
-                <p v-if="habit.interval - timeSinceLastTracked > 0">
-                  You'll be reminded of this habit again in
-                  {{ habit.interval - timeSinceLastTracked }} day{{
-                    habit.interval - timeSinceLastTracked > 1 ? "s" : ""
-                  }}
-                </p>
+                <span v-if="habit.isActive">
+                  <h4>You've completed this habit today!</h4>
+                  <p>Your streak is {{ habit.streak }} days.</p>
+                  <p v-if="habit.interval - timeSinceLastTracked > 0">
+                    You'll be reminded of this habit again in
+                    {{ habit.interval - timeSinceLastTracked }} day{{
+                      habit.interval - timeSinceLastTracked > 1 ? "s" : ""
+                    }}
+                  </p>
+                </span>
                 <h4 class="m-0 selectable" @click="goToHabitsDetailPage()">
                   See More...
                 </h4>
@@ -117,6 +126,7 @@ export default {
     }
   },
   setup(props) {
+    const flip = ref(false)
     const router = useRouter()
     const isTracked = ref(false)
     const missed = ref(false)
@@ -138,12 +148,19 @@ export default {
       timeSinceLastTracked,
       isTracked,
       missed,
+      flip,
       account: computed(() => AppState.account),
       myHabitAwards: computed(() => AppState.myAwards.filter(a => a.habitId == props.habit.id)),
       goToHabitsDetailPage() {
         router.push({ name: 'HabitsDetailPage', params: { id: 'h-' + props.habit.id } })
       },
       toggle() {
+        flip.value = !flip.value
+        if (flip.value) {
+          document.getElementById('h-' + props.habit.id).classList.remove('round')
+        } else {
+          document.getElementById('h-' + props.habit.id).classList.add('round')
+        }
         Collapse.getOrCreateInstance(document.getElementById(props.habit.id)).toggle()
       },
       async checkIn() {
@@ -171,7 +188,8 @@ export default {
 }
 .habit-body {
   width: 75vw;
-  padding: 1em;
+}
+.short-round {
   border-bottom-right-radius: 0.5em;
   border-bottom-left-radius: 0.5em;
 }
@@ -192,5 +210,8 @@ export default {
   bottom: 0px;
   background-color: rgba(199, 189, 189, 0.559);
   pointer-events: none;
+}
+.round {
+  border-radius: 0.5em !important;
 }
 </style>
