@@ -1,12 +1,12 @@
 <template>
   <div class="container">
-    <div class="row mt-4">
-      <div class="col-2 bg-primary rounded p-3">
+    <div class="row">
+      <div class="col-md-2 bg-primary rounded mt-4 p-3">
         <h5>Habits: {{ myHabits.length }}</h5>
         <h5>Badges: {{ awards.length }}</h5>
       </div>
 
-      <div class="col-9 bg-primary rounded offset-1 p-3">
+      <div class="col-md-9 bg-primary rounded mt-4 offset-md-1 p-3">
         <p>
           <!-- TODO carousel with inspos -->
           Inspo: Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sunt

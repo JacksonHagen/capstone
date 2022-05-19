@@ -1,9 +1,11 @@
 <template>
-  <AccountTopBar />
-  <div class="container bg-primary rounded mt-5 p-4">
-    <AccountCharts />
-    <AccountMyAwards />
-    <AccountCalendarView />
+  <div class="mx-4">
+    <AccountTopBar />
+    <div class="container bg-primary rounded mt-4 p-4">
+      <AccountCharts />
+      <AccountMyAwards />
+      <AccountCalendarView />
+    </div>
   </div>
   <Modal id="display-award">
     <template #body>
