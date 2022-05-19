@@ -27,11 +27,19 @@ main {
     width: 100vw;
     flex-direction: row;
   }
+  .box {
+    width: 30px;
+    height: 30px;
+  }
 }
 
 @media only screen and (min-width: 768px) {
   .container-scroll {
     height: 100vh;
+  }
+  .box {
+    width: 4em;
+    height: 4em;
   }
 }
 
