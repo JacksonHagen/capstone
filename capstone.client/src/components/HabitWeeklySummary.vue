@@ -4,7 +4,7 @@
       class="col-1 border box"
       :style="
         'background-color: ' +
-        (habit.trackHistory[6]?.split('T')[0] == week[0].split('T')[0]
+        (trackHistory.includes(week[0])
           ? habit.color + '; filter: brightness(70%) !important;'
           : 'gray')
       "
@@ -13,7 +13,7 @@
       class="col-1 border box"
       :style="
         'background-color: ' +
-        (habit.trackHistory[5]?.split('T')[0] == week[1].split('T')[0]
+        (trackHistory.includes(week[1])
           ? habit.color + '; filter: brightness(70%) !important;'
           : 'gray')
       "
@@ -22,7 +22,7 @@
       class="col-1 border box"
       :style="
         'background-color: ' +
-        (habit.trackHistory[4]?.split('T')[0] == week[2].split('T')[0]
+        (trackHistory.includes(week[2])
           ? habit.color + '; filter: brightness(70%) !important;'
           : 'gray')
       "
@@ -31,7 +31,7 @@
       class="col-1 border box"
       :style="
         'background-color: ' +
-        (habit.trackHistory[3]?.split('T')[0] == week[3].split('T')[0]
+        (trackHistory.includes(week[3])
           ? habit.color + '; filter: brightness(70%) !important;'
           : 'gray')
       "
@@ -40,7 +40,7 @@
       class="col-1 border box"
       :style="
         'background-color: ' +
-        (habit.trackHistory[2]?.split('T')[0] == week[4].split('T')[0]
+        (trackHistory.includes(week[4])
           ? habit.color + '; filter: brightness(70%) !important;'
           : 'gray')
       "
@@ -49,7 +49,7 @@
       class="col-1 border box"
       :style="
         'background-color: ' +
-        (habit.trackHistory[1]?.split('T')[0] == week[5].split('T')[0]
+        (trackHistory.includes(week[5])
           ? habit.color + '; filter: brightness(70%) !important;'
           : 'gray')
       "
@@ -58,7 +58,7 @@
       class="col-1 border box"
       :style="
         'background-color: ' +
-        (habit.trackHistory[0]?.split('T')[0] == week[6].split('T')[0]
+        (trackHistory.includes(week[6])
           ? habit.color + '; filter: brightness(70%) !important;'
           : 'gray')
       "
@@ -77,7 +77,7 @@ export default {
       required: true
     },
   },
-  setup() {
+  setup(props) {
     let endDate = new Date(AppState.day)
     endDate.setDate(endDate.getDate() + 1)
     let startDate = new Date()
@@ -88,7 +88,7 @@ export default {
       const dates = [];
       while (date <= end) {
         let pusher = new Date(date)
-        dates.push(pusher.toISOString());
+        dates.push(pusher.toISOString().split('T')[0]);
         date.setDate(date.getDate() + 1);
       }
       console.log("dates", dates)
@@ -96,7 +96,15 @@ export default {
     }
     return {
       today: computed(() => new Date()),
-      week: getDatesInRange(startDate, endDate)
+      week: getDatesInRange(startDate, endDate),
+      trackHistory: computed(() => {
+        let ret = []
+        props.habit.trackHistory.forEach(d => {
+          let date = new Date(d)
+          ret.push(date.toISOString().split('T')[0])
+        });
+        return ret
+      })
     }
   }
 }
