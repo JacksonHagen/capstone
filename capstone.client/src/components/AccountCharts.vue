@@ -1,22 +1,33 @@
 <template>
   <div class="bg-primary rounded">
     <div class="row mb-4">
-      <div class="col-md-8 m-bot p-3 bg-light rounded">
+      <div class="col-md-8 p-3 bg-light rounded">
+        <p class="text-dark">Streak Score</p>
         <LineChart
-          v-if="loaded"
+          v-if="lineLoaded"
           :chartData="{
-            labels: topStreaks.map((s) => s.title),
-
+            labels: dayLabels,
             datasets: [
               {
                 label: '',
-                data: topStreaks.map((s) => s.streak),
-                backgroundColor: topStreaks.map((s) => s.color),
+                data: dayData,
               },
             ],
           }"
           :chartOptions="{
-            indexAxis: 'y',
+            scales: {
+              y: {
+                beginAtZero: true,
+              },
+              x: {
+                ticks: {
+                  padding: 1,
+                  autoSkip: false,
+                  maxRotation: 45,
+                  minRotation: 45,
+                },
+              },
+            },
             plugins: {
               legend: {
                 display: false,
@@ -74,12 +85,21 @@
 <script>
 import { computed, onMounted, ref, watchEffect } from '@vue/runtime-core'
 import { AppState } from '../AppState.js'
-import { habitsService } from '../services/HabitsService.js'
-import Pop from '../utils/Pop.js'
-import { logger } from '../utils/Logger.js'
 export default {
   setup() {
+    // let days = {}
+    let dayLabels = []
+    let dayData = []
+    const lineLoaded = ref(false)
 
+
+    watchEffect(() => {
+      const accountCreated = new Date(AppState.account.createdAt);
+      const todayDate = new Date(AppState.day);
+      if (AppState.myHabits.length && lineLoaded.value != true) {
+        getDatesInRange(accountCreated, todayDate)
+      }
+    })
     function getDatesInRange(start, end) {
       const date = new Date(start.getTime());
       const dates = [];
@@ -87,36 +107,50 @@ export default {
         dates.push(new Date(date));
         date.setDate(date.getDate() + 1);
       }
-      return dates;
+      streakScore(dates);
     }
-    const accountCreated = new Date(AppState.account.createdAt);
-    const todayDate = new Date(AppState.day);
 
-    console.log(getDatesInRange(accountCreated, todayDate))
-    let accountHistory = getDatesInRange(accountCreated, todayDate)
+    function streakScore(accountHistory) {
+      let labels = []
+      let lineData = []
+      for (let i = 0; i < accountHistory.length; i++) {
+        const day = new Date(accountHistory[i])
+        let habitsAtDay = []
+        let count = 0
+        AppState.myHabits.forEach(mh => {
+          let habitStartDate = new Date(mh.createdAt)
+          if (habitStartDate.getTime() < day.getTime()) {
+            habitsAtDay.push(mh)
+            let startingIndex = mh.trackHistory.findIndex(d => new Date(day).toDateString())
+            mh.trackHistory.forEach(td => {
+              //REVIEW why is td gray?
+              let startDate = new Date(mh.trackHistory[startingIndex]).getDate()
+              let workingIndex = startingIndex
+              //real value starts at the date we've found
+              // let expected = startDate - 1
+              // let real = mh.trackHistory[workingIndex], where working index is the starting index which increments through the realy array.
 
+              let x = 0
+              while (startDate == new Date(mh.trackHistory[workingIndex]).getDate()) {
+                // console.log('date ||', startDate, '||', new Date(mh.trackHistory[workingIndex]).getDate())
+                count++
+                workingIndex++
+                startDate--
+              }
+            })
+          }
+        })
+        if (habitsAtDay.length != 0) {
+          // const dayKey = day.toDateString()
+          dayLabels.push(day.toDateString())
+          // days[dayKey] = Math.floor(count / habitsAtDay.length)
+          dayData.push(Math.floor(count / habitsAtDay.length))
+        }
+      }
+      console.log(dayLabels, dayData)
+      lineLoaded.value = true
+    }
 
-    // function streakScore() {
-
-    //   for (let i = 0; i < accountHistory.length; i++) {
-    //     const workingDate = new Date(accountHistory[i])
-    //     let dateTotalScore = 0
-    //     AppState.myHabits.forEach(mh => {
-    //       const habitCreated = new Date(mh.createdAt)
-
-    //       if (mh.trackHistory[i] > workingDate) {
-    //         console.log('woo')
-    //       }
-    //       if (mh.trackHistory.includes(workingDate)) {
-    //         // const index = mh.trackHistory.findIndex(workingDate)
-    //         const historyToDate = mh.trackHistory.split(workingDate)
-    //         console.log(historyToDate)
-    //       }
-    //     })
-    //   }
-    // }
-
-    // streakScore()
 
     let streaks = []
     const streaks2 = computed(() => {
@@ -126,26 +160,17 @@ export default {
       return s
     })
     return {
+      // days,
+      dayLabels,
+      dayData,
+      lineLoaded,
       topStreaks: computed(() => streaks2.value.slice(0, 3)),
-      loaded: computed(() => AppState.habits.length),
+      loaded: computed(() => AppState.myHabits.length),
       activeHabitsData: computed(() => {
         let h = []
         h[0] = AppState.myHabits.filter(mh => mh.isActive).length
         h[1] = AppState.myHabits.filter(mh => !mh.isActive).length
         return h
-      }),
-      habitsStreakData: computed(() => {
-        let dataset = { date: totalScore }
-        let totalTime = (AppState.account.createdAt.toDateString() - AppState.today.toDateString())
-        let habits = AppState.myHabits.filter(mh => mh.isActive)
-
-        habits.forEach(h => {
-          let count = 0
-          h.trackHistory[index + 1] == (i.getDate() - 1)
-          // a date is essentially a single score, which is the streak at that date divided by the number of habits at that date
-
-
-        })
       })
     }
   }
