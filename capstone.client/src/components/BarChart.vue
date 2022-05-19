@@ -26,7 +26,7 @@ export default {
   },
   setup() {
     return {
-      height: 100
+      height: 150
     }
   }
 }
