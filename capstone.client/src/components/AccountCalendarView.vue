@@ -31,6 +31,15 @@
           <HabitWeeklySummary :habit="h" />
           <div class="col-2"></div>
         </div>
+        <div class="row justify-content-center">
+          <div
+            class="col-1 box rounded text-dark m-1"
+            v-for="d in week"
+            :key="d"
+          >
+            <p class="pt-2 m-0">{{ d.split("-")[1] }}/{{ d.split("-")[2] }}</p>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -42,8 +51,23 @@ import { computed } from '@vue/reactivity'
 import { AppState } from '../AppState.js'
 export default {
   setup() {
+    let endDate = new Date(AppState.day)
+    endDate.setDate(endDate.getDate() + 1)
+    let startDate = new Date()
+    startDate.setDate(endDate.getDate() - 7)
+    function getDatesInRange(start, end) {
+      const date = new Date(start.getTime());
+      const dates = [];
+      while (date <= end) {
+        let pusher = new Date(date)
+        dates.push(pusher.toISOString().split('T')[0]);
+        date.setDate(date.getDate() + 1);
+      }
+      return dates
+    }
     return {
-      habits: computed(() => AppState.myHabits)
+      habits: computed(() => AppState.myHabits),
+      week: computed(() => getDatesInRange(startDate, endDate))
     }
   }
 }
