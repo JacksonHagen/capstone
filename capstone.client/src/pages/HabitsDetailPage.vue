@@ -1,6 +1,6 @@
 <template>
   <div class="container-fluid fill">
-    <div id="scrollable" class="row d-flex scrollable snap">
+    <div id="scrollable" class="row d-flex scrollable stopScrollMobile snap">
       <!-- This will be a differently formatted habit componennt -->
       <h3 class="text-primary text-center mt-3">Active Habits</h3>
       <hr />

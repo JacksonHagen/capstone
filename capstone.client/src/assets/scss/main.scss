@@ -36,6 +36,10 @@ main {
   .mobile {
     max-height: fit-content;
   }
+
+  .stopScrollMobile {
+    overflow-y: hidden;
+  }
 }
 
 @media only screen and (min-width: 768px) {
