@@ -9,7 +9,7 @@
 
 <script>
 import { Line } from "vue-chartjs";
-import { Chart as ChartJS, Title, Tooltip, LineElement, CategoryScale, LinearScale, PointElement } from 'chart.js'
+import { Chart as ChartJS, Tooltip, LineElement, CategoryScale, LinearScale, PointElement } from 'chart.js'
 
 ChartJS.register(Tooltip, LineElement, CategoryScale, LinearScale, PointElement)
 
@@ -27,7 +27,7 @@ export default {
   },
   setup() {
     return {
-      height: 100
+      height: 300
     }
   }
 }
