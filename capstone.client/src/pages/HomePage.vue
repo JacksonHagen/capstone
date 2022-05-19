@@ -58,11 +58,7 @@ import { AppState } from '../AppState.js'
 export default {
   name: 'Home',
   setup() {
-    let filter = ''
-    // let filteredHabits = ref([])
-
     return {
-      filter,
       activeUntrackedHabits: computed(() => AppState.myHabits.filter(h => {
         if (h.isActive && !h.trackHistory[0]) {
           return true
@@ -75,7 +71,7 @@ export default {
       allActiveHabits: computed(() => AppState.myHabits.filter(h => {
         let date = new Date(h.trackHistory[0])
         let today = AppState.day
-        return h.isActive && (today.toDateString() == date.toDateString())
+        return h.isActive && ((today.toDateString() - date.toDateString()) <= h.interval)
       }).reverse()),
       archivedHabits: computed(() => AppState.myHabits.filter(h => !h.isActive)),
       award: computed(() => AppState.newAward)
