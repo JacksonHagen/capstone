@@ -143,7 +143,7 @@ export default {
         })
         if (habitsAtDay.length != 0) {
           dayLabels.push(day.toDateString())
-          dayData.push(Math.floor(dayCount / habitsAtDay.length))
+          dayData.push(Math.floor(dayCount))
         }
       }
       lineLoaded.value = true
