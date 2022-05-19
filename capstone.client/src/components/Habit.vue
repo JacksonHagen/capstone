@@ -126,10 +126,11 @@ export default {
       if ((lastTracked.toDateString() == AppState.day.toDateString()) && (props.habit.interval > timeSinceLastTracked)) {
         isTracked.value = true
       }
-      if (timeSinceLastTracked > props.habit.interval) {
+      if ((timeSinceLastTracked > props.habit.interval) && missed.value != true) {
         missed.value = true
         props.habit.streak = 0
         await habitsService.editHabit(props.habit)
+        //REVIEW this creates an infinite loop for some reason
       }
     })
     return {
