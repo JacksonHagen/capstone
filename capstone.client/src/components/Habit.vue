@@ -21,7 +21,7 @@
         <h3 class="d-flex text-start">
           {{ habit.title }}
           <span class="mdi mdi-menu-down"></span>
-          <!-- NOTE Does missed work? -->
+          <!-- NOTE Does missed work? chnage to new icon use clock for running out of time -->
           <div
             v-if="missed"
             class="mdi mdi-clock-alert-outline"
@@ -76,7 +76,7 @@
                 <!-- <h3>Your streak:</h3> -->
                 <!-- TODO OR v-if  -->
                 <span v-if="habit.isActive">
-                  <h4>You've completed this habit today!</h4>
+                  <h4 v-if="isTracked">You've completed this habit today!</h4>
                   <p>Your streak is {{ habit.streak }} days.</p>
                   <p v-if="habit.interval - timeSinceLastTracked > 0">
                     You'll be reminded of this habit again in
@@ -86,7 +86,7 @@
                   </p>
                 </span>
                 <button
-                  class="m-0 btn btn-secondary"
+                  class="m-0 btn btn-outline-dark"
                   @click="goToHabitsDetailPage()"
                 >
                   See More...
@@ -94,7 +94,7 @@
               </div>
             </div>
             <div class="col-md-6 mb-4 align-items-center">
-              <div class="h-100 rounded">
+              <div v-if="myHabitAwards[0]" class="h-100 rounded">
                 <h3 class="p-2 m-2">My badges for this habit</h3>
                 <div id="badges" class="d-flex m-3">
                   <!-- Draw badges here -->
@@ -107,7 +107,9 @@
                     style="filter: brightness(80%)"
                   />
                 </div>
-                <HabitWeeklySummary :habit="habit" />
+                <div class="row text-dark">
+                  <HabitWeeklySummary :habit="habit" />
+                </div>
               </div>
             </div>
           </div>
