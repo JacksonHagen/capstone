@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-md-2 bg-primary rounded mt-4 p-3">
         <h5>Habits: {{ myHabits.length }}</h5>
-        <h5>Badges: {{ awards.length }}</h5>
+        <h5>Awards: {{ awards.length }}</h5>
       </div>
 
       <div class="col-md-9 bg-primary rounded mt-4 offset-md-1 p-3">
