@@ -82,7 +82,6 @@ export default {
     endDate.setDate(endDate.getDate() + 1)
     let startDate = new Date()
     startDate.setDate(endDate.getDate() - 7)
-    console.log('stuffs', startDate, endDate)
     function getDatesInRange(start, end) {
       const date = new Date(start.getTime());
       const dates = [];
@@ -91,7 +90,6 @@ export default {
         dates.push(pusher.toISOString().split('T')[0]);
         date.setDate(date.getDate() + 1);
       }
-      console.log("dates", dates)
       return dates
     }
     return {
@@ -113,7 +111,7 @@ export default {
 
 <style lang="scss" scoped>
 .box {
-  height: 6em;
-  width: 6em;
+  height: 5em;
+  width: 5em;
 }
 </style>
