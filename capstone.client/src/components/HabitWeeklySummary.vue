@@ -1,6 +1,6 @@
 <template>
   <div
-    class="col-1 m-1 rounded border box"
+    class="col-1 rounded border box"
     :style="
       'background-color: ' +
       (trackHistory.includes(week[0])
@@ -9,7 +9,7 @@
     "
   ></div>
   <div
-    class="col-1 m-1 rounded border box"
+    class="col-1 rounded border box"
     :style="
       'background-color: ' +
       (trackHistory.includes(week[1])
@@ -18,7 +18,7 @@
     "
   ></div>
   <div
-    class="col-1 m-1 rounded border box"
+    class="col-1 rounded border box"
     :style="
       'background-color: ' +
       (trackHistory.includes(week[2])
@@ -27,7 +27,7 @@
     "
   ></div>
   <div
-    class="col-1 m-1 rounded border box"
+    class="col-1 rounded border box"
     :style="
       'background-color: ' +
       (trackHistory.includes(week[3])
@@ -36,7 +36,7 @@
     "
   ></div>
   <div
-    class="col-1 m-1 rounded border box"
+    class="col-1 rounded border box"
     :style="
       'background-color: ' +
       (trackHistory.includes(week[4])
@@ -45,7 +45,7 @@
     "
   ></div>
   <div
-    class="col-1 m-1 rounded border box"
+    class="col-1 rounded border box"
     :style="
       'background-color: ' +
       (trackHistory.includes(week[5])
@@ -54,7 +54,7 @@
     "
   ></div>
   <div
-    class="col-1 m-1 rounded border box"
+    class="col-1 rounded border box"
     :style="
       'background-color: ' +
       (trackHistory.includes(week[6])

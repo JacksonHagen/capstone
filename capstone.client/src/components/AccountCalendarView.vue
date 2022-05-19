@@ -13,14 +13,24 @@
       "
     >
       <p class="text-dark">Last 7 Days</p>
-      <div
-        class="row text-dark text-center justify-content-center mt-2"
-        v-for="h in habits"
-        :key="h.id"
-      >
-        <p class="mb-0">{{ h.title }}</p>
-
-        <HabitWeeklySummary :habit="h" />
+      <div class="container">
+        <div
+          class="row text-dark text-center justify-content-center"
+          v-for="h in habits"
+          :key="h.id"
+        >
+          <div class="col-2">
+            <div class="d-flex h-100 justify-content-end align-items-center">
+              <div class="text-end">
+                <p class="m-0">
+                  {{ h.title }}
+                </p>
+              </div>
+            </div>
+          </div>
+          <HabitWeeklySummary :habit="h" />
+          <div class="col-2"></div>
+        </div>
       </div>
     </div>
   </div>
