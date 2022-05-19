@@ -20,7 +20,11 @@
     "dotenv": "16.0.0",
     "esm": "3.2.25",
     "express": "4.17.3",
+<<<<<<< HEAD
+    "firebase": "^9.8.1",
+=======
     "firebase-admin": "^10.2.0",
+>>>>>>> 4859dfa66a05c629be96026f45e26b5b873a2a9c
     "helmet": "4.6.0",
     "mongoose": "6.3.1",
     "node-cron": "^3.0.0",
