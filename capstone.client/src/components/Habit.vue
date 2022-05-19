@@ -1,8 +1,6 @@
 <template>
-  <!-- TODO ternary to change habit color -->
   <div class="col-12 d-flex justify-content-center w-100 align-items-center">
     <div id="habit" class="mt-3 justify-content-center">
-      <!-- <div v-if="missed" class="checked-overlay"></div> -->
       <div
         class="
           habit-bar
@@ -20,10 +18,17 @@
         :id="'h-' + habit.id"
         @click.stop="toggle"
       >
-        <h3>
+        <h3 class="d-flex text-start">
           {{ habit.title }}
           <span class="mdi mdi-menu-down"></span>
+          <!-- NOTE Does missed work? -->
+          <div
+            v-if="missed"
+            class="mdi mdi-clock-alert-outline"
+            title="Check-in to keep your streak"
+          ></div>
         </h3>
+
         <!-- TODO v-if for check unchecked -->
         <div class="" v-if="!habit.isActive">
           <h5><i>Archived</i></h5>
@@ -32,16 +37,17 @@
           <div class="form-check">
             <input
               type="checkbox"
-              class="form-check-input"
+              class="form-check-input shadow border border-primary"
+              title="mark habit complete"
               name=""
               id=""
               value="checkedValue"
               @click.stop="checkIn"
             />
             <label class="form-check-label visually-hidden" for="">
-              Check if Habit Completed:
+              Check if Habit Completed
             </label>
-            <h5>Check if Habit Completed</h5>
+            <h5></h5>
           </div>
 
           <!-- <i class="mdi mdi-checkbox-blank-outline" @click="completeHabit"></i>
@@ -79,9 +85,12 @@
                     }}
                   </p>
                 </span>
-                <h4 class="m-0 selectable" @click="goToHabitsDetailPage()">
+                <button
+                  class="m-0 btn btn-secondary"
+                  @click="goToHabitsDetailPage()"
+                >
                   See More...
-                </h4>
+                </button>
               </div>
             </div>
             <div class="col-md-6 mb-4 align-items-center">

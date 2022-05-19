@@ -2,7 +2,7 @@
   <header class="sticky-md-top">
     <Navbar />
   </header>
-  <main>
+  <main class="mobile">
     <router-view />
   </main>
   <footer></footer>
