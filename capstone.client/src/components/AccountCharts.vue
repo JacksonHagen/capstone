@@ -95,7 +95,8 @@ export default {
 
     watchEffect(() => {
       const accountCreated = new Date(AppState.account.createdAt);
-      const todayDate = new Date(AppState.day);
+      const todayDate = new Date(AppState.day)
+      todayDate.setDate(todayDate.getDate() + 1)
       if (AppState.myHabits.length && lineLoaded.value != true) {
         getDatesInRange(accountCreated, todayDate)
       }
@@ -111,43 +112,40 @@ export default {
     }
 
     function streakScore(accountHistory) {
-      let labels = []
-      let lineData = []
       for (let i = 0; i < accountHistory.length; i++) {
         const day = new Date(accountHistory[i])
         let habitsAtDay = []
-        let count = 0
+        let dayCount = 0
         AppState.myHabits.forEach(mh => {
           let habitStartDate = new Date(mh.createdAt)
           if (habitStartDate.getTime() < day.getTime()) {
             habitsAtDay.push(mh)
+            let habitCount = 0
             let startingIndex = mh.trackHistory.findIndex(d => new Date(day).toDateString())
             mh.trackHistory.forEach(td => {
               //REVIEW why is td gray?
-              let startDate = new Date(mh.trackHistory[startingIndex]).getDate()
+              let expectedDate = new Date(mh.trackHistory[startingIndex]).getDate()
               let workingIndex = startingIndex
               //real value starts at the date we've found
-              // let expected = startDate - 1
+              // let expected = expectedDate - 1
               // let real = mh.trackHistory[workingIndex], where working index is the starting index which increments through the realy array.
 
-              let x = 0
-              while (startDate == new Date(mh.trackHistory[workingIndex]).getDate()) {
-                // console.log('date ||', startDate, '||', new Date(mh.trackHistory[workingIndex]).getDate())
-                count++
-                workingIndex++
-                startDate--
+              // REVIEW account for interval??
+              while (expectedDate == new Date(mh.trackHistory[workingIndex]).getDate()) {
+                // console.log('date ||', expectedDate, '||', new Date(mh.trackHistory[workingIndex]).getDate())
+                habitCount++
+                workingIndex += mh.interval
+                expectedDate--
               }
             })
+            dayCount += habitCount
           }
         })
         if (habitsAtDay.length != 0) {
-          // const dayKey = day.toDateString()
           dayLabels.push(day.toDateString())
-          // days[dayKey] = Math.floor(count / habitsAtDay.length)
-          dayData.push(Math.floor(count / habitsAtDay.length))
+          dayData.push(Math.floor(dayCount / habitsAtDay.length))
         }
       }
-      console.log(dayLabels, dayData)
       lineLoaded.value = true
     }
 
