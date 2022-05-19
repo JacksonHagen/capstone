@@ -18,19 +18,19 @@
         :id="'h-' + habit.id"
         @click.stop="toggle"
       >
-        <h3 class="d-flex text-start">
-          {{ habit.title }}
-          <span class="mdi mdi-menu-down"></span>
-          <!-- NOTE Does missed work? -->
+        <div class="d-flex text-start col-9 text">
+          <h5>{{ habit.title }}</h5>
+          <span class="mdi mdi-menu-down col-1"></span>
+          <!-- NOTE Does missed work? chnage to new icon use clock for running out of time -->
           <div
             v-if="missed"
-            class="mdi mdi-clock-alert-outline"
+            class="mdi mdi-clock-alert-outline col-1"
             title="Check-in to keep your streak"
           ></div>
-        </h3>
+        </div>
 
         <!-- TODO v-if for check unchecked -->
-        <div class="" v-if="!habit.isActive">
+        <div class="col-1" v-if="!habit.isActive">
           <h5><i>Archived</i></h5>
         </div>
         <div v-else-if="!isTracked || isNew">
@@ -79,7 +79,7 @@
                 <!-- <h3>Your streak:</h3> -->
                 <!-- TODO OR v-if  -->
                 <span v-if="habit.isActive">
-                  <h4>You've completed this habit today!</h4>
+                  <h4 v-if="isTracked">You've completed this habit today!</h4>
                   <p>Your streak is {{ habit.streak }} days.</p>
                   <p v-if="habit.interval - timeSinceLastTracked > 0">
                     You'll be reminded of this habit again in
@@ -89,7 +89,7 @@
                   </p>
                 </span>
                 <button
-                  class="m-0 btn btn-secondary"
+                  class="m-0 btn btn-outline-dark"
                   @click="goToHabitsDetailPage()"
                 >
                   See More...
@@ -98,7 +98,9 @@
             </div>
             <div class="col-md-6 mb-4 align-items-center">
               <div class="h-100 rounded">
-                <h3 class="p-2 m-2">My badges for this habit</h3>
+                <h3 v-if="myHabitAwards[0]" class="p-2 m-2">
+                  My badges for this habit
+                </h3>
                 <div id="badges" class="d-flex m-3">
                   <!-- Draw badges here -->
                   <img
@@ -110,7 +112,9 @@
                     style="filter: brightness(80%)"
                   />
                 </div>
-                <HabitWeeklySummary :habit="habit" />
+                <div class="row text-dark">
+                  <HabitWeeklySummary :habit="habit" />
+                </div>
               </div>
             </div>
           </div>
@@ -228,5 +232,11 @@ export default {
 }
 .round {
   border-radius: 0.5em !important;
+}
+.text {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: scroll;
+  display: inline-block;
 }
 </style>

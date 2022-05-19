@@ -1,75 +1,74 @@
 <template>
-  <div class="row justify-content-end">
-    <div
-      class="col-1 m-1 rounded border box"
-      :style="
-        'background-color: ' +
-        (trackHistory.includes(week[0])
-          ? habit.color + '; filter: brightness(70%) !important;'
-          : 'gray')
-      "
-    ></div>
-    <div
-      class="col-1 m-1 rounded border box"
-      :style="
-        'background-color: ' +
-        (trackHistory.includes(week[1])
-          ? habit.color + '; filter: brightness(70%) !important;'
-          : 'gray')
-      "
-    ></div>
-    <div
-      class="col-1 m-1 rounded border box"
-      :style="
-        'background-color: ' +
-        (trackHistory.includes(week[2])
-          ? habit.color + '; filter: brightness(70%) !important;'
-          : 'gray')
-      "
-    ></div>
-    <div
-      class="col-1 m-1 rounded border box"
-      :style="
-        'background-color: ' +
-        (trackHistory.includes(week[3])
-          ? habit.color + '; filter: brightness(70%) !important;'
-          : 'gray')
-      "
-    ></div>
-    <div
-      class="col-1 m-1 rounded border box"
-      :style="
-        'background-color: ' +
-        (trackHistory.includes(week[4])
-          ? habit.color + '; filter: brightness(70%) !important;'
-          : 'gray')
-      "
-    ></div>
-    <div
-      class="col-1 m-1 rounded border box"
-      :style="
-        'background-color: ' +
-        (trackHistory.includes(week[5])
-          ? habit.color + '; filter: brightness(70%) !important;'
-          : 'gray')
-      "
-    ></div>
-    <div
-      class="col-1 m-1 rounded border box"
-      :style="
-        'background-color: ' +
-        (trackHistory.includes(week[6])
-          ? habit.color + '; filter: brightness(70%) !important;'
-          : 'gray')
-      "
-    ></div>
-  </div>
+  <div
+    class="col-1 m-1 rounded border box"
+    :style="
+      'background-color: ' +
+      (trackHistory.includes(week[0])
+        ? habit.color + '; filter: brightness(70%) !important;'
+        : 'gray')
+    "
+  ></div>
+  <div
+    class="col-1 m-1 rounded border box"
+    :style="
+      'background-color: ' +
+      (trackHistory.includes(week[1])
+        ? habit.color + '; filter: brightness(70%) !important;'
+        : 'gray')
+    "
+  ></div>
+  <div
+    class="col-1 m-1 rounded border box"
+    :style="
+      'background-color: ' +
+      (trackHistory.includes(week[2])
+        ? habit.color + '; filter: brightness(70%) !important;'
+        : 'gray')
+    "
+  ></div>
+  <div
+    class="col-1 m-1 rounded border box"
+    :style="
+      'background-color: ' +
+      (trackHistory.includes(week[3])
+        ? habit.color + '; filter: brightness(70%) !important;'
+        : 'gray')
+    "
+  ></div>
+  <div
+    class="col-1 m-1 rounded border box"
+    :style="
+      'background-color: ' +
+      (trackHistory.includes(week[4])
+        ? habit.color + '; filter: brightness(70%) !important;'
+        : 'gray')
+    "
+  ></div>
+  <div
+    class="col-1 m-1 rounded border box"
+    :style="
+      'background-color: ' +
+      (trackHistory.includes(week[5])
+        ? habit.color + '; filter: brightness(70%) !important;'
+        : 'gray')
+    "
+  ></div>
+  <div
+    class="col-1 m-1 rounded border box"
+    :style="
+      'background-color: ' +
+      (trackHistory.includes(week[6])
+        ? habit.color + '; filter: brightness(70%) !important;'
+        : 'gray')
+    "
+  ></div>
 </template>
 
 
 <script>
 import { computed } from '@vue/reactivity'
 import { AppState } from '../AppState.js';
+import { useRoute } from 'vue-router';
 export default {
   props: {
     habit: {
@@ -78,6 +77,7 @@ export default {
     },
   },
   setup(props) {
+    const route = useRoute()
     let endDate = new Date(AppState.day)
     endDate.setDate(endDate.getDate() + 1)
     let startDate = new Date()
@@ -93,6 +93,7 @@ export default {
       return dates
     }
     return {
+      route,
       today: computed(() => new Date()),
       week: getDatesInRange(startDate, endDate),
       trackHistory: computed(() => {
@@ -110,8 +111,4 @@ export default {
 
 
 <style lang="scss" scoped>
-.box {
-  height: 5em;
-  width: 5em;
-}
 </style>

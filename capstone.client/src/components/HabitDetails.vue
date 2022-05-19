@@ -4,6 +4,7 @@
       col-12
       d-flex
       fit-content(100vh)
+      containerScroll
       container-scroll
       align-items-center
       scrollsnap
@@ -24,12 +25,10 @@
           "
           :style="'background-color: ' + habit.color"
         >
-          <h3>
-            {{ habit.title }}
-          </h3>
+          <h3>Habit</h3>
           <button
             v-if="habit.isActive"
-            class="btn btn-warning"
+            class="btn btn-outline-dark"
             @click="archiveHabit()"
           >
             Archive Habit
@@ -43,16 +42,22 @@
             habit.color
           "
         >
-          <div class="col-12 p-3 bg-light">
-            <h6>{{ habit.inspo }}</h6>
+          <h3>
+            {{ habit.title }}
+          </h3>
+          <div class="col-12 p-1 rounded bg-light">
+            <h5>{{ habit.inspo }}</h5>
           </div>
-          <div class="col-12 p-3 my-2 bg-light">
+          <div class="col-12 p-1 my-2 rounded bg-light">
             <h6>
               Current Streak: {{ habit.streak }} Max Streak:
               {{ habit.maxStreak }}
             </h6>
           </div>
-          <div class="py-3">A chart would look fire here</div>
+          <h3>Last 7 Days</h3>
+          <div class="col-12 d-flex justify-content-center">
+            <HabitWeeklySummary :habit="habit" />
+          </div>
           <div class="col-12 bg-light d-flex">
             <!-- <img
               src="../assets/img/Badges/CapstoneBadges1st-Login.png"
@@ -112,5 +117,8 @@ export default {
 <style lang="scss" scoped>
 .scrollsnap {
   scroll-snap-align: start;
+}
+.containerScroll {
+  overflow: scroll;
 }
 </style>

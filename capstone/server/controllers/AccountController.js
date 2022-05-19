@@ -3,6 +3,7 @@ import { accountService } from '../services/AccountService'
 import { awardsService } from '../services/AwardsService.js'
 import { habitsService } from '../services/HabitsService.js'
 import BaseController from '../utils/BaseController'
+import { firebaseService } from '../services/FirebaseService'
 
 export class AccountController extends BaseController {
   constructor() {
@@ -12,6 +13,7 @@ export class AccountController extends BaseController {
       .get('', this.getUserAccount)
       .get('/awards', this.getAwardsByAccount)
       .get('/habits', this.getHabitsByAccount)
+      .get('/firebase', this.getFirebaseToken)
       .put('', this.updateAccount)
   }
   async getAwardsByAccount(req, res, next) {
@@ -42,6 +44,14 @@ export class AccountController extends BaseController {
     try {
       const account = await accountService.getAccount(req.userInfo)
       res.send(account)
+    } catch (error) {
+      next(error)
+    }
+  }
+  async getFirebaseToken(req, res, next) {
+    try {
+      const token = await firebaseService.getToken(req.userInfo.id)
+      res.send({ token })
     } catch (error) {
       next(error)
     }
