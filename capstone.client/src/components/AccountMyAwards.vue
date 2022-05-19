@@ -8,7 +8,7 @@
           <img
             :src="a.img"
             class="img-fluid"
-            :title="'Streak award for ' + a.habit.title"
+            :title="a.badge.value + ' day streak award for ' + a.habit.title"
           />
         </div>
         <hr v-if="myAccountAwards.length && myHabitAwards.length" />

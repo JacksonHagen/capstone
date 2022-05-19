@@ -110,8 +110,4 @@ export default {
 
 
 <style lang="scss" scoped>
-.box {
-  height: 5em;
-  width: 5em;
-}
 </style>
