@@ -33,8 +33,11 @@
         <div class="" v-if="!habit.isActive">
           <h5><i>Archived</i></h5>
         </div>
-        <div v-else-if="!isTracked">
-          <div class="form-check">
+        <div v-else-if="!isTracked || isNew">
+          <div
+            class="form-check"
+            v-if="isNew || timeSinceLastTracked >= habit.interval"
+          >
             <input
               type="checkbox"
               class="form-check-input shadow border border-primary"
@@ -142,6 +145,7 @@ export default {
     const missed = ref(false)
     const lastTracked = new Date(props.habit.trackHistory[0])
     const timeSinceLastTracked = (AppState.day.getDate() - lastTracked.getDate())
+    const isNew = !props.habit.trackHistory[0]
     watchEffect(async () => {
       if ((lastTracked.toDateString() == AppState.day.toDateString()) && (props.habit.interval > timeSinceLastTracked)) {
         isTracked.value = true
@@ -154,6 +158,7 @@ export default {
       }
     })
     return {
+      isNew,
       lastTracked,
       timeSinceLastTracked,
       isTracked,
