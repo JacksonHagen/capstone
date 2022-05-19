@@ -71,7 +71,7 @@ export default {
       allActiveHabits: computed(() => AppState.myHabits.filter(h => {
         let date = new Date(h.trackHistory[0])
         let today = AppState.day
-        return h.isActive && ((today.toDateString() - date.toDateString()) <= h.interval)
+        return h.isActive && ((today.getDate() - date.getDate()) < h.interval)
       }).reverse()),
       archivedHabits: computed(() => AppState.myHabits.filter(h => !h.isActive)),
       award: computed(() => AppState.newAward)

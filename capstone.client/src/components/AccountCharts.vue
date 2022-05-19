@@ -1,7 +1,7 @@
 <template>
   <div class="bg-primary rounded">
     <div class="row mb-4">
-      <div class="col-md-8 p-3 bg-light rounded">
+      <div class="col-md-8 p-3 bg-light mt-4 rounded">
         <p class="text-dark">Streak Score</p>
         <LineChart
           v-if="lineLoaded"
@@ -36,7 +36,7 @@
           }"
         />
       </div>
-      <div class="col-md-3 m-start bg-light rounded text-center">
+      <div class="col-md-3 m-start bg-light mt-4 rounded text-center">
         <p class="text-dark">Active / Archived</p>
         <PieChart
           :chartData="{
