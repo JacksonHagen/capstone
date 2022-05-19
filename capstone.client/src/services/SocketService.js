@@ -17,7 +17,7 @@ class SocketService extends SocketHandler {
     Modal.getOrCreateInstance(document.getElementById('display-award')).show()
     setTimeout(() => {
       AppState.newAward = {}
-    }, 5000);
+    }, 3000);
     console.log('earned badge', payload)
     // NOTE socket working - just need to handle this payload data
   }

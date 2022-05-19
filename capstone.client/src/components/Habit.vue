@@ -4,7 +4,13 @@
     <div id="habit" class="mt-3 justify-content-center">
       <!-- <div v-if="missed" class="checked-overlay"></div> -->
       <div
-        class="habit-bar d-flex justify-content-between align-items-center"
+        class="
+          habit-bar
+          d-flex
+          justify-content-between
+          align-items-center
+          round
+        "
         :style="'background-color: ' + habit.color"
         type="button"
         data-toggle="collapse"
@@ -47,18 +53,18 @@
       </div>
       <div
         :id="habit.id"
-        class="collapse hide"
+        class="collapse hide habit-body"
         aria-labelledby="headingOne"
         data-parent="#accordionExample"
       >
         <div
-          class="shadow rounded"
+          class="shadow short-round"
           :style="
             'filter: hue-rotate(5deg) brightness(140%); background-color: ' +
             habit.color
           "
         >
-          <div class="row">
+          <div class="row w-100">
             <div class="col-md-6">
               <div class="p-2 m-2">
                 <!-- <h3>Your streak:</h3> -->
@@ -181,7 +187,8 @@ export default {
 }
 .habit-body {
   width: 75vw;
-  padding: 1em;
+}
+.short-round {
   border-bottom-right-radius: 0.5em;
   border-bottom-left-radius: 0.5em;
 }
