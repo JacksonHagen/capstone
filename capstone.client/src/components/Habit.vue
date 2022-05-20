@@ -43,7 +43,7 @@
           >
             <input
               type="checkbox"
-              class="form-check-input shadow border border-primary"
+              class="form-check-input border border-primary"
               title="mark habit complete"
               name=""
               id=""
@@ -55,9 +55,6 @@
             </label>
             <h5></h5>
           </div>
-
-          <!-- <i class="mdi mdi-checkbox-blank-outline" @click="completeHabit"></i>
-          <i class="mdi mdi-checkbox-marked" @click="completeHabit"></i> -->
         </div>
         <div v-else-if="isTracked">
           <h5>Well Done!</h5>
@@ -120,10 +117,12 @@
                 </div>
                 <div
                   v-if="habit.interval < 7 && habit.isActive"
-                  class="row text-dark"
+                  class="text-dark row m-1"
                 >
-                  <h5>Last 7 days</h5>
-                  <HabitWeeklySummary :habit="habit" />
+                  <h5 class="m-1">Last 7 days</h5>
+                  <div class="col-12 d-flex">
+                    <HabitWeeklySummary :habit="habit" />
+                  </div>
                 </div>
               </div>
             </div>
