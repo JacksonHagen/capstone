@@ -40,7 +40,7 @@ export default {
           console.error("[QUOTE_ERROR]", error.message);
           Pop.toast(error.message, "error");
         }
-      }, 15000)
+      }, 30000)
     })
     return {
       award: computed(() => AppState.newAward),
