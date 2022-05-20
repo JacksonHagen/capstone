@@ -18,23 +18,28 @@
         :id="'h-' + habit.id"
         @click.stop="toggle"
       >
-        <h3 class="d-flex text-start">
-          {{ habit.title }}
-          <span class="mdi mdi-menu-down"></span>
-          <!-- NOTE Does missed work? chnage to new icon use clock for running out of time -->
+        <div class="d-flex text-start col-9 text">
+          <h5>{{ habit.title }}</h5>
+          <span class="mdi mdi-menu-down col-1"></span>
           <div
-            v-if="missed"
-            class="mdi mdi-clock-alert-outline"
+            v-if="habit.interval - timeSinceLastTracked < 1"
+            class="mdi mdi-clock-alert-outline col-1"
             title="Check-in to keep your streak"
           ></div>
-        </h3>
-
-        <!-- TODO v-if for check unchecked -->
-        <div class="" v-if="!habit.isActive">
+          <div
+            v-if="missed"
+            class="mdi mdi-bell-alert col-1"
+            title="You missed your check-in!"
+          ></div>
+        </div>
+        <div class="col-1" v-if="!habit.isActive">
           <h5><i>Archived</i></h5>
         </div>
-        <div v-else-if="!isTracked">
-          <div class="form-check">
+        <div v-else-if="!isTracked || isNew">
+          <div
+            class="form-check"
+            v-if="isNew || timeSinceLastTracked >= habit.interval"
+          >
             <input
               type="checkbox"
               class="form-check-input shadow border border-primary"
@@ -94,8 +99,10 @@
               </div>
             </div>
             <div class="col-md-6 mb-4 align-items-center">
-              <div v-if="myHabitAwards[0]" class="h-100 rounded">
-                <h3 class="p-2 m-2">My badges for this habit</h3>
+              <div class="h-100 rounded">
+                <h3 v-if="myHabitAwards[0]" class="p-2 m-2">
+                  My badges for this habit
+                </h3>
                 <div id="badges" class="d-flex m-3">
                   <!-- Draw badges here -->
                   <img
@@ -144,6 +151,7 @@ export default {
     const missed = ref(false)
     const lastTracked = new Date(props.habit.trackHistory[0])
     const timeSinceLastTracked = (AppState.day.getDate() - lastTracked.getDate())
+    const isNew = !props.habit.trackHistory[0]
     watchEffect(async () => {
       if ((lastTracked.toDateString() == AppState.day.toDateString()) && (props.habit.interval > timeSinceLastTracked)) {
         isTracked.value = true
@@ -152,10 +160,11 @@ export default {
         missed.value = true
         props.habit.streak = 0
         await habitsService.editHabit(props.habit)
-        //REVIEW this creates an infinite loop for some reason
+
       }
     })
     return {
+      isNew,
       lastTracked,
       timeSinceLastTracked,
       isTracked,
@@ -226,4 +235,10 @@ export default {
 .round {
   border-radius: 0.5em !important;
 }
+// .text {
+//   text-overflow: ellipsis;
+//   white-space: nowrap;
+//   overflow: scroll;
+//   display: inline-block;
+// }
 </style>

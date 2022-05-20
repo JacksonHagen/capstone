@@ -7,11 +7,13 @@
       </div>
 
       <div class="col-md-9 bg-primary rounded mt-4 offset-md-1 p-3">
+        <!-- TODO carousel with inspos -->
         <p>
-          <!-- TODO carousel with inspos -->
-          Inspo: Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sunt
-          vitae aut harum esse dolorem amet? Soluta porro maxime nisi vitae
-          exercitationem ut corporis nobis natus?
+          {{ quote.content }}
+        </p>
+
+        <p class="ms-5">
+          <i>-{{ quote.author }}</i>
         </p>
       </div>
     </div>
@@ -28,6 +30,7 @@ export default {
     return {
       myHabits: computed(() => AppState.myHabits),
       awards: computed(() => AppState.myAwards),
+      quote: computed(() => AppState.quote)
     }
   }
 }
