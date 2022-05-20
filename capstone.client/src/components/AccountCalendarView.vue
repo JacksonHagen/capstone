@@ -19,7 +19,7 @@
           v-for="h in habits"
           :key="h.id"
         >
-          <div class="col-2">
+          <div class="col-2 display-none-mobile">
             <div class="d-flex h-100 justify-content-end align-items-center">
               <div class="text-end">
                 <p class="m-0">
@@ -28,10 +28,11 @@
               </div>
             </div>
           </div>
+          <p class="display-none-desktop m-0 mt-1">{{ h.title }}</p>
           <HabitWeeklySummary :habit="h" />
-          <div class="col-2"></div>
+          <div class="col-2 display-none-mobile"></div>
         </div>
-        <div class="row justify-content-center">
+        <div class="row justify-content-center display-none-mobile">
           <div
             class="col-1 box rounded text-dark m-1"
             v-for="d in week"
