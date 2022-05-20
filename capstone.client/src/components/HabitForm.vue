@@ -30,8 +30,19 @@
         v-model="formData.inspo"
       />
       <small id="helpId" class="form-text text-muted"
-        >This is optional, but we might show it to you later.</small
+        >This is optional, but we will show it to you later.</small
       >
+    </div>
+    <div>
+      <label for="habit-inspo-img" class="form-label">Image</label>
+      <input
+        @change="setImage"
+        class="form-control"
+        type="file"
+        id="habit-inspo-img"
+        accept="image/*"
+      />
+      <small> This is also optional, but we will show it to you later.</small>
     </div>
     <div class="input-group mb-3">
       <label
@@ -121,14 +132,31 @@ import Pop from "../utils/Pop"
 import { habitsService } from "../services/HabitsService"
 import { AppState } from "../AppState"
 import { Modal } from "bootstrap"
+import { firebaseService } from '../services/FirebaseService.js'
+
 export default {
   setup() {
     const formData = ref({})
+    const image = ref([])
     return {
       formData,
       formColor: computed(() => `${formData.value.color}`),
       account: computed(() => AppState.account),
       day: computed(() => AppState.day),
+      setImage(e) {
+        image.value = e.target.files
+        logger.log("new image:", image.value)
+      },
+      async upload() {
+        try {
+          const url = await firebaseService.upload(image.value[0])
+          // TODO we will need add enums for subdocks because this is an image string
+          // formData.value.inspo = url
+        } catch (error) {
+          logger.error(error)
+          Pop.toast(error.message, 'error')
+        }
+      },
       async newHabit() {
         try {
 
