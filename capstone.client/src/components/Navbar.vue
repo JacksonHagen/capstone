@@ -1,5 +1,5 @@
 <template>
-  <nav class="bg-primary w-100 d-flex active pt-2">
+  <nav class="bg-primary w-100 d-flex align-items-center active pt-2">
     <div class="d-flex justify-content-between col-6">
       <div class="d-flex">
         <router-link
@@ -17,7 +17,7 @@
       </div>
     </div>
 
-    <div class="col-6 text-end">
+    <div class="col-6 text-end d-flex justify-content-end">
       <!-- LOGIN COMPONENT HERE -->
       <Login />
     </div>
