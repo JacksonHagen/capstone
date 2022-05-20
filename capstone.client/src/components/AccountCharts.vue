@@ -123,14 +123,14 @@ export default {
             let habitCount = 0
             let startingIndex = mh.trackHistory.findIndex(d => new Date(day).toDateString())
             mh.trackHistory.forEach(td => {
-              //REVIEW why is td gray?
+
               let expectedDate = new Date(mh.trackHistory[startingIndex]).getDate()
               let workingIndex = startingIndex
               //real value starts at the date we've found
               // let expected = expectedDate - 1
               // let real = mh.trackHistory[workingIndex], where working index is the starting index which increments through the realy array.
 
-              // REVIEW account for interval??
+
               while (expectedDate == new Date(mh.trackHistory[workingIndex]).getDate()) {
                 // console.log('date ||', expectedDate, '||', new Date(mh.trackHistory[workingIndex]).getDate())
                 habitCount++

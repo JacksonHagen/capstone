@@ -5,6 +5,7 @@ import { router } from '../router'
 import { accountService } from './AccountService'
 import { awardsService } from './AwardsService.js'
 import { api } from './AxiosService'
+import { firebaseService } from './FirebaseService.js'
 import { habitsService } from "./HabitsService"
 import { socketService } from './SocketService'
 
@@ -32,6 +33,7 @@ AuthService.on(AuthService.AUTH_EVENTS.AUTHENTICATED, async function () {
   await habitsService.getMyHabits(AppState.user.id)
   await habitsService.getHabitsByQuery()
   await awardsService.getMyAwards()
+  await firebaseService.login()
 
 })
 
