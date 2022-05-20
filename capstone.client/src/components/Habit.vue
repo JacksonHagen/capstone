@@ -22,12 +22,12 @@
           <h5>{{ habit.title }}</h5>
           <span class="mdi mdi-menu-down col-1"></span>
           <div
-            v-if="habit.interval - timeSinceLastTracked < 1"
+            v-if="habit.interval - timeSinceLastTracked < 1 && habit.isActive"
             class="mdi mdi-clock-alert-outline col-1"
             title="Check-in to keep your streak"
           ></div>
           <div
-            v-if="missed"
+            v-if="missed && habit.isActive"
             class="mdi mdi-bell-alert col-1"
             title="You missed your check-in!"
           ></div>
@@ -90,8 +90,11 @@
                     }}
                   </p>
                 </span>
+                <div v-if="!habit.isActive" class="text-start my-4">
+                  This habit has been archived.
+                </div>
                 <button
-                  class="m-0 btn btn-outline-dark"
+                  class="m-0 btn btn-outline-dark justify-flex-start d-flex"
                   @click="goToHabitsDetailPage()"
                 >
                   See More...
@@ -114,7 +117,11 @@
                     style="filter: brightness(80%)"
                   />
                 </div>
-                <div class="row text-dark">
+                <div
+                  v-if="habit.interval === 1 && habit.isActive"
+                  class="row text-dark"
+                >
+                  <h5>Last 7 days</h5>
                   <HabitWeeklySummary :habit="habit" />
                 </div>
               </div>
