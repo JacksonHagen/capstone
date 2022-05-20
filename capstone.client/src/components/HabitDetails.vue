@@ -58,7 +58,7 @@
           <div class="col-12 d-flex justify-content-center">
             <HabitWeeklySummary :habit="habit" />
           </div>
-          <div class="col-12 bg-light d-flex">
+          <div class="col-12 bg-light d-flex justify-content-around">
             <!-- <img
               src="../assets/img/Badges/CapstoneBadges1st-Login.png"
               height="400"
@@ -70,13 +70,13 @@
     </div>
   </div>
 
-  <Modal id="display-award">
+  <!-- <Modal id="display-award">
     <template #body>
       <div>
         <img class="img-fluid" :src="award.img" alt="" />
       </div>
     </template>
-  </Modal>
+  </Modal> -->
 </template>
 
 
@@ -96,7 +96,7 @@ export default {
   },
   setup(props) {
     return {
-      award: computed(() => AppState.newAward),
+      // award: computed(() => AppState.newAward),
       awards: computed(() => AppState.myAwards.filter(a => a.habitId == props.habit.id)),
       async archiveHabit() {
         try {
