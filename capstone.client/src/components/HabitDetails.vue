@@ -70,13 +70,13 @@
     </div>
   </div>
 
-  <Modal id="display-award">
+  <!-- <Modal id="display-award">
     <template #body>
       <div>
         <img class="img-fluid" :src="award.img" alt="" />
       </div>
     </template>
-  </Modal>
+  </Modal> -->
 </template>
 
 
@@ -96,7 +96,7 @@ export default {
   },
   setup(props) {
     return {
-      award: computed(() => AppState.newAward),
+      // award: computed(() => AppState.newAward),
       awards: computed(() => AppState.myAwards.filter(a => a.habitId == props.habit.id)),
       async archiveHabit() {
         try {
