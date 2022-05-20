@@ -100,7 +100,8 @@ export default {
       awards: computed(() => AppState.myAwards.filter(a => a.habitId == props.habit.id)),
       async archiveHabit() {
         try {
-          if (await Pop.confirm()) {
+          if (await Pop.confirm('Are you sure?',
+            "This habit will be archived, not deleted. Archived habits are not tracked and cannot be interacted with. ", 'warning', 'Yes, archive it.')) {
             await habitsService.archiveHabit(props.habit.id)
           }
         } catch (error) {
