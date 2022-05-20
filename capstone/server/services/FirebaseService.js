@@ -1,11 +1,11 @@
 import firebaseAdmin from "firebase-admin";
-const firebaseAccountKey = require('../../firebase.env.json')
+import { firebaseAccount } from'../../firebase.js'
 
 class FirebaseService {
   constructor() {
     firebaseAdmin.initializeApp({
       // @ts-ignore
-      credential: firebaseAdmin.credential.cert(firebaseAccountKey)
+      credential: firebaseAdmin.credential.cert(firebaseAccount)
     })
 
   }
