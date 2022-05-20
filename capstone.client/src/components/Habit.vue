@@ -158,7 +158,7 @@ export default {
         missed.value = true
         props.habit.streak = 0
         await habitsService.editHabit(props.habit)
-        //REVIEW this creates an infinite loop for some reason
+
       }
     })
     return {
