@@ -8,7 +8,7 @@
 
       <div class="col-md-9 bg-primary rounded mt-4 offset-md-1 p-3">
         <!-- TODO carousel with inspos -->
-        <p>
+        <p class="quoteWheel">
           {{ quote.content }}
         </p>
 
@@ -38,4 +38,7 @@ export default {
 
 
 <style lang="scss" scoped>
+.quoteWheel {
+  transition: ease-in-out;
+}
 </style>
