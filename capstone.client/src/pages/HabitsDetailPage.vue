@@ -10,6 +10,13 @@
       <HabitDetails v-for="h in archivedHabits" :key="h.id" :habit="h" />
     </div>
   </div>
+  <Modal id="display-award">
+    <template #body>
+      <div>
+        <img class="img-fluid" :src="award.img" alt="" />
+      </div>
+    </template>
+  </Modal>
 </template>
 
 
@@ -27,6 +34,7 @@ export default {
       document.getElementById(route.params.id).scrollIntoView()
     })
     return {
+      award: computed(() => AppState.newAward),
       activeHabits: computed(() => AppState.myHabits.filter(h => h.isActive == true)),
       archivedHabits: computed(() => AppState.myHabits.filter(h => h.isActive == false))
     }
