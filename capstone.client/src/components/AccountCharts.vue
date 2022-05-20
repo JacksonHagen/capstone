@@ -62,6 +62,7 @@
         :chartOptions="{
           scales: {
             y: {
+              suggestedMax: dayData[-1] + 30,
               beginAtZero: true,
             },
             x: {
@@ -93,7 +94,6 @@ export default {
     let dayLabels = []
     let dayData = []
     const lineLoaded = ref(false)
-
 
     watchEffect(() => {
       const accountCreated = new Date(AppState.account.createdAt);
@@ -162,6 +162,7 @@ export default {
       // days,
       dayLabels,
       dayData,
+      lineMax: computed(() => dayData[-1] * 2),
       lineLoaded,
       topStreaks: computed(() => streaks2.value.slice(0, 3)),
       loaded: computed(() => AppState.myHabits.length),

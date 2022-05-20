@@ -27,8 +27,16 @@
     </div>
     <div class="container-fluid" v-if="archivedHabits.length">
       <hr />
-      <div class="row w-100 d-flex justify-content-center text-center">
-        <p>Archived Habits</p>
+      <div class="d-flex justify-content-center">
+        <p v-if="!showArchive">Show</p>
+        <p @click="toggleShowArchived" class="ms-1 d-flex selectable">
+          Archived Habits
+        </p>
+      </div>
+      <div
+        class="row w-100 d-flex justify-content-center text-center"
+        v-if="showArchive"
+      >
         <Habit
           v-for="h in archivedHabits"
           :key="h.id"
@@ -55,10 +63,16 @@
 // additionally, we need to only show habits on the day that their interval requires.
 import { computed, ref } from '@vue/reactivity'
 import { AppState } from '../AppState.js'
+import { watchEffect } from "@vue/runtime-core"
 export default {
   name: 'Home',
   setup() {
+    const showArchive = ref(false)
     return {
+      showArchive,
+      toggleShowArchived() {
+        showArchive.value = !showArchive.value
+      },
       activeUntrackedHabits: computed(() => AppState.myHabits.filter(h => {
         if (h.isActive && !h.trackHistory[0]) {
           return true
