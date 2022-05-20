@@ -58,7 +58,7 @@
           <div class="col-12 d-flex justify-content-center">
             <HabitWeeklySummary :habit="habit" />
           </div>
-          <div class="col-12 bg-light d-flex">
+          <div class="col-12 bg-light d-flex justify-content-around">
             <!-- <img
               src="../assets/img/Badges/CapstoneBadges1st-Login.png"
               height="400"
