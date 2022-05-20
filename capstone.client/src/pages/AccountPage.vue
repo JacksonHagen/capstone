@@ -17,11 +17,31 @@
 </template>
 
 <script>
-import { computed } from 'vue'
+import { computed, onMounted } from 'vue'
 import { AppState } from '../AppState'
+import { quotesService } from "../services/QuotesService.js";
+import Pop from '../utils/Pop.js';
 export default {
   name: 'Account',
   setup() {
+    onMounted(async () => {
+      try {
+        await quotesService.getOneQuote()
+      }
+      catch (error) {
+        console.error("[QUOTE_ERROR]", error.message);
+        Pop.toast(error.message, "error");
+      }
+      await setInterval(async () => {
+        try {
+          await quotesService.getOneQuote()
+        }
+        catch (error) {
+          console.error("[QUOTE_ERROR]", error.message);
+          Pop.toast(error.message, "error");
+        }
+      }, 15000)
+    })
     return {
       award: computed(() => AppState.newAward),
       account: computed(() => AppState.account)
