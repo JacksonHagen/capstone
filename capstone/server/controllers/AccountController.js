@@ -16,6 +16,7 @@ export class AccountController extends BaseController {
       .get('/firebase', this.getFirebaseToken)
       .put('', this.updateAccount)
   }
+  
   async getAwardsByAccount(req, res, next) {
     try {
       const awards = await awardsService.getAwardsByAccount(req.userInfo.id)
