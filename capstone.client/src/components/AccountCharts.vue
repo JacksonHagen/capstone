@@ -1,7 +1,7 @@
 <template>
   <div class="bg-primary rounded">
     <div class="row mb-4">
-      <div class="col-md-8 bg-light rounded p-3 pt-5">
+      <div class="col-md-8 mb-4 bg-light rounded p-3">
         <p class="text-dark text-center">My Top Streaks</p>
         <BarChart
           v-if="loaded"
@@ -43,7 +43,7 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-12 p-3 bg-light mt-4 rounded">
+    <div class="col-12 p-3 bg-light mb-4 rounded">
       <p class="text-dark">Streak Score</p>
       <LineChart
         v-if="lineLoaded"
@@ -53,6 +53,9 @@
             {
               label: '',
               data: dayData,
+              fill: false,
+              borderColor: '#DE9A15',
+              tension: 0.1,
             },
           ],
         }"
@@ -87,7 +90,6 @@ import { computed, onMounted, ref, watchEffect } from '@vue/runtime-core'
 import { AppState } from '../AppState.js'
 export default {
   setup() {
-    // let days = {}
     let dayLabels = []
     let dayData = []
     const lineLoaded = ref(false)
@@ -132,7 +134,6 @@ export default {
 
 
               while (expectedDate == new Date(mh.trackHistory[workingIndex]).getDate()) {
-                // console.log('date ||', expectedDate, '||', new Date(mh.trackHistory[workingIndex]).getDate())
                 habitCount++
                 workingIndex += mh.interval
                 expectedDate--

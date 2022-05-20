@@ -16,6 +16,7 @@
         placeholder=""
         v-model="formData.title"
         required
+        max="40"
       />
     </div>
     <div class="mb-3">
@@ -28,6 +29,7 @@
         id="habit-inspo"
         placeholder=""
         v-model="formData.inspo"
+        max="1000"
       />
       <small id="helpId" class="form-text text-muted"
         >This is optional, but we will show it to you later.</small
@@ -145,7 +147,6 @@ export default {
       day: computed(() => AppState.day),
       setImage(e) {
         image.value = e.target.files
-        logger.log("new image:", image.value)
       },
       async upload() {
         try {

@@ -35,13 +35,14 @@ export class SocketHandler {
   }
 
   onConnected(connection) {
-    logger.log('[SOCKET_CONNECTION]', connection)
+    // logger.log('[SOCKET_CONNECTION]', connection)
     this.connected = true
     this.playback()
   }
 
   onAuthenticated(auth) {
-    logger.log('[SOCKET_AUTHENTICATED]', auth)
+    // NOTE took this out - personal information
+    // logger.log('[SOCKET_AUTHENTICATED]', auth)
     this.authenticated = true
     this.playback()
   }
@@ -60,7 +61,7 @@ export class SocketHandler {
   }
 
   playback() {
-    logger.log('[SOCKET_PLAYBACK]')
+    // logger.log('[SOCKET_PLAYBACK]')
     const playback = [...this.queue]
     this.queue = []
     playback.forEach(e => {

@@ -8,7 +8,6 @@ class FirebaseService {
   async login() {
     try {
       const res = await api.get('account/firebase')
-      logger.log(res.data, 'firebase login')
       const token = res.data.token
       await fbAuth.signInWithCustomToken(token)
     } catch (error) {
