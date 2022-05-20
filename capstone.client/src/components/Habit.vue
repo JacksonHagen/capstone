@@ -8,6 +8,7 @@
           justify-content-between
           align-items-center
           round
+          text-start
         "
         :style="'background-color: ' + habit.color"
         type="button"
@@ -18,22 +19,22 @@
         :id="'h-' + habit.id"
         @click.stop="toggle"
       >
-        <div class="d-flex text-start col-9 text">
-          <h5>{{ habit.title }}</h5>
-          <span class="mdi mdi-menu-down col-1"></span>
+        <div class="d-flex col-8">
           <div
             v-if="habit.interval - timeSinceLastTracked < 1 && habit.isActive"
-            class="mdi mdi-clock-alert-outline col-1"
+            class="mdi mdi-clock-alert-outline mx-2"
             title="Check-in to keep your streak"
           ></div>
-          <div
-            v-if="missed && habit.isActive"
-            class="mdi mdi-bell-alert col-1"
-            title="You missed your check-in!"
-          ></div>
+          <h5>{{ habit.title }}</h5>
+          <span class="mdi mdi-menu-down col-1"></span>
         </div>
-        <div class="col-1" v-if="!habit.isActive">
-          <h5><i>Archived</i></h5>
+        <div
+          v-if="missed && habit.isActive"
+          class="mdi mdi-bell-alert col-1 text-end"
+          title="You missed your check-in!"
+        ></div>
+        <div v-if="!habit.isActive">
+          <h5 class="col-1"><i>Archived</i></h5>
         </div>
         <div v-else-if="!isTracked || isNew">
           <div
@@ -118,7 +119,7 @@
                   />
                 </div>
                 <div
-                  v-if="habit.interval === 1 && habit.isActive"
+                  v-if="habit.interval < 7 && habit.isActive"
                   class="row text-dark"
                 >
                   <h5>Last 7 days</h5>
