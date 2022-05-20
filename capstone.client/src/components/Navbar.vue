@@ -51,7 +51,7 @@
   </div>
   <!-- floating button -->
   <button
-    class="m-2 btn btn-info float"
+    class="m-2 btn btn-info float elevation-5"
     type="button"
     title="Create a new habit"
     data-bs-toggle="modal"
