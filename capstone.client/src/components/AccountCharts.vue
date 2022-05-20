@@ -62,15 +62,15 @@
         :chartOptions="{
           scales: {
             y: {
-              suggestedMax: dayData[-1] + 30,
+              suggestedMax: dayData[dayData.length - 1] * 1.5,
               beginAtZero: true,
             },
             x: {
               ticks: {
                 padding: 1,
                 autoSkip: false,
-                maxRotation: 45,
-                minRotation: 45,
+                maxRotation: 30,
+                minRotation: 30,
               },
             },
           },
@@ -143,7 +143,7 @@ export default {
           }
         })
         if (habitsAtDay.length != 0) {
-          dayLabels.push(day.toDateString())
+          dayLabels.push(day.toDateString().split(' ')[2] + ' ' + day.toDateString().split(' ')[1])
           dayData.push(Math.floor(dayCount))
         }
       }
