@@ -1,7 +1,7 @@
 import { Auth0Provider } from '@bcwdev/auth0provider'
 import { accountService } from '../services/AccountService'
-import { awardsService } from '../services/AwardsService.js'
-import { habitsService } from '../services/HabitsService.js'
+import { awardsService } from '../services/AwardsService'
+import { habitsService } from '../services/HabitsService'
 import BaseController from '../utils/BaseController'
 import { firebaseService } from '../services/FirebaseService'
 
