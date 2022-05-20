@@ -18,7 +18,6 @@ class SocketService extends SocketHandler {
     setTimeout(() => {
       AppState.newAward = {}
     }, 3000);
-    console.log('earned badge', payload)
     // NOTE socket working - just need to handle this payload data
   }
 

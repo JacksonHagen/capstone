@@ -147,7 +147,6 @@ export default {
       day: computed(() => AppState.day),
       setImage(e) {
         image.value = e.target.files
-        logger.log("new image:", image.value)
       },
       async upload() {
         try {
