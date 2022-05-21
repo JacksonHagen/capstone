@@ -17,6 +17,13 @@
             ],
           }"
           :chartOptions="{
+            scales: {
+              y: {
+                ticks: {
+                  mirror: true,
+                },
+              },
+            },
             indexAxis: 'y',
             plugins: {
               legend: {
