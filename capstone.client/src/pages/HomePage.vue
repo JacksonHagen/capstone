@@ -47,7 +47,6 @@
 <script>
 import { computed, ref } from '@vue/reactivity'
 import { AppState } from '../AppState.js'
-import { watchEffect } from "@vue/runtime-core"
 export default {
   name: 'Home',
   setup() {
@@ -70,7 +69,7 @@ export default {
         let date = new Date(h.trackHistory[0])
         let today = AppState.day
         return h.isActive && ((today.getDate() - date.getDate()) < h.interval)
-      })),
+      }).reverse()),
       archivedHabits: computed(() => AppState.myHabits.filter(h => !h.isActive)),
       award: computed(() => AppState.newAward)
     }
