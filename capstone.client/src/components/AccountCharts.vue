@@ -27,7 +27,9 @@
             indexAxis: 'y',
             plugins: {
               legend: {
-                display: false,
+                display: true,
+
+                labels: topStreaks.map((s) => s.title),
               },
             },
           }"

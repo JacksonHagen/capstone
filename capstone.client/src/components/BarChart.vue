@@ -5,12 +5,12 @@
 
 <script>
 import { Bar } from "vue-chartjs";
-import { Chart as ChartJS, Title, Tooltip, BarElement, CategoryScale, LinearScale } from 'chart.js'
+import { Chart as ChartJS, Legend, Tooltip, BarElement, CategoryScale, LinearScale } from 'chart.js'
 import { computed, onMounted } from '@vue/runtime-core';
 import { AppState } from '../AppState.js';
 import { habitsService } from '../services/HabitsService.js';
 
-ChartJS.register(Tooltip, BarElement, CategoryScale, LinearScale)
+ChartJS.register(Tooltip, Legend, BarElement, CategoryScale, LinearScale)
 
 export default {
   components: { Bar },
