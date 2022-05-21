@@ -174,7 +174,6 @@ export default {
         try {
           formData.value.interval = document.getElementById('habit-interval').value
           formData.value.accountId = this.account.id
-          // formData.value.trackHistory = [this.day]
           await habitsService.createHabit(formData.value)
           formData.value = {}
           Modal.getOrCreateInstance(document.getElementById('newHabitModal')).toggle()

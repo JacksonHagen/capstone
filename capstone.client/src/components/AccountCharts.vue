@@ -134,7 +134,6 @@ export default {
             let habitCount = 0
             let startingIndex = mh.trackHistory.findIndex(d => new Date(day).toDateString())
             mh.trackHistory.forEach(td => {
-
               let expectedDate = new Date(mh.trackHistory[startingIndex]).getDate()
               let workingIndex = startingIndex
               //real value starts at the date we've found
