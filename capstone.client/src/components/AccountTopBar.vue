@@ -14,7 +14,7 @@
           </p>
         </Transition>
         <Transition name="slide-fade">
-          <p class="text-center" v-if="quote">
+          <p class="text-end" v-if="quote">
             <i>-{{ quote.author }}</i>
           </p>
         </Transition>
@@ -42,11 +42,11 @@ export default {
 
 <style lang="scss" scoped>
 .slide-fade-enter-active {
-  transition: all 0.7s ease-out;
+  transition: all 2s ease-out;
 }
 
 .slide-fade-leave-active {
-  transition: all 1s cubic-bezier(1, 0.5, 0.8, 1);
+  transition: all 1.5s cubic-bezier(1, 0.5, 0.8, 1);
 }
 
 .slide-fade-enter-from {
