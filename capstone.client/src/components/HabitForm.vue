@@ -20,9 +20,14 @@
       />
     </div>
     <div class="mb-3">
-      <label for="habit-inspo" class="form-label"
-        >Why are you making this Habit?</label
-      >
+      <div class="d-flex justify-content-between">
+        <label for="habit-inspo" class="form-label"
+          >Why are you making this Habit?</label
+        ><label class="selectable px-1 rounded" @click="toggleImgInput" for=""
+          ><span v-if="!showImgInput">Add an image</span
+          ><span v-if="showImgInput">Actually, just text</span></label
+        >
+      </div>
       <input
         type="text"
         class="form-control"
@@ -35,7 +40,7 @@
         >This is optional, but we will show it to you later.</small
       >
     </div>
-    <!-- <div>
+    <div class="mb-3 imgInput" v-if="showImgInput">
       <label for="habit-inspo-img" class="form-label">Image</label>
       <input
         @change="setImage"
@@ -44,8 +49,10 @@
         id="habit-inspo-img"
         accept="image/*"
       />
-      <small> This is also optional, but we will show it to you later.</small>
-    </div> -->
+      <small class="form-text text-muted">
+        This is also optional, but we will show it to you later.</small
+      >
+    </div>
     <div class="input-group mb-3">
       <label
         class="form-check-label visually-hidden"
@@ -140,11 +147,16 @@ export default {
   setup() {
     const formData = ref({})
     const image = ref([])
+    const showImgInput = ref(false)
     return {
+      showImgInput,
       formData,
       formColor: computed(() => `${formData.value.color}`),
       account: computed(() => AppState.account),
       day: computed(() => AppState.day),
+      toggleImgInput() {
+        showImgInput.value = !showImgInput.value
+      },
       setImage(e) {
         image.value = e.target.files
       },
@@ -160,7 +172,6 @@ export default {
       },
       async newHabit() {
         try {
-
           formData.value.interval = document.getElementById('habit-interval').value
           formData.value.accountId = this.account.id
           // formData.value.trackHistory = [this.day]

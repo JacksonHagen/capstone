@@ -8,13 +8,16 @@
 
       <div class="col-md-9 bg-primary rounded mt-4 offset-md-1 p-3">
         <!-- TODO carousel with inspos -->
-        <p>
-          {{ quote.content }}
-        </p>
-
-        <p class="ms-5">
-          <i>-{{ quote.author }}</i>
-        </p>
+        <Transition name="slide-fade">
+          <p v-if="quote">
+            {{ quote.content }}
+          </p>
+        </Transition>
+        <Transition name="slide-fade">
+          <p class="text-center" v-if="quote">
+            <i>-{{ quote.author }}</i>
+          </p>
+        </Transition>
       </div>
     </div>
   </div>
@@ -22,7 +25,7 @@
 
 
 <script>
-import { computed } from 'vue'
+import { computed, ref, watchEffect } from 'vue'
 import { AppState } from '../AppState'
 
 export default {
@@ -38,4 +41,20 @@ export default {
 
 
 <style lang="scss" scoped>
+.slide-fade-enter-active {
+  transition: all 0.7s ease-out;
+}
+
+.slide-fade-leave-active {
+  transition: all 1s cubic-bezier(1, 0.5, 0.8, 1);
+}
+
+.slide-fade-enter-from {
+  transform: translateX(-50px);
+  opacity: 0;
+}
+.slide-fade-leave-to {
+  transform: translateX(50px);
+  opacity: 0;
+}
 </style>

@@ -62,14 +62,15 @@
         :chartOptions="{
           scales: {
             y: {
+              suggestedMax: dayData[dayData.length - 1] * 1.5,
               beginAtZero: true,
             },
             x: {
               ticks: {
                 padding: 1,
                 autoSkip: false,
-                maxRotation: 45,
-                minRotation: 45,
+                maxRotation: 30,
+                minRotation: 30,
               },
             },
           },
@@ -93,7 +94,6 @@ export default {
     let dayLabels = []
     let dayData = []
     const lineLoaded = ref(false)
-
 
     watchEffect(() => {
       const accountCreated = new Date(AppState.account.createdAt);
@@ -143,7 +143,7 @@ export default {
           }
         })
         if (habitsAtDay.length != 0) {
-          dayLabels.push(day.toDateString())
+          dayLabels.push(day.toDateString().split(' ')[2] + ' ' + day.toDateString().split(' ')[1])
           dayData.push(Math.floor(dayCount))
         }
       }
@@ -154,7 +154,7 @@ export default {
     let streaks = []
     const streaks2 = computed(() => {
       let s = []
-      AppState.habits.forEach(h => s.push({ streak: h.streak, title: h.title, color: h.color }))
+      AppState.myHabits.forEach(h => s.push({ streak: h.streak, title: h.title, color: h.color }))
       s.sort((a, b) => { return a.streak - b.streak }).reverse()
       return s
     })
@@ -162,6 +162,7 @@ export default {
       // days,
       dayLabels,
       dayData,
+      lineMax: computed(() => dayData[-1] * 2),
       lineLoaded,
       topStreaks: computed(() => streaks2.value.slice(0, 3)),
       loaded: computed(() => AppState.myHabits.length),

@@ -5,6 +5,7 @@
       height="270"
       alt=""
       :title="award.title"
+      class="award-mobile"
       style="filter: brightness(70%)"
     />
   </div>

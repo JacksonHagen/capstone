@@ -43,7 +43,7 @@
             aria-label="Close"
           ></button>
         </div>
-        <div class="modal-body">
+        <div class="modal-body" v-if="account.id">
           <HabitForm />
         </div>
       </div>
@@ -62,9 +62,13 @@
 </template>
 
 <script>
+import { computed } from "@vue/reactivity";
+import { AppState } from "../AppState";
 export default {
   setup() {
-    return {};
+    return {
+      account: computed(() => AppState.account)
+    };
   },
 };
 </script>

@@ -7,7 +7,7 @@ class HabitsService {
   // get habits by query is our get ALL across all users habits
   async getHabitsByQuery(params) {
     const res = await api.get('api/habits', params)
-    AppState.habits = res.data
+    AppState.myHabits = res.data
   }
   // this gets a single habit
   async getHabitbyId(habitId) {
@@ -17,14 +17,14 @@ class HabitsService {
   async createHabit(newHabit) {
     const res = await api.post('api/habits/', newHabit)
     AppState.myHabits.unshift(res.data)
-    AppState.habits.unshift(res.data)
+    AppState.myHabits.unshift(res.data)
   }
   async editHabit(habitUpdate) {
     const res = await api.put('api/habits/' + habitUpdate.id, habitUpdate)
 
-    let index = AppState.habits.findIndex(h => h.id === res.data.id)
+    let index = AppState.myHabits.findIndex(h => h.id === res.data.id)
     if (index != -1) {
-      AppState.habits.splice(index, 1, res.data)
+      AppState.myHabits.splice(index, 1, res.data)
     }
     let index2 = AppState.myHabits.findIndex(h => h.id === res.data.id)
     if (index2 != -1) {

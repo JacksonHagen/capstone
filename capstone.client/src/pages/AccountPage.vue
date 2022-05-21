@@ -34,13 +34,14 @@ export default {
       }
       await setInterval(async () => {
         try {
+          AppState.quote = null
           await quotesService.getOneQuote()
         }
         catch (error) {
           console.error("[QUOTE_ERROR]", error.message);
           Pop.toast(error.message, "error");
         }
-      }, 30000)
+      }, 10000)
     })
     return {
       award: computed(() => AppState.newAward),
