@@ -25,7 +25,7 @@ export class Startup {
   }
 
   static configureCors(app) {
-    const allowedDomains = ['*npm build']
+    const allowedDomains = ['*']
     const corsOptions = {
       origin(origin, callback) {
         if (process.env.NODE_ENV === 'dev') {
