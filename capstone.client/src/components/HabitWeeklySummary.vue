@@ -1,67 +1,83 @@
 <template>
-  <div
-    class="col-1 m-1 rounded border box"
-    :style="
-      'background-color: ' +
-      (trackHistory.includes(week[0])
-        ? habit.color + '; filter: brightness(70%) !important;'
-        : 'gray')
-    "
-  ></div>
-  <div
-    class="col-1 m-1 rounded border box"
-    :style="
-      'background-color: ' +
-      (trackHistory.includes(week[1])
-        ? habit.color + '; filter: brightness(70%) !important;'
-        : 'gray')
-    "
-  ></div>
-  <div
-    class="col-1 m-1 rounded border box"
-    :style="
-      'background-color: ' +
-      (trackHistory.includes(week[2])
-        ? habit.color + '; filter: brightness(70%) !important;'
-        : 'gray')
-    "
-  ></div>
-  <div
-    class="col-1 m-1 rounded border box"
-    :style="
-      'background-color: ' +
-      (trackHistory.includes(week[3])
-        ? habit.color + '; filter: brightness(70%) !important;'
-        : 'gray')
-    "
-  ></div>
-  <div
-    class="col-1 m-1 rounded border box"
-    :style="
-      'background-color: ' +
-      (trackHistory.includes(week[4])
-        ? habit.color + '; filter: brightness(70%) !important;'
-        : 'gray')
-    "
-  ></div>
-  <div
-    class="col-1 m-1 rounded border box"
-    :style="
-      'background-color: ' +
-      (trackHistory.includes(week[5])
-        ? habit.color + '; filter: brightness(70%) !important;'
-        : 'gray')
-    "
-  ></div>
-  <div
-    class="col-1 m-1 rounded border box"
-    :style="
-      'background-color: ' +
-      (trackHistory.includes(week[6])
-        ? habit.color + '; filter: brightness(70%) !important;'
-        : 'gray')
-    "
-  ></div>
+  <div class="d-flex">
+    <div class="">
+      <div
+        class="m-1 rounded border box"
+        :style="
+          'background-color: ' +
+          (trackHistory.includes(week[0])
+            ? habit.color + '; filter: brightness(70%) !important;'
+            : 'gray')
+        "
+      ></div>
+    </div>
+    <div class="">
+      <div
+        class="m-1 rounded border box"
+        :style="
+          'background-color: ' +
+          (trackHistory.includes(week[1])
+            ? habit.color + '; filter: brightness(70%) !important;'
+            : 'gray')
+        "
+      ></div>
+    </div>
+    <div class="">
+      <div
+        class="m-1 rounded border box"
+        :style="
+          'background-color: ' +
+          (trackHistory.includes(week[2])
+            ? habit.color + '; filter: brightness(70%) !important;'
+            : 'gray')
+        "
+      ></div>
+    </div>
+    <div class="">
+      <div
+        class="m-1 rounded border box"
+        :style="
+          'background-color: ' +
+          (trackHistory.includes(week[3])
+            ? habit.color + '; filter: brightness(70%) !important;'
+            : 'gray')
+        "
+      ></div>
+    </div>
+    <div class="">
+      <div
+        class="m-1 rounded border box"
+        :style="
+          'background-color: ' +
+          (trackHistory.includes(week[4])
+            ? habit.color + '; filter: brightness(70%) !important;'
+            : 'gray')
+        "
+      ></div>
+    </div>
+    <div class="">
+      <div
+        class="m-1 rounded border box"
+        :style="
+          'background-color: ' +
+          (trackHistory.includes(week[5])
+            ? habit.color + '; filter: brightness(70%) !important;'
+            : 'gray')
+        "
+      ></div>
+    </div>
+    <div class="">
+      <div
+        class="m-1 rounded border box"
+        :style="
+          'background-color: ' +
+          (trackHistory.includes(week[6])
+            ? habit.color + '; filter: brightness(70%) !important;'
+            : 'gray')
+        "
+      ></div>
+    </div>
+  </div>
 </template>
 
 
