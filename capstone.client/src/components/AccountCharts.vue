@@ -1,7 +1,7 @@
 <template>
   <div class="bg-primary rounded">
     <div class="row mb-4">
-      <div class="col-md-8 mb-4 bg-light rounded p-3">
+      <div class="col-md-8 bg-light rounded p-3 chartbox">
         <p class="text-dark text-center">My Top Streaks</p>
         <BarChart
           v-if="loaded"
@@ -17,16 +17,25 @@
             ],
           }"
           :chartOptions="{
+            scales: {
+              y: {
+                ticks: {
+                  mirror: true,
+                },
+              },
+            },
             indexAxis: 'y',
             plugins: {
               legend: {
-                display: false,
+                display: true,
+
+                labels: topStreaks.map((s) => s.title),
               },
             },
           }"
         />
       </div>
-      <div class="col-md-3 m-start bg-light p-2 rounded text-center">
+      <div class="col-md-3 m-start bg-light rounded text-center">
         <p class="text-dark">Active / Archived</p>
         <PieChart
           :chartData="{
@@ -125,7 +134,6 @@ export default {
             let habitCount = 0
             let startingIndex = mh.trackHistory.findIndex(d => new Date(day).toDateString())
             mh.trackHistory.forEach(td => {
-
               let expectedDate = new Date(mh.trackHistory[startingIndex]).getDate()
               let workingIndex = startingIndex
               //real value starts at the date we've found
@@ -194,5 +202,8 @@ export default {
   .m-bot {
     margin-bottom: 1rem !important;
   }
+}
+.chartbox {
+  max-height: 50vh;
 }
 </style>

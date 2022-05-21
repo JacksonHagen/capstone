@@ -40,7 +40,7 @@
         >This is optional, but we will show it to you later.</small
       >
     </div>
-    <div class="mb-3 imgInput" v-if="showImgInput">
+    <!-- <div class="mb-3 imgInput" v-if="showImgInput">
       <label for="habit-inspo-img" class="form-label">Image</label>
       <input
         @change="setImage"
@@ -52,7 +52,7 @@
       <small class="form-text text-muted">
         This is also optional, but we will show it to you later.</small
       >
-    </div>
+    </div> -->
     <div class="input-group mb-3">
       <label
         class="form-check-label visually-hidden"
@@ -174,7 +174,6 @@ export default {
         try {
           formData.value.interval = document.getElementById('habit-interval').value
           formData.value.accountId = this.account.id
-          // formData.value.trackHistory = [this.day]
           await habitsService.createHabit(formData.value)
           formData.value = {}
           Modal.getOrCreateInstance(document.getElementById('newHabitModal')).toggle()

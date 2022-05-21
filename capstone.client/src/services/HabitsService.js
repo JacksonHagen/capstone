@@ -17,15 +17,9 @@ class HabitsService {
   async createHabit(newHabit) {
     const res = await api.post('api/habits/', newHabit)
     AppState.myHabits.unshift(res.data)
-    AppState.myHabits.unshift(res.data)
   }
   async editHabit(habitUpdate) {
     const res = await api.put('api/habits/' + habitUpdate.id, habitUpdate)
-
-    let index = AppState.myHabits.findIndex(h => h.id === res.data.id)
-    if (index != -1) {
-      AppState.myHabits.splice(index, 1, res.data)
-    }
     let index2 = AppState.myHabits.findIndex(h => h.id === res.data.id)
     if (index2 != -1) {
       AppState.myHabits.splice(index2, 1, res.data)
@@ -40,16 +34,9 @@ class HabitsService {
       habit.isActive = false
     }
   }
-
-  //this get exclusively active user's Habits
   async getMyHabits() {
     const res = await api.get('account/habits')
     AppState.myHabits = res.data
-  }
-  checkLastTracking() {
-    // NOTE not finished, tired :(
-    const today = AppState.day.getDate()
-
   }
 }
 
