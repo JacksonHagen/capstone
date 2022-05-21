@@ -8,13 +8,16 @@
 
       <div class="col-md-9 bg-primary rounded mt-4 offset-md-1 p-3">
         <!-- TODO carousel with inspos -->
-        <p class="quoteWheel">
-          {{ quote.content }}
-        </p>
-
-        <p class="ms-5 quoteWheel">
-          <i>-{{ quote.author }}</i>
-        </p>
+        <Transition name="slide-fade">
+          <p>
+            {{ quote.content }}
+          </p>
+        </Transition>
+        <Transition name="slide-fade">
+          <p class="ms-5">
+            <i>-{{ quote.author }}</i>
+          </p>
+        </Transition>
       </div>
     </div>
   </div>
@@ -43,16 +46,17 @@ export default {
 
 
 <style lang="scss" scoped>
-.quoteWheel {
-  animation: fadeIn 1s;
-  transition: ease-in-out;
+.slide-fade-enter-active {
+  transition: all 0.3s ease-out;
 }
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
+
+.slide-fade-leave-active {
+  transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
+}
+
+.slide-fade-enter-from,
+.slide-fade-leave-to {
+  transform: translateX(20px);
+  opacity: 0;
 }
 </style>
