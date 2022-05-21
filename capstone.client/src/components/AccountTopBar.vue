@@ -9,12 +9,12 @@
       <div class="col-md-9 bg-primary rounded mt-4 offset-md-1 p-3">
         <!-- TODO carousel with inspos -->
         <Transition name="slide-fade">
-          <p>
+          <p v-if="quote">
             {{ quote.content }}
           </p>
         </Transition>
         <Transition name="slide-fade">
-          <p class="ms-5">
+          <p class="text-center" v-if="quote">
             <i>-{{ quote.author }}</i>
           </p>
         </Transition>
@@ -30,15 +30,10 @@ import { AppState } from '../AppState'
 
 export default {
   setup() {
-    const quote = ref({})
-    watchEffect(() => {
-      quote.value = AppState.quote
-    })
     return {
-      quote,
       myHabits: computed(() => AppState.myHabits),
       awards: computed(() => AppState.myAwards),
-      // quote: computed(() => AppState.quote)
+      quote: computed(() => AppState.quote)
     }
   }
 }
@@ -47,16 +42,19 @@ export default {
 
 <style lang="scss" scoped>
 .slide-fade-enter-active {
-  transition: all 0.3s ease-out;
+  transition: all 0.7s ease-out;
 }
 
 .slide-fade-leave-active {
-  transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
+  transition: all 1s cubic-bezier(1, 0.5, 0.8, 1);
 }
 
-.slide-fade-enter-from,
+.slide-fade-enter-from {
+  transform: translateX(-50px);
+  opacity: 0;
+}
 .slide-fade-leave-to {
-  transform: translateX(20px);
+  transform: translateX(50px);
   opacity: 0;
 }
 </style>
