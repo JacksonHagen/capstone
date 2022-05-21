@@ -154,7 +154,7 @@ export default {
     let streaks = []
     const streaks2 = computed(() => {
       let s = []
-      AppState.habits.forEach(h => s.push({ streak: h.streak, title: h.title, color: h.color }))
+      AppState.myHabits.forEach(h => s.push({ streak: h.streak, title: h.title, color: h.color }))
       s.sort((a, b) => { return a.streak - b.streak }).reverse()
       return s
     })
