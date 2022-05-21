@@ -35,7 +35,7 @@
         >This is optional, but we will show it to you later.</small
       >
     </div>
-    <div>
+    <!-- <div>
       <label for="habit-inspo-img" class="form-label">Image</label>
       <input
         @change="setImage"
@@ -45,7 +45,7 @@
         accept="image/*"
       />
       <small> This is also optional, but we will show it to you later.</small>
-    </div>
+    </div> -->
     <div class="input-group mb-3">
       <label
         class="form-check-label visually-hidden"
