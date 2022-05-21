@@ -12,7 +12,7 @@
           {{ quote.content }}
         </p>
 
-        <p class="ms-5">
+        <p class="ms-5 quoteWheel">
           <i>-{{ quote.author }}</i>
         </p>
       </div>
@@ -22,15 +22,20 @@
 
 
 <script>
-import { computed } from 'vue'
+import { computed, ref, watchEffect } from 'vue'
 import { AppState } from '../AppState'
 
 export default {
   setup() {
+    const quote = ref({})
+    watchEffect(() => {
+      quote.value = AppState.quote
+    })
     return {
+      quote,
       myHabits: computed(() => AppState.myHabits),
       awards: computed(() => AppState.myAwards),
-      quote: computed(() => AppState.quote)
+      // quote: computed(() => AppState.quote)
     }
   }
 }
@@ -39,6 +44,15 @@ export default {
 
 <style lang="scss" scoped>
 .quoteWheel {
+  animation: fadeIn 1s;
   transition: ease-in-out;
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 </style>
