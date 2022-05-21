@@ -2,7 +2,7 @@
   <nav class="bg-primary w-100 d-flex align-items-center active pt-2">
     <div class="d-flex justify-content-between col-6">
       <div class="d-flex">
-        <img height="40" class="m-1" src="../assets/img/IMG_0519.PNG" />
+        <!-- <img height="40" class="m-1" src="../assets/img/IMG_0519.PNG" /> -->
         <h1>
           <router-link
             class="btn text-success lighten-30 selectable text-uppercase"
