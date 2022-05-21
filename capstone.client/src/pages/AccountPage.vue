@@ -34,6 +34,7 @@ export default {
       }
       await setInterval(async () => {
         try {
+          AppState.quote = null
           await quotesService.getOneQuote()
         }
         catch (error) {
