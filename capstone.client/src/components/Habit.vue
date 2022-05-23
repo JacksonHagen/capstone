@@ -98,8 +98,8 @@
             habit.color
           "
         >
-          <div class="row w-100">
-            <div class="col-md-6">
+          <div class="row w-100 g-0">
+            <div class="col-md-5">
               <div class="p-2 m-2">
                 <!-- <h3>Your streak:</h3> -->
                 <!-- TODO OR v-if  -->
@@ -124,8 +124,17 @@
                 </button>
               </div>
             </div>
-            <div class="col-md-6 mb-4 align-items-center">
-              <div class="h-100 rounded">
+            <div class="col-md-7 g-0 mb-4 align-items-center">
+              <div
+                class="d-flex flex-column justify-content-between h-100 rounded"
+              >
+                <div class="d-flex flex-column" v-if="!myHabitAwards[0]">
+                  <hr />
+                  <p class="p-3 mb-0 fs-5 fw-lighter">
+                    Your earned badges will be displayed here
+                  </p>
+                  <hr />
+                </div>
                 <h3 v-if="myHabitAwards[0]" class="p-2 m-2">
                   My badges for this habit
                 </h3>
@@ -142,12 +151,18 @@
                 </div>
                 <div
                   v-if="habit.interval < 7 && habit.isActive"
-                  class="text-dark row m-1"
+                  class="
+                    d-flex
+                    flex-column
+                    align-items-end
+                    mt-auto
+                    text-dark
+                    m-1
+                  "
                 >
                   <h5 class="m-1">Last 7 days</h5>
-                  <div class="col-12 d-flex">
-                    <HabitWeeklySummary :habit="habit" />
-                  </div>
+
+                  <HabitWeeklySummary :habit="habit" />
                 </div>
               </div>
             </div>
