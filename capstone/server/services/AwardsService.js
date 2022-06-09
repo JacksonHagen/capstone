@@ -18,7 +18,7 @@ class AwardsService {
     }
     const award = await dbContext.Awards.create(body)
     await award.populate('badge habit account')
-    socketProvider.message("EARNED_BADGE", award)
+    socketProvider.messageUser(accountId, "EARNED_BADGE", award)
     return award
   }
   async getAwardsByAccount(accountId) {
