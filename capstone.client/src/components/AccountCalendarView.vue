@@ -15,7 +15,7 @@
       <p class="text-dark">Last 7 Days</p>
       <div class="container">
         <div
-          class="row text-dark text-center justify-content-center"
+          class="d-flex text-dark text-center justify-content-center"
           v-for="h in habits"
           :key="h.id"
         >
@@ -28,7 +28,17 @@
               </div>
             </div>
           </div>
-          <p class="display-none-desktop m-0 mt-1">{{ h.title }}</p>
+          <!-- <p class="display-none-desktop m-0 mt-1">{{ h.title }}</p> -->
+          <!-- <button
+            type="button"
+            class="btn btn-secondary"
+            trigger="click"
+            data-toggle="tooltip"
+            data-placement="bottom"
+            :title="h.title"
+          >
+            Tooltip on bottom
+          </button> -->
           <HabitWeeklySummary :habit="h" />
           <div class="col-2 display-none-mobile"></div>
         </div>
