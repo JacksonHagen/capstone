@@ -2,6 +2,7 @@
   <div class="component">
     <img
       :src="award.img"
+      crossorigin="anonymous"
       height="270"
       alt=""
       :title="award.title"

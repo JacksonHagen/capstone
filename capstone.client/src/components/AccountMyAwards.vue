@@ -15,7 +15,7 @@
         <p v-if="myAccountAwards.length"><u>Account Awards</u></p>
 
         <div class="col-3" v-for="a in myAccountAwards" :key="a.id">
-          <img :src="a.img" class="img-fluid" />
+          <img crossorigin="anonymous" :src="a.img" class="img-fluid" />
         </div>
       </div>
     </div>

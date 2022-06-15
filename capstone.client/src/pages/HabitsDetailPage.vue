@@ -13,7 +13,12 @@
   <Modal id="display-award">
     <template #body>
       <div>
-        <img class="img-fluid" :src="award.img" alt="" />
+        <img
+          crossorigin="anonymous"
+          class="img-fluid"
+          :src="award.img"
+          alt=""
+        />
       </div>
     </template>
   </Modal>

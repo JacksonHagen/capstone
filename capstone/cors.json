@@ -1,6 +1,6 @@
 [
   {
-    "origin": ["*"],
+    "origin": ["https://ontrak-capstone.herokuapp.com"],
     "method": ["GET"],
     "maxAgeSeconds": 3600
   }

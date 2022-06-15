@@ -18,6 +18,7 @@
         <div v-if="account.picture" class="px-2 p-1">
           <!-- <img
             :src="account.picture"
+            crossorigin="anonymous"
             alt="account photo"
             height="40"
             class="rounded"
